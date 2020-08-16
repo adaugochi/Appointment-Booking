@@ -1,0 +1,65 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family: 'Baloo Tamma 2', cursive;;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #db232f;
+$orange: #f6993f;
+$gold: #FF8C00;
+$silver: #A9A9A9;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+$white: #ffffff;
+$gray: #999;
+$brand-orange: #ff5a1a;
+$brand-grey: #3d3d3d;
+$disabled: #eeeeee;
+$brand-white: rgba($white, 0.86);
+$brand-off-white: rgba($white, 0.56);
+$brand-card-bg: rgba($white, 0.12);
+$brand-card-selected: rgba($white, 0.36);
+
+
+$brand-gray: $brand-grey;
+$brand-primary: $brand-orange;
+$brand-accent: #adb5bd;
+
+$white: #ffffff;
+$danger: #dc3545;
+$success: #28a745;
+$black: #111;
+$blue: #0020dd;
+$dark: #000000;
+$body-color: $black;
+$disabled: #eeeeee;
+$border-color: #f3f3f3;
+$bg-light-gray: #efefef;
+$disabled-link: rgba(100, 99, 99, 0.45);
+
+//Break points
+$screen-xs: 360px;
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-md-max: 1024px;
+$screen-lg: 992px;
+$screen-xl: 1200px;
+$screen-lg-max: 1199px;
+
+$header-font: 36px;
+$body-font: 16px;
+$border-radius: 4px;
+
+$custom-navbar-height: 60px;
+$custom-navbar-padding: 10px 32px;
+$sub-menu-font: 12px;
+$sidebar-width: 144px;
+$content-padding: 32px;
+$viewport-height: 100vh;

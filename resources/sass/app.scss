@@ -1,0 +1,23 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500;600;700;800&display=swap');
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import "~pg-calendar/dist/css/pignose.calendar.min.css";
+
+// Variables
+@import 'core/variables';
+@import "core/layout";
+
+// Mixins
+@import "mixins";
+
+// Pages
+@import "pages/booking";
+
+// Components
+@import "components/background";
+@import "components/font";
+@import "components/card";
+@import "components/text";
+@import "components/button";

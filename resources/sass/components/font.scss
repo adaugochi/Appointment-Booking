@@ -1,0 +1,8 @@
+.fs {
+    &-header {
+        font-size: $header-font - 10px !important;
+        @include media-breakpoint-up(md) {
+            font-size: $header-font !important;
+        }
+    }
+}

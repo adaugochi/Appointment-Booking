@@ -1,0 +1,17 @@
+.text {
+    &-brand-primary {
+        color: $brand-orange;
+    }
+    &-gray {
+        color: $brand-grey !important;
+    }
+    &-underline {
+        text-decoration: underline;
+    }
+    &-linear-grad {
+        background-image: linear-gradient(to right, $brand-orange, lighten($brand-orange, 30%));
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+}

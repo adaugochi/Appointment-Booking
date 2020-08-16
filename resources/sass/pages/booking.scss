@@ -1,0 +1,47 @@
+.wd {
+    text-align: center;
+    box-shadow: 0 16px 40px rgba(239, 239, 239, 0.02);
+    &-700 {
+        width: 700px;
+    }
+    &-md-700 {
+        @include media-breakpoint-up(md) {
+            width: 700px;
+        }
+    }
+}
+
+.booking {
+    &__main {
+        min-height: 100vh;
+        padding: 60px;
+    }
+    &__align {
+        height: 80vh;
+        &-header {
+            background-color: #d9d9d9;
+            padding: 2rem;
+        }
+        &-body {
+            padding: 3.2rem 2.5rem;
+        }
+    }
+}
+
+.pignose-calendar {
+    border: none !important;
+    box-shadow: none !important;
+    &-top {
+        background-color: transparent !important;
+        border-bottom: unset !important;
+        box-shadow: unset !important;
+    }
+    &-header, &-body {
+        @include media-breakpoint-down(sm) {
+            padding: unset !important;
+        }
+    }
+    &-week-sat, &-week-sun, &-unit-sat a, &-unit-sun a {
+        color: $brand-orange !important;
+    }
+}
