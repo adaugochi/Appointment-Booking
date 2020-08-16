@@ -23,6 +23,10 @@
         }
     }
 
+    &-wd-100 {
+        width: 100% !important;
+    }
+
     &:disabled {
         cursor: not-allowed;
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Schedule;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -13,15 +14,20 @@ class BookingController extends Controller
 
     public function bookDate($username, $duration)
     {
-        return view('booking-datetime');
+        return view('booking-datetime', compact('username', 'duration'));
     }
 
     public function saveBookDate(Request $request, $username, $duration)
     {
-        $data = $request->all();
-        #create or update your data here
+        $data = request('date');
+        $res = Schedule::select('schedule_time')
+            ->where(['schedule_date' => $data, 'hon_id' => 1, 'duration' => $duration])
+            ->get();
 
-        return response()->json(['success'=>'Ajax request submitted successfully']);
+        return response()->json([
+            'status' => 'success',
+            'result' => $res
+        ]);
     }
 
     public function bookTime($username, $duration)

@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "pg-calendar": "^1.4.31"
+        "pg-calendar": "^1.4.31",
+        "timepicker": "^1.13.14"
     }
 }

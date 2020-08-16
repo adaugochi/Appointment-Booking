@@ -8,7 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <main class="container booking__main">
+    <main class="container p-3 py-5 p-md-5">
         <div class="text-center pb-5">
             <p class="fs-header">Honourable of the federal republic of Nigeria</p>
             <p class="fs-header">Hon. Yekini Shagari</p>
@@ -21,8 +21,7 @@
                 <div class="booking__align-body">
                     <div class="pb-4">
                         <p>
-                            Please select the date and time most convenient for you to be interviewed
-                            between Thursday March 28th 2019 to Thursday April 4th 2019. Do ensure
+                            Please select the date and time most convenient for you. Do ensure
                             you do not select a day which falls on a weekend.
                         </p>
                     </div>

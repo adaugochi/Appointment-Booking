@@ -12,6 +12,7 @@ try {
 
     require('bootstrap');
     require('pg-calendar');
+    require('timepicker');
 } catch (e) {}
 
 /**

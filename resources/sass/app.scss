@@ -4,6 +4,7 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import "~pg-calendar/dist/css/pignose.calendar.min.css";
+@import "~timepicker/jquery.timepicker.min.css";
 
 // Variables
 @import 'core/variables';
@@ -21,3 +22,4 @@
 @import "components/card";
 @import "components/text";
 @import "components/button";
+@import "components/form";

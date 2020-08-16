@@ -14,7 +14,7 @@
 .booking {
     &__main {
         min-height: 100vh;
-        padding: 60px;
+        //padding: 60px;
     }
     &__align {
         height: 80vh;
@@ -28,6 +28,7 @@
     }
 }
 
+// Calender
 .pignose-calendar {
     border: none !important;
     box-shadow: none !important;
@@ -43,5 +44,17 @@
     }
     &-week-sat, &-week-sun, &-unit-sat a, &-unit-sun a {
         color: $brand-orange !important;
+    }
+}
+
+// Time
+.ui-timepicker {
+    &-wrapper {
+        width: 20em !important;
+    }
+
+    &-list li:hover, &-list &-selected:hover, &-list li:active {
+        background: $brand-orange !important;
+        color: $white;
     }
 }
