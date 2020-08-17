@@ -32,7 +32,7 @@
         </div>
     </main>
     <div class="d-md-flex align-items-center justify-content-center m-1">
-        <div class="wd wd-md-700 bg-white mb-5" id="pick_date">
+        <div class="wd wd-md-700 bg-white mb-5 d-none" id="pick_date">
             <div class="booking__align-header">
                 <h3>Select A Date</h3>
             </div>
@@ -77,9 +77,12 @@
             </div>
         </div>
 
-        <div class="wd wd-md-700 bg-white mb-5 d-none" id="enter_details">
-            <div class="booking__align-header">
-                <h3>Enter Your Details</h3>
+        <div class="wd wd-md-700 bg-white mb-5 " id="enter_details">
+            <div class="booking__align-header d-flex align-items-fe">
+                <div class="card-dashboard-icon gray cursor-pointer" id="back_second">
+                    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                </div>
+                <h3 class="mx-auto">Enter Your Details</h3>
             </div>
             <div class="px-3 py-5">
                 <div class="row">
@@ -87,8 +90,33 @@
                         <form id="bookDate" class="">
                             <input type="hidden" name="schedule_date" id="scheduleDate">
                             <input type="hidden" name="schedule_time" id="scheduleTime">
+                            <div class="form-group text-left">
+                                <label class="card-form__label">
+                                    Name <span class="text-danger">*</span>
+                                </label>
+                                <input class="card-form__input form-control" type="text" name="visitors_name">
+                            </div>
+                            <div class="form-group text-left">
+                                <label class="card-form__label">
+                                    Email
+                                </label>
+                                <input class="card-form__input form-control" type="text" name="visitors_email">
+                            </div>
+                            <div class="form-group text-left">
+                                <label class="card-form__label">
+                                    Phone Number <span class="text-danger">*</span>
+                                </label>
+                                <input class="card-form__input form-control" type="text" name="visitors_phone_number">
+                            </div>
+                            <div class="form-group text-left">
+                                <label class="card-form__label">
+                                    Reason For Visit <span class="text-danger">*</span>
+                                </label>
+                                <textarea class="card-form__input form-control" name="reason_for_visit" rows="3"></textarea>
+                            </div>
 
-                            <input type="submit" value="Schedule An Appointment" class="btn btn-schedule">
+                            <input type="submit" value="Schedule An Appointment"
+                                   class="btn btn-schedule btn-wd-100">
                         </form>
                     </div>
                 </div>
