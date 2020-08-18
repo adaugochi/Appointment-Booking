@@ -62078,6 +62078,7 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
     $this = $(this);
     $this.find('span').addClass('d-none');
     $this.find('i').removeClass('d-none');
+    $this.attr('disabled', true);
     var scheduleDate = scheduleDateInput.val();
     var currentURL = window.location.href;
 
@@ -62095,6 +62096,7 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
         timeDiv.removeClass('d-none');
         $this.find('span').removeClass('d-none');
         $this.find('i').addClass('d-none');
+        $this.attr('disabled', false);
 
         if (response.result) {
           response.result.forEach(function (item) {
@@ -62119,6 +62121,10 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
       }
     });
     scheduleTimeInput.val($(this).val());
+
+    if (timeInput.val()) {
+      selectTimeBtn.attr('disabled', false);
+    }
   });
   firstBackIcon.on('click', function () {
     dateDiv.removeClass('d-none');
@@ -62128,13 +62134,9 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
     timeDiv.removeClass('d-none');
     infoDIv.addClass('d-none');
   });
-  $('#validateFormTime').submit(function (e) {
-    e.preventDefault();
-
-    if (!$(this).find('.error')) {
-      timeDiv.addClass('d-none');
-      infoDIv.removeClass('d-none');
-    }
+  selectTimeBtn.click(function (e) {
+    timeDiv.addClass('d-none');
+    infoDIv.removeClass('d-none');
   });
 })(jQuery);
 
@@ -62221,15 +62223,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         digits: true
       },
       reason_for_visit: "required"
-    }
-  });
-  $('#validateFormTime').validate({
-    onsubmit: true,
-    onchange: true,
-    onblur: true,
-    onkeyup: false,
-    rules: {
-      time: "required"
     }
   });
 })(jQuery);

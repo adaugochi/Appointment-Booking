@@ -41,10 +41,14 @@
                 </a>
                 <h3 class="mx-auto">Select A Date</h3>
             </div>
-            <div class="px-1 pb-5">
+            <div class="px-3 py-5">
                 <div class="row">
-                    <div class="mx-auto col-md-8">
-                        <div class="calendar"></div>
+                    <div class="mx-auto col-md-8 form_wrapper">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <div class="form-group">
+                            <input class="card-form__input form-control calendar"
+                                   type="text" placeholder="pick a date" name="calendar">
+                        </div>
                         <button type="button" class="btn btn-schedule btn-wd-100" id="selectDate" disabled>
                             <span>Show Available Time</span>
                             <i class="fa fa-spinner fa-spin d-none fs-20"></i>
@@ -63,32 +67,15 @@
             </div>
             <div class="px-3 py-5">
                 <div class="row">
-                    <div class="mx-auto col-md-6">
-                        <form id="validateFormTime">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <div class="form-group">
-                                <input class="card-form__input form-control time"
-                                       type="text" placeholder="pick a time" name="time">
-                                {{--position: absolute;--}}
-                                {{--left: 0;--}}
-                                {{--line-height: 2.3;--}}
-                                {{--padding-left: 28px;--}}
-                                {{--color: #7e7c7c;--}}
-                                {{--font-size: 20px;--}}
-                                {{--}--}}
-                                {{--<div class="input-group mb-3">--}}
-                                    {{----}}
-                                    {{--<div class="input-group-append">--}}
-                                    {{--<span class="input-group-text">--}}
-
-                                    {{--</span>--}}
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-schedule btn-wd-100" id="selectTime">
-                                Continue
-                            </button>
-                        </form>
+                    <div class="mx-auto col-md-8 form_wrapper">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <div class="form-group">
+                            <input class="card-form__input form-control time"
+                                   type="text" placeholder="pick a time" name="time">
+                        </div>
+                        <button type="button" class="btn btn-schedule btn-wd-100" id="selectTime" disabled>
+                            Continue
+                        </button>
                     </div>
                 </div>
             </div>

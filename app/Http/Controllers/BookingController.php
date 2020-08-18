@@ -36,7 +36,7 @@ class BookingController extends Controller
         $data = request('date');
         $honId = $this->getHonourableId($username);
         $response = Schedule::select('schedule_time')
-            ->where(['schedule_date' => $data, 'hon_id' => $honId, 'duration' => $duration])
+            ->where(['schedule_date' => $data, 'hon_id' => $honId['id'], 'duration' => $duration])
             ->get();
 
         return response()->json([
@@ -54,15 +54,26 @@ class BookingController extends Controller
         }
 
         try {
-            $schedule->create($postData, $honId['id']);
-            return redirect(route('booking-success'))->with('success', 'Schedule created successfully');
+            $id = $schedule->create($postData, $honId['id']);
+            return redirect(route('booking-success', $id))->with('success', 'Schedule created successfully');
         } catch (\Exception $ex) {
             return redirect()->back()->with(['error' => $ex->getMessage()]);
         }
     }
 
-    public function bookSuccess()
+    public function bookSuccess($id)
     {
-        return view('booking-success');
+        $schedule = Schedule::find($id);
+        $honourable = Honourable::find($schedule->hon_id);
+        $honName = $honourable->name;
+        $username = $honourable->username;
+        $scheduleDate = $schedule->schedule_date;
+        $scheduleTime = $schedule->schedule_time;
+        $duration = $schedule->duration;
+
+        return view(
+            'booking-success',
+            compact('honName', 'scheduleDate', 'scheduleTime', 'duration', 'username')
+        );
     }
 }

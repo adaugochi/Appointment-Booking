@@ -24,13 +24,4 @@
             reason_for_visit: "required",
         }
     });
-    $('#validateFormTime').validate({
-        onsubmit: true,
-        onchange: true,
-        onblur: true,
-        onkeyup: false,
-        rules: {
-            time: "required"
-        }
-    });
 })(jQuery);

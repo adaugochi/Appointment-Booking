@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string visitors_name
  * @property mixed visitors_phone_number
  * @property string reason_for_visit
+ * @property mixed id
  */
 class Schedule extends Model
 {
@@ -44,6 +45,6 @@ class Schedule extends Model
         if (!$this->save()) {
             throw new Exception('Could not save schedule information');
         }
-        return true;
+        return $this->id;
     }
 }

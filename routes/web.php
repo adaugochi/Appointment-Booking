@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/schedule-booked', 'BookingController@bookSuccess')->name('booking-success');
+Route::get('/schedule-booked/{id}', 'BookingController@bookSuccess')->name('booking-success');
 Route::get('/{username}', 'BookingController@index')->name('booking');
 Route::get('/{username}/{duration}', 'BookingController@bookDate')->name('book.date');
 Route::post('/{username}/{duration}', 'BookingController@saveBookDate')->name('save.book.date');

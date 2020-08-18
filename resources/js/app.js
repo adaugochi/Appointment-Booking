@@ -42,6 +42,7 @@ require('./validation');
         $this = $(this);
         $this.find('span').addClass('d-none');
         $this.find('i').removeClass('d-none');
+        $this.attr('disabled', true);
         let scheduleDate = scheduleDateInput.val();
         let currentURL = window.location.href;
         let _token   = $('meta[name="csrf-token"]').attr('content');
@@ -59,6 +60,7 @@ require('./validation');
 
                 $this.find('span').removeClass('d-none');
                 $this.find('i').addClass('d-none');
+                $this.attr('disabled', false);
 
                 if(response.result) {
                     response.result.forEach(function (item) {
@@ -85,6 +87,10 @@ require('./validation');
             }
         });
         scheduleTimeInput.val($(this).val());
+
+        if (timeInput.val()) {
+            selectTimeBtn.attr('disabled', false)
+        }
     });
 
     firstBackIcon.on('click', function () {
@@ -97,11 +103,8 @@ require('./validation');
         infoDIv.addClass('d-none');
     });
 
-    $('#validateFormTime').submit(function (e) {
-        e.preventDefault();
-        if (!$(this).find('.error')) {
-            timeDiv.addClass('d-none');
-            infoDIv.removeClass('d-none');
-        }
+    selectTimeBtn.click(function (e) {
+        timeDiv.addClass('d-none');
+        infoDIv.removeClass('d-none');
     })
 })(jQuery);
