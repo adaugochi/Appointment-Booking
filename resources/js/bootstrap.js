@@ -13,6 +13,7 @@ try {
     require('bootstrap');
     require('pg-calendar');
     require('timepicker');
+    require('jquery-validation');
 } catch (e) {}
 
 /**

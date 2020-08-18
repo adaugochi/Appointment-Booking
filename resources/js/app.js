@@ -1,6 +1,20 @@
 require('./bootstrap');
+require('./validation');
 
 (function ($) {
+    let dateDiv = $('#pick_date'),
+        timeDiv = $('#pick_time'),
+        infoDIv = $('#enter_details'),
+        calendar = $('.calendar'),
+        scheduleDateInput = $('#scheduleDate'),
+        selectDateBtn = $('#selectDate'),
+        scheduleTimeInput = $('#scheduleTime'),
+        selectTimeBtn = $('#selectTime'),
+        timeInput = $('.time'),
+        pickedTime = [],
+        timeInterval = $('.duration').val(),
+        firstBackIcon = $('#back_first'),
+        secondBackIcon = $('#back_second');
 
     function getCurrentFormatDate() {
         let today = new Date();
@@ -13,36 +27,38 @@ require('./bootstrap');
         return yyyy + '-' + mm + '-' + dd;
     }
 
-    $('.calendar').pignoseCalendar({
+    calendar.pignoseCalendar({
         disabledWeekdays: [0, 6],
         disabledDates: [getCurrentFormatDate()],
         click: function(event, context) {
             let $this = $(this);
             let date = $this.data('date');
-            $('#scheduleDate').val(date);
-            $('#selectDate').attr('disabled', false)
+            scheduleDateInput.val(date);
+            selectDateBtn.attr('disabled', false)
         }
     });
-
-    let pickedTime = [];
     
-    $('#selectDate').click(function () {
-        let scheduleDate = $('#scheduleDate').val();
+    selectDateBtn.click(function () {
+        $this = $(this);
+        $this.find('span').addClass('d-none');
+        $this.find('i').removeClass('d-none');
+        let scheduleDate = scheduleDateInput.val();
         let currentURL = window.location.href;
         let _token   = $('meta[name="csrf-token"]').attr('content');
 
         $.ajax({
             url: currentURL,
-            type:"POST",
-            data:{
+            type: "POST",
+            data: {
                 _token: _token,
                 date: scheduleDate
             },
             success:function(response){
-                let dateDiv = $('#pick_date');
-                let timeDiv = $('#pick_time');
                 dateDiv.addClass('d-none');
                 timeDiv.removeClass('d-none');
+
+                $this.find('span').removeClass('d-none');
+                $this.find('i').addClass('d-none');
 
                 if(response.result) {
                     response.result.forEach(function (item) {
@@ -52,9 +68,6 @@ require('./bootstrap');
             },
         })
     });
-
-    let timeInput = $('.time');
-    let timeInterval = $('.duration').val();
 
     timeInput.timepicker( {
         timeFormat: 'H:i',
@@ -71,7 +84,24 @@ require('./bootstrap');
                 $(this).addClass('ui-timepicker-disabled')
             }
         });
-        $('#scheduleTime').val($(this).val());
-        $('#selectTime').attr('disabled', false);
+        scheduleTimeInput.val($(this).val());
+    });
+
+    firstBackIcon.on('click', function () {
+        dateDiv.removeClass('d-none');
+        timeDiv.addClass('d-none');
+    });
+
+    secondBackIcon.on('click', function () {
+        timeDiv.removeClass('d-none');
+        infoDIv.addClass('d-none');
+    });
+
+    $('#validateFormTime').submit(function (e) {
+        e.preventDefault();
+        if (!$(this).find('.error')) {
+            timeDiv.addClass('d-none');
+            infoDIv.removeClass('d-none');
+        }
     })
 })(jQuery);

@@ -11145,6 +11145,10 @@ body .pb-6 {
   }
 }
 
+.fs-20 {
+  font-size: 20px;
+}
+
 .card {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
   padding: 30px;
