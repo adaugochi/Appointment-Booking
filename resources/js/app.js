@@ -27,9 +27,16 @@ require('./validation');
         return yyyy + '-' + mm + '-' + dd;
     }
 
+    function convertToMinutesIntervals($time, $interval) {
+        var d = new Date("1970-01-01 " + $time);
+        d.setMinutes( d.getMinutes() + $interval);
+        return (d.getHours() < 10 ? '0' : '') + d.getHours() + ":" + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+    }
+
     calendar.pignoseCalendar({
         disabledWeekdays: [0, 6],
         disabledDates: [getCurrentFormatDate()],
+        minDate: getCurrentFormatDate(),
         click: function(event, context) {
             let $this = $(this);
             let date = $this.data('date');
@@ -64,7 +71,15 @@ require('./validation');
 
                 if(response.result) {
                     response.result.forEach(function (item) {
-                        pickedTime.push(item.schedule_time);
+                        pickedTime.push(convertToMinutesIntervals(item.schedule_time, 0));
+                        pickedTime.push(convertToMinutesIntervals(item.schedule_time, 15));
+                        if (item.duration === '30min') {
+                            pickedTime.push(convertToMinutesIntervals(item.schedule_time, 30));
+                        } else if (item.duration === '60min') {
+                            pickedTime.push(convertToMinutesIntervals(item.schedule_time, 30));
+                            pickedTime.push(convertToMinutesIntervals(item.schedule_time, 45));
+                            pickedTime.push(convertToMinutesIntervals(item.schedule_time, 60));
+                        }
                     });
                 }
             },

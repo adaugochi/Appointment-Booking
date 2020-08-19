@@ -11,7 +11,7 @@
     <main class="container p-3 py-5 p-md-5">
         <div class="text-center pb-5">
             <p class="fs-header">Honourable of the federal republic of Nigeria</p>
-            <p class="fs-header">Hon. Yekini Shagari</p>
+            <p class="fs-header">Hon. {!! ucwords($honourableName) !!}</p>
         </div>
         <div class="d-flex align-items-center justify-content-center">
             <div class="wd wd-700 bg-white">

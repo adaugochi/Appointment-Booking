@@ -62064,9 +62064,16 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
     return yyyy + '-' + mm + '-' + dd;
   }
 
+  function convertToMinutesIntervals($time, $interval) {
+    var d = new Date("1970-01-01 " + $time);
+    d.setMinutes(d.getMinutes() + $interval);
+    return (d.getHours() < 10 ? '0' : '') + d.getHours() + ":" + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+  }
+
   calendar.pignoseCalendar({
     disabledWeekdays: [0, 6],
     disabledDates: [getCurrentFormatDate()],
+    minDate: getCurrentFormatDate(),
     click: function click(event, context) {
       var $this = $(this);
       var date = $this.data('date');
@@ -62100,7 +62107,16 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
 
         if (response.result) {
           response.result.forEach(function (item) {
-            pickedTime.push(item.schedule_time);
+            pickedTime.push(convertToMinutesIntervals(item.schedule_time, 0));
+            pickedTime.push(convertToMinutesIntervals(item.schedule_time, 15));
+
+            if (item.duration === '30min') {
+              pickedTime.push(convertToMinutesIntervals(item.schedule_time, 30));
+            } else if (item.duration === '60min') {
+              pickedTime.push(convertToMinutesIntervals(item.schedule_time, 30));
+              pickedTime.push(convertToMinutesIntervals(item.schedule_time, 45));
+              pickedTime.push(convertToMinutesIntervals(item.schedule_time, 60));
+            }
           });
         }
       }
@@ -62219,8 +62235,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         email: true
       },
       visitors_phone_number: {
-        required: true,
-        digits: true
+        required: true //digits: true,
+
       },
       reason_for_visit: "required"
     }

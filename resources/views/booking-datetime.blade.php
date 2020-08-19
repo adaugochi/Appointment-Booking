@@ -33,7 +33,7 @@
     </main>
     <div class="d-md-flex align-items-center justify-content-center m-1">
         <div class="wd wd-md-700 bg-white mb-5" id="pick_date">
-            <div class="booking__align-header d-flex align-items-fe">
+            <div class="booking__align-header px-3 d-flex align-items-fe">
                 <a href="/{{ $username }}">
                     <div class="card-dashboard-icon gray">
                         <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="wd wd-md-700 bg-white mb-5 d-none" id="pick_time">
-            <div class="booking__align-header d-flex align-items-fe">
+            <div class="booking__align-header px-3 d-flex align-items-fe">
                 <div class="card-dashboard-icon gray cursor-pointer" id="back_first">
                     <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
                 </div>
@@ -82,7 +82,7 @@
         </div>
 
         <div class="wd wd-md-700 bg-white mb-5 d-none" id="enter_details">
-            <div class="booking__align-header d-flex align-items-fe">
+            <div class="booking__align-header px-3 d-flex align-items-fe">
                 <div class="card-dashboard-icon gray cursor-pointer" id="back_second">
                     <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
                 </div>
