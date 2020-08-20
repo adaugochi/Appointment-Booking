@@ -10984,7 +10984,7 @@ body p {
 }
 
 body a {
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
 body a:hover,
@@ -11103,6 +11103,10 @@ body .pb-6 {
 .ui-timepicker-list li:active {
   background: #665df5 !important;
   color: #ffffff;
+}
+
+.login_wrapper img {
+  width: inherit;
 }
 
 .bg-image {
@@ -11331,20 +11335,35 @@ textarea.card-form__input {
   background-clip: text;
 }
 
-.btn-schedule {
-  font-size: 14px;
-  border: solid 2px #646363;
-  width: 240px;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 0;
+.btn {
+  color: #ffffff;
+  font-size: 14px !important;
+  padding: 10px !important;
+  margin-bottom: 15px !important;
+  border-radius: 0 !important;
   transition: all 0.5s;
 }
 
-.btn-schedule:hover {
+.btn-brand-outline-pry {
+  border: solid 2px #3d3d3d;
+  color: #3d3d3d;
+}
+
+.btn-brand-outline-pry:hover {
   background-color: #665df5;
-  color: #ffffff;
+  color: #ffffff !important;
   border-color: #665df5;
+}
+
+.btn-brand-primary {
+  background-color: #665df5;
+  border-color: #665df5;
+}
+
+.btn-brand-primary:hover {
+  color: #ffffff;
+  background-color: #392df2;
+  border-color: #392df2;
 }
 
 .btn-wd-100 {

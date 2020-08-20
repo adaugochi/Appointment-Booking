@@ -13,7 +13,7 @@ body {
     }
 
     a {
-        text-decoration: none !important;
+        text-decoration: none;
         &:hover, &:focus, &:active {
             text-decoration: none !important;
         }

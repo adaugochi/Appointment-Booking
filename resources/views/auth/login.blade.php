@@ -1,73 +1,62 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <main>
+            <section>
+                <div class="container">
+                    <div class="row ht-100v align-items-center justify-content-center py-100 login_wrapper">
+                        {{--<div class="col-md-6 col-lg-5">--}}
+                            {{--<img src="{{ asset('images/booked.svg') }}">--}}
+                            {{--<div class="mt-4">--}}
+                                {{--<a href="#" class="btn btn-brand-outline-pry">Visit Us</a>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                        <div class="col-md-6 col-lg-5 offset-lg-2 mx-auto">
+                            <div class="card mx-auto">
+                                <h1 class="mb-3 card-box-title">Sign In</h1>
+                                <div>
+                                    <form class="card-form__wrapper">
+                                        <div class="form-group">
+                                            <label class="card-form__label">Username</label>
+                                            <input type="text" name="username" class="card-form__input form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="card-form__label">Password</label>
+                                            <input type="password" name="password" class="card-form__input form-control">
+                                        </div>
+                                        <div class="form-group text__underline">
+                                            <a href="/password-reset" class="text-brand-primary text-underline">
+                                                Forgot Password?
+                                            </a>
+                                        </div>
+                                        <button class="btn btn-brand-primary btn-block">Sign In</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+            </section>
+        </main>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    @include('partials.flash-messages')
+</body>
+</html>

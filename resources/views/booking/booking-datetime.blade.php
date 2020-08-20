@@ -39,7 +39,7 @@
                             <input class="card-form__input form-control calendar"
                                    type="text" placeholder="pick a date" name="calendar">
                         </div>
-                        <button type="button" class="btn btn-schedule btn-wd-100" id="selectDate" disabled>
+                        <button type="button" class="btn btn-brand-outline-pry btn-wd-100" id="selectDate" disabled>
                             <span>Show Available Time</span>
                             <i class="fa fa-spinner fa-spin d-none fs-20"></i>
                         </button>
@@ -63,7 +63,7 @@
                             <input class="card-form__input form-control time"
                                    type="text" placeholder="pick a time" name="time">
                         </div>
-                        <button type="button" class="btn btn-schedule btn-wd-100" id="selectTime" disabled>
+                        <button type="button" class="btn btn-brand-outline-pry btn-wd-100" id="selectTime" disabled>
                             Continue
                         </button>
                     </div>
@@ -117,7 +117,7 @@
                             </div>
 
                             <input type="submit" value="Schedule An Appointment"
-                                   class="btn btn-schedule btn-wd-100">
+                                   class="btn btn-brand-outline-pry btn-wd-100">
                         </form>
                     </div>
                 </div>
