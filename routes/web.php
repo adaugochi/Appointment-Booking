@@ -17,14 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
 Route::get('/schedule-booked/{id}', 'BookingController@bookSuccess')->name('booking-success');
 Route::get('/{username}', 'BookingController@index')->name('booking');
 Route::get('/{username}/{duration}', 'BookingController@bookDate')->name('book.date');
 Route::post('/{username}/{duration}', 'BookingController@saveBookDate')->name('save.book.date');
 Route::post('/create-schedule', 'BookingController@createSchedule')
     ->name('create-schedule');
-
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

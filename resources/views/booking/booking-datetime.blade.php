@@ -81,7 +81,7 @@
             <div class="px-3 py-5">
                 <div class="row">
                     <div class="mx-auto col-md-6">
-                        <form id="validateFormInfo" method="post" action="{{ route('create-schedule') }}">
+                        <form class="validateForm" method="post" action="{{ route('create-schedule') }}">
                             @csrf
                             <input type="hidden" name="username" value="{{ $username }}">
                             <input type="hidden" name="duration" value="{{ $duration }}">

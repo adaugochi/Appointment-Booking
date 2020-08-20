@@ -33,8 +33,13 @@ body {
         align-items: flex-end;
     }
 
-    .bd-radius {
-        border-radius: 50%;
+    .bd {
+        &-radius {
+            border-radius: 50%;
+        }
+        &-0 {
+            border-radius: 0 !important;
+        }
     }
 
     .m {
