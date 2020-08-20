@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>No Name</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
+@extends('layouts.app')
+@section('content')
     <main class="container p-3 py-5 p-md-5">
         <div class="text-center pb-5">
             <p class="fs-header">Honourable of the federal republic of Nigeria</p>
-            <p class="fs-header">Hon. {!! ucwords($honourableName) !!}</p>
+            <p class="fs-header">Hon. {!! ucwords($userFullname) !!}</p>
         </div>
         <div class="d-flex align-items-center justify-content-center">
             <div class="wd wd-700 bg-white">
@@ -67,5 +59,4 @@
             </div>
         </div>
     </main>
-</body>
-</html>
+@endsection()

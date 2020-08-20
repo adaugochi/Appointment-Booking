@@ -11058,12 +11058,12 @@ body .pb-6 {
 }
 
 .wd-700 {
-  width: 700px;
+  width: 800px;
 }
 
 @media (min-width: 768px) {
   .wd-md-700 {
-    width: 700px;
+    width: 800px;
   }
 }
 
@@ -11101,7 +11101,7 @@ body .pb-6 {
 .ui-timepicker-list li:hover,
 .ui-timepicker-list .ui-timepicker-selected:hover,
 .ui-timepicker-list li:active {
-  background: #ff5a1a !important;
+  background: #665df5 !important;
   color: #ffffff;
 }
 
@@ -11198,7 +11198,7 @@ body .pb-6 {
 }
 
 .card-scale.bg-lg {
-  border-bottom: 4px solid #ff7f4d !important;
+  border-bottom: 4px solid #938df8 !important;
 }
 
 .card-form__wrapper .form-group {
@@ -11313,7 +11313,7 @@ textarea.card-form__input {
 }
 
 .text-brand-primary {
-  color: #ff5a1a;
+  color: #665df5;
 }
 
 .text-gray {
@@ -11325,7 +11325,7 @@ textarea.card-form__input {
 }
 
 .text-linear-grad {
-  background-image: linear-gradient(to right, #ff5a1a, #ffc8b3);
+  background-image: linear-gradient(to right, #665df5, #eeedfe);
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
@@ -11342,9 +11342,9 @@ textarea.card-form__input {
 }
 
 .btn-schedule:hover {
-  background-color: #ff5a1a;
+  background-color: #665df5;
   color: #ffffff;
-  border-color: #ff5a1a;
+  border-color: #665df5;
 }
 
 .btn-wd-100 {

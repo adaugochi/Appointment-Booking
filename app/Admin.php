@@ -2,13 +2,21 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\AdminResetPasswordNotification;
+use App\Traits\FormatDateTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+/**
+ * @property mixed first_name
+ * @property mixed last_name
+ * @property mixed user_type_id
+ */
+class Admin extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, FormatDateTrait;
+
+    protected $guard = 'admin';
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username', 'phone_number'
+        'name', 'role', 'email', 'password'
     ];
 
     /**

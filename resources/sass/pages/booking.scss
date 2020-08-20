@@ -2,11 +2,11 @@
     text-align: center;
     box-shadow: 0 16px 40px rgba(239, 239, 239, 0.02);
     &-700 {
-        width: 700px;
+        width: 800px;
     }
     &-md-700 {
         @include media-breakpoint-up(md) {
-            width: 700px;
+            width: 800px;
         }
     }
 }
@@ -14,7 +14,6 @@
 .booking {
     &__main {
         min-height: 100vh;
-        //padding: 60px;
     }
     &__align {
         height: 80vh;
@@ -54,7 +53,7 @@
 //        }
 //    }
 //    &-week-sat, &-week-sun, &-unit-sat a, &-unit-sun a {
-//        color: $brand-orange !important;
+//        color: $brand-primary !important;
 //    }
 //}
 
@@ -65,7 +64,7 @@
     }
 
     &-list li:hover, &-list &-selected:hover, &-list li:active {
-        background: $brand-orange !important;
+        background: $brand-primary !important;
         color: $white;
     }
 }

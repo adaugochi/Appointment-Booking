@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHonourablesTable extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateHonourablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('honourables', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('username')->unique();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('role')->nullable();
+            $table->string('is_active')->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('unhash_password')->nullable();
-            $table->string('phone_number')->unique()->nullable();
-            $table->string('email')->unique()->nullable();
-            $table->string('is_profile_complete')->default(0);
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ class CreateHonourablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('honourables');
+        Schema::dropIfExists('admins');
     }
 }

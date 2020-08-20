@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property mixed schedule_date
- * @property int hon_id
+ * @property int user_id
  * @property mixed schedule_time
  * @property mixed duration
  * @property string visitors_email
@@ -21,7 +21,7 @@ class Schedule extends Model
     protected $table = 'schedules';
     protected $fillable = [
         'schedule_date', 'schedule_time', 'duration', 'visitors_name',
-        'visitors_email', 'visitors_phone_number', 'hon_id', 'reason_for_visit'
+        'visitors_email', 'visitors_phone_number', 'user_id', 'reason_for_visit'
     ];
 
     /**
@@ -31,9 +31,9 @@ class Schedule extends Model
      * @throws Exception
      * @author Maryfaith Mgbede <adaamgbede@gmail.com>
      */
-    public function create($request, $honId)
+    public function create($request, $userId)
     {
-        $this->hon_id = $honId;
+        $this->user_id = $userId;
         $this->schedule_date = $request['schedule_date'];
         $this->schedule_time = $request['schedule_time'];
         $this->duration = $request['duration'];

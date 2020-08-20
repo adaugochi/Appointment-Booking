@@ -61,7 +61,7 @@ require('./validation');
                 _token: _token,
                 date: scheduleDate
             },
-            success:function(response){
+            success: function(response){
                 dateDiv.addClass('d-none');
                 timeDiv.removeClass('d-none');
 
@@ -83,6 +83,9 @@ require('./validation');
                     });
                 }
             },
+            error: function (request, status, error) {
+                console.log(request.responseText);
+            }
         })
     });
 

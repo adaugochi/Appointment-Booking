@@ -15,16 +15,16 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('hon_id');
-            $table->foreign('hon_id')->references('id')->on('honourables');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('schedule_date');
             $table->string('schedule_time');
             $table->string('duration');
-            $table->string('visitors_name')->nullable();
+            $table->string('visitors_name');
             $table->string('visitors_email')->nullable();
-            $table->string('visitors_phone_number')->nullable();
-            $table->text('reason_for_visit')->nullable();
-            $table->string('status')->default('pending'); // confirm, decline, reschedule
+            $table->string('visitors_phone_number');
+            $table->text('reason_for_visit');
+            $table->string('status')->default('pending'); // confirm, cancelled, reschedule
             $table->timestamps();
         });
     }
