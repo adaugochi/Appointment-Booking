@@ -16,13 +16,34 @@
         }
     }
 
-    &-brand-primary {
-        background-color: $brand-primary;
-        border-color: $brand-primary;
-        &:hover {
-            color: $white;
-            background-color: darken($brand-primary, 10%);
-            border-color: darken($brand-primary, 10%);
+    &-brand {
+        &-primary {
+            background-color: $brand-primary;
+            border-color: $brand-primary;
+            &:hover {
+                color: $white;
+                background-color: darken($brand-primary, 10%);
+                border-color: darken($brand-primary, 10%);
+            }
+        }
+
+        &-white {
+            background-color: $white;
+            color: $brand-primary;
+            &-outline {
+                border: 1px solid $white;
+                color: $white;
+                background: transparent;
+                &:hover {
+                    background-color: $white;
+                    color: $brand-primary;
+                }
+            }
+            &:hover {
+                background-color: transparent;
+                color: $brand-primary;
+                border: 1px solid $brand-primary;
+            }
         }
     }
 
@@ -37,5 +58,30 @@
     &:focus, &:active, &:hover {
         outline: none !important;
         box-shadow: none !important;
+    }
+
+    &-gray {
+        background-color: #ddd;
+        color: #0e0e0e;
+        border: 1px solid #bbb;
+        font-size: 10px;
+        box-shadow: unset !important;
+        &:hover {
+            background-color: darken(#ddd, 10%);
+        }
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        background-color: $disabled;
+        color: $brand-grey;
+        border-color: $disabled;
+        opacity: 0.65;
+
+        &:hover, &:active {
+            background-color: $disabled !important;
+            border-color: $disabled !important;
+            opacity: 1;
+        }
     }
 }

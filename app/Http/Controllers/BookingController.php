@@ -15,7 +15,7 @@ class BookingController extends Controller
             $userFullname = User::where('username', $username)->first()->name;
             return view('booking.index', compact('username', 'userFullname'));
         } else {
-            return view('auth.login');
+            return redirect('/');
         }
     }
 
@@ -24,7 +24,7 @@ class BookingController extends Controller
         if ($this->getUserId($username)) {
             return view('booking.booking-datetime', compact('username', 'duration'));
         } else {
-            return view('auth.login');
+            return redirect('/');
         }
     }
 

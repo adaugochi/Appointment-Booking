@@ -1,0 +1,65 @@
+.content {
+  left: 0;
+  position: relative;
+  min-height: $viewport-height;
+  padding-top: $custom-navbar-height;
+  display: flex;
+  flex-direction: column;
+
+  &.open {
+    left: $sidebar-width;
+  }
+
+  @include media-breakpoint-up(lg) {
+    margin-left: $sidebar-width;
+  }
+
+  &-body {
+    padding: 0 $content-padding $content-padding;
+    flex-grow: 1;
+  }
+
+  &-header {
+    color: $brand-gray;
+    padding: $content-padding;
+
+    &__title {
+      font-size: $header-font;
+    }
+
+    .breadcrumb {
+      padding: 0;
+      background: transparent;
+      list-style: none;
+      margin-bottom: 0;
+      font-size: $body-font;
+
+      li {
+        display: inline-block;
+
+        a {
+          color: $brand-gray;
+          text-decoration: none;
+        }
+
+        &:last-child {
+          color: $brand-primary;
+        }
+      }
+
+      li + li:before {
+        content: "/";
+        padding: 0 5px;
+        color: $brand-accent;
+      }
+    }
+  }
+}
+
+.dropdown {
+  &__custom {
+    .dropdown-item {
+      font-size: $body-font !important;
+    }
+  }
+}

@@ -8,12 +8,6 @@
     &-underline {
         text-decoration: underline;
     }
-    &-linear-grad {
-        background-image: linear-gradient(to right, $brand-primary, lighten($brand-primary, 30%));
-        color: transparent;
-        -webkit-background-clip: text;
-        background-clip: text;
-    }
 
     &-success {
 

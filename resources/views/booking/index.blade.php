@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <main class="container p-3 py-5 p-md-5">
-        <div class="text-center pb-5">
+        <div class="text-center pb-3">
             <p class="fs-header">Honourable of the federal republic of Nigeria</p>
             <p class="fs-header">Hon. {!! ucwords($userFullname) !!}</p>
         </div>
