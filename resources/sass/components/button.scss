@@ -1,10 +1,14 @@
 .btn {
     color: $white;
     font-size: 14px !important;
-    padding: 10px !important;
-    margin-bottom: 15px !important;
+    padding: 10px 20px !important;
     border-radius: 0 !important;
     transition: all .5s;
+    box-shadow: 0.5rem 0.5rem 1rem rgba(32, 107, 199, 0.2);
+
+    &-action {
+        padding: 5px 10px !important;
+    }
 
     &-brand-outline-pry {
         border: solid 2px $brand-gray;
@@ -73,5 +77,17 @@
         color: $brand-grey;
         border-color: $disabled;
         opacity: 0.65;
+        &:hover {
+            color: $brand-grey !important;
+        }
+    }
+}
+
+//Alert
+.alert {
+    &-brand {
+        &-primary {
+            background-color: lighten($brand-primary, 20%);
+        }
     }
 }

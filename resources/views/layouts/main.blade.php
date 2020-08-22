@@ -34,6 +34,9 @@
                                     @yield('header-breadcrumb')
                                 </ol>
                             </div>
+                            <div class="col-md-5">
+                                @yield('content-right')
+                            </div>
                         </div>
                     </div>
                 </section>

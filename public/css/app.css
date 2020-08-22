@@ -11094,16 +11094,6 @@ body .pb-6 {
   padding: 3.2rem 2.5rem;
 }
 
-.form_wrapper .fa-clock-o,
-.form_wrapper .fa-calendar {
-  position: absolute;
-  right: 0;
-  line-height: 2.3;
-  padding-right: 28px;
-  color: #7e7c7c;
-  font-size: 20px;
-}
-
 .ui-timepicker-wrapper {
   width: 20em !important;
 }
@@ -11232,7 +11222,6 @@ body .pb-6 {
 }
 
 .card__title {
-  border-bottom: 1px solid #adb5bd;
   margin-bottom: 0.5rem;
 }
 
@@ -11274,6 +11263,28 @@ body .pb-6 {
   background-color: #d9dcf3;
 }
 
+.card-box-title {
+  font-weight: normal;
+}
+
+.card-icon {
+  height: 60px;
+  width: 60px;
+  background: #575757;
+  border-radius: 4px 50px 50px 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 50px;
+  text-align: center;
+}
+
+.card-icon span {
+  font-size: 40px;
+  vertical-align: middle;
+  color: white;
+}
+
 label {
   margin-bottom: unset !important;
 }
@@ -11302,10 +11313,14 @@ textarea.card-form__input {
 .btn {
   color: #ffffff;
   font-size: 14px !important;
-  padding: 10px !important;
-  margin-bottom: 15px !important;
+  padding: 10px 20px !important;
   border-radius: 0 !important;
   transition: all 0.5s;
+  box-shadow: 0.5rem 0.5rem 1rem rgba(32, 107, 199, 0.2);
+}
+
+.btn-action {
+  padding: 5px 10px !important;
 }
 
 .btn-brand-outline-pry {
@@ -11383,7 +11398,25 @@ textarea.card-form__input {
   opacity: 0.65;
 }
 
+.btn:disabled:hover {
+  color: #3d3d3d !important;
+}
+
+.alert-brand-primary {
+  background-color: #c1bdfb;
+}
+
 .form-control {
   padding: 1.3rem 1rem !important;
+}
+
+.form_wrapper .fa-clock-o,
+.form_wrapper .fa-calendar {
+  position: absolute;
+  right: 0;
+  line-height: 2.3;
+  padding-right: 28px;
+  color: #7e7c7c;
+  font-size: 20px;
 }
 

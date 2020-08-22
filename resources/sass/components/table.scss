@@ -3,7 +3,7 @@
         text-transform: uppercase;
         font-size: $body-font - 2px;
         padding: 0.7rem !important;
-        //font-family: 'Arial', sans-serif;
+        border-top: none !important;
     }
     td {
         font-size: $body-font - 2px !important;
@@ -30,45 +30,50 @@
         color: darken($gold, 10%);
         background-color: lighten($gold, 30%);
     }
-    &-in-progress {
-        color: darken($danger, 10%);
-        background-color: lighten($danger, 20%);
-    }
-    &-in-review {
-        color: darken($purple, 10%);
-        background-color: lighten($purple, 20%);
-    }
     &-active {
         color: darken($success, 10%);
         background-color: lighten($success, 30%);
-    }
-    &-draft {
-        color: darken($gray, 10%);
-        background-color: lighten($gray, 30%);
     }
     &-confirm {
         color: darken($info, 10%);
         background-color: lighten($info, 30%);
     }
-    &-un-paid, &-unverified {
-        color: darken($danger, 10%);
-        background-color: lighten($danger, 30%);
-    }
 }
+
+//.pagination li {
+//    margin: 0 10px 0 0;
+//    padding: 0;
+//    display: inline-block;
+//}
+//
+//.pagination li a {
+//    display: block;
+//    padding: 10px 15px;
+//    background-color: rgba(85, 85, 85, .1);
+//    color: rgb(218, 72, 39);
+//    text-decoration: none;
+//    border-radius: 27px;
+//}
+//
+//.pagination li.active a {
+//    color: rgb(255, 255, 255);
+//    background-color: $brand-primary;
+//    font-weight: 700;
+//}
 
 //Pagination
 .pagination {
     margin-top: 10px !important;
     float: right;
 
-    .page-item {
-        &.active .page-link {
+    .page {
+        &.activeLink a {
             z-index: 2;
             color: $white;
-            background-color: $brand-orange;
+            background-color: $brand-primary;
             border-color: $border-color;
         }
-        &.disabled .page-link {
+        &.disabled a {
             color: #868e96;
             pointer-events: none;
             background-color: $white;
@@ -76,18 +81,17 @@
         }
     }
 
-    .page-link {
+    a {
         position: relative;
         display: block;
         padding: 0.5rem 0.75rem;
         margin-left: -1px;
         line-height: 1.25;
-        border-radius: 8px;
-        color: $brand-orange;
+        color: $brand-primary;
         background-color: $white;
         border: unset !important;
         &:focus, &:hover {
-            color: darken($brand-orange, 10%);
+            color: darken($brand-primary, 10%);
             text-decoration: none;
             background-color: #e9ecef;
             border-color: $brand-off-white;

@@ -1,0 +1,18 @@
+.nav-tabs {
+    border-bottom: 1px solid transparent !important;
+    .nav {
+        &-item {
+            .nav-link {
+                border: 1px solid #bbb;
+                border-top-left-radius: 0 !important;
+                border-top-right-radius: 0 !important;
+                color: $brand-gray !important;
+            }
+        }
+        &-link.active {
+            color: $white !important;
+            background-color: $brand-primary !important;
+            border-color: $brand-primary !important;
+        }
+    }
+}

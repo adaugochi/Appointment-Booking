@@ -2,17 +2,14 @@
     width: $sidebar-width;
     min-height: 100vh;
     position: fixed;
-    transition: all .2s ease-in-out;
+    transition: all .5s ease-in-out;
     background-color: $brand-gray;
     overflow-x: hidden;
-    left: -($sidebar-width);
+    transform: translateX(-$sidebar-width);
+    box-shadow: 0 10px 30px -12px rgba(0,0,0,.42);
 
-    &.open {
-        left: 0;
-    }
-
-    @include media-breakpoint-up(lg) {
-        left: 0;
+    @include media-breakpoint-up(md) {
+        transform: translateX(0);
     }
 
     ul {
@@ -39,7 +36,7 @@
         }
 
         a, div {
-            color: $white;
+            color: $white !important;
             text-align: center;
             white-space: nowrap;
             overflow-x: hidden;
@@ -72,6 +69,39 @@
             a {
                 padding: 10px 0 !important;
             }
+        }
+    }
+}
+
+.sidebar-open {
+    @include media-breakpoint-down(am) {
+        .main-sidebar {
+            transform: translateX(0);
+        }
+
+        .content-wrapper {
+            transform: translateX($sidebar-width);
+        }
+    }
+}
+
+.sidebar-collapsed {
+    transition: all .5s ease-in-out;
+    @include media-breakpoint-up(md) {
+        .main-sidebar {
+            width: 60px !important;
+            .nav-label {
+                display: none !important;
+            }
+        }
+        .sidebar {
+            width: 60px !important;
+        }
+        .content-wrapper {
+            margin-left: 60px !important;
+        }
+        .custom-navbar {
+            margin-left: 60px !important;
         }
     }
 }

@@ -18,4 +18,27 @@ class Utils
     {
         return md5(rand(1, 10) . microtime()); //OR str_random(32);
     }
+
+    public static function formatDate($timestamp)
+    {
+        return date("F jS, Y", strtotime($timestamp));
+    }
+
+    public static function formatTime($timestamp)
+    {
+        return date("h:iA", strtotime($timestamp));
+    }
+
+    public static function convertToMinutesIntervals($time, $interval)
+    {
+        $startTime = self::formatTime($time);
+        if ($interval === '15min') {
+            $endTime = date("h:iA", strtotime($time) + strtotime('00:15'));
+        } elseif ($interval === '30min') {
+            $endTime = date("h:iA", strtotime($time) + strtotime('00:30'));
+        } else {
+            $endTime = date("h:iA", strtotime($time) + strtotime('00:60'));
+        }
+        return $startTime . ' - ' .$endTime;
+    }
 }

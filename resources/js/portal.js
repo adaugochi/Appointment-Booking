@@ -2,6 +2,7 @@ require('./bootstrap');
 require('jquery-slimscroll');
 require('./validation');
 require('./jquery.name.badges');
+require('./pagination');
 
 (function ($) {
     let sidebarToggle = $(".custom-navbar__sidebar-toggle");
@@ -14,16 +15,31 @@ require('./jquery.name.badges');
     let imageLabel = $(".image-label");
     let imagePreview = $(".image-preview");
     let imageName = $(".image-name");
+    let screenBreakpoint = 768;
+    let body = $("body");
+    let iconToggle = $('.custom-navbar__logo');
 
     //Toggle Sidebar
     sidebarToggle.on('click', function () {
-        mainSidebar.toggleClass('open');
-        content.toggleClass('open');
+        if (window.innerWidth < screenBreakpoint) {
+            body.toggleClass("sidebar-open");
+        } else {
+            body.toggleClass("sidebar-collapsed");
+        }
+
+        if (body.hasClass("sidebar-collapsed")) {
+            iconToggle.find('.full-logo').addClass('d-none');
+            iconToggle.find('.mini-logo').removeClass('d-none');
+        } else {
+            iconToggle.find('.full-logo').removeClass('d-none');
+            iconToggle.find('.mini-logo').addClass('d-none')
+        }
+        body.trigger("change");
     });
 
     content.on("click", function () {
-        mainSidebar.removeClass("open");
         $(this).removeClass("open");
+        mainSidebar.removeClass("open");
     });
 
     //Initialise SlimScroll
@@ -48,6 +64,11 @@ require('./jquery.name.badges');
         if (this.href === window.location.href) {
             $(this).css('color', '#ff5a1a');
         }
+    });
+
+    // calender
+   $('.date_available').pignoseCalendar({
+        disabledWeekdays: [0, 6],
     });
 
 })(jQuery);

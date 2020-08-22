@@ -46,7 +46,6 @@
     }
 
     &__title {
-        border-bottom: 1px solid $brand-accent;
         margin-bottom: 0.5rem;
     }
 
@@ -82,6 +81,27 @@
                 color: $indigo !important;
                 background-color: lighten($indigo, 30%);
             }
+        }
+    }
+
+    &-box-title {
+        font-weight: normal;
+    }
+
+    &-icon {
+        height: 60px;
+        width: 60px;
+        background: lighten($brand-gray, 10%);
+        border-radius: 4px 50px 50px 50px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        line-height: 50px;
+        text-align: center;
+        span {
+            font-size: 40px;
+            vertical-align: middle;
+            color: white;
         }
     }
 }

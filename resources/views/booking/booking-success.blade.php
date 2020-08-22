@@ -23,7 +23,7 @@
                                 <span class="text-success">Time: {{ $scheduleTime }}</span>
                                 <p class="text-success">Duration: {{ $duration }}</p>
                                 <p>Thank you for your time</p>
-                                <a href="/{{$username}}" class="btn btn-schedule btn-wd-100">
+                                <a href="/{{$username}}" class="btn btn-brand-outline-pry btn-wd-100">
                                     Schedule Another Appointment
                                 </a>
                             </div>

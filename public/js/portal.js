@@ -63092,7 +63092,7 @@ $.ajaxSetup({
         'display': 'inline-block',
         'font-family': 'Arial, \'Helvetica Neue\', Helvetica, sans-serif',
         'font-size': settings.size * 0.4,
-        'border-radius': settings.size + 'px',
+        'border-radius': '4px',
         'width': settings.size + 'px',
         'height': settings.size + 'px',
         'line-height': settings.size + 'px',
@@ -63101,6 +63101,148 @@ $.ajaxSetup({
       });
     });
   };
+})(jQuery);
+
+/***/ }),
+
+/***/ "./resources/js/paginathing.min.js":
+/*!*****************************************!*\
+  !*** ./resources/js/paginathing.min.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*! paginathing 2018-01-31 */
+!function (t, a, e) {
+  "use strict";
+
+  var i = function i(a, e) {
+    return this.el = t(a), this.options = t.extend({}, t.fn.paginathing.defaults, e), this.startPage = 1, this.currentPage = 1, this.totalItems = this.el.children().length, this.totalPages = Math.max(Math.ceil(this.totalItems / this.options.perPage), this.options.limitPagination), this.container = t("<nav></nav>").addClass(this.options.containerClass), this.ul = t("<ul></ul>").addClass(this.options.ulClass), this.show(this.startPage), this;
+  };
+
+  i.prototype = {
+    pagination: function pagination(a, e) {
+      var i = this,
+          n = t("<li></li>"),
+          s = t("<a></a>").attr("href", "#"),
+          r = "number" === a ? i.options.liClass : a,
+          o = "";
+      return o = "number" === a ? e : "pageNumbers" === a ? i.paginationNumbersText() : i.paginationText(a), n.addClass(r), n.data("pagination-type", a), n.data("page", e), n.append(s.html(o)), n;
+    },
+    paginationText: function paginationText(t) {
+      return this.options[t + "Text"];
+    },
+    paginationNumbersText: function paginationNumbersText() {
+      return "Page " + this.currentPage + "/" + this.totalPages;
+    },
+    buildPagination: function buildPagination() {
+      var t,
+          a,
+          e = this,
+          i = [],
+          n = e.currentPage - 1 < e.startPage ? e.startPage : e.currentPage - 1,
+          s = e.currentPage + 1 > e.totalPages ? e.totalPages : e.currentPage + 1,
+          r = e.options.limitPagination;
+      r ? e.currentPage <= Math.ceil(r / 2) + 1 ? (t = 1, a = r) : e.currentPage + Math.floor(r / 2) >= e.totalPages ? (t = e.totalPages + 1 - r, a = e.totalPages) : (t = e.currentPage - Math.ceil(r / 2), a = e.currentPage + Math.floor(r / 2)) : (t = e.startPage, a = e.totalPages), e.options.firstLast && i.push(e.pagination("first", e.startPage)), e.options.prevNext && i.push(e.pagination("prev", n));
+
+      for (var o = t; o <= a; o++) {
+        i.push(e.pagination("number", o));
+      }
+
+      return e.options.prevNext && i.push(e.pagination("next", s)), e.options.firstLast && i.push(e.pagination("last", e.totalPages)), e.options.pageNumbers && i.push(e.pagination("pageNumbers", e.currentPage)), i;
+    },
+    render: function render(a) {
+      var e = this,
+          i = e.options,
+          n = e.buildPagination();
+      e.ul.children().remove(), e.ul.append(n);
+      var s = 1 === a ? 0 : (a - 1) * i.perPage,
+          r = a * i.perPage;
+      e.el.children().hide(), e.el.children().slice(s, r).show(), e.ul.children().each(function () {
+        var n = t(this);
+
+        switch (n.data("pagination-type")) {
+          case "number":
+            n.data("page") === a && n.addClass(i.activeClass);
+            break;
+
+          case "first":
+            a === e.startPage && n.toggleClass(i.disabledClass);
+            break;
+
+          case "last":
+            a === e.totalPages && n.toggleClass(i.disabledClass);
+            break;
+
+          case "prev":
+            a - 1 < e.startPage && n.toggleClass(i.disabledClass);
+            break;
+
+          case "next":
+            a + 1 > e.totalPages && n.toggleClass(i.disabledClass);
+        }
+      }), i.insertAfter ? e.container.append(e.ul).insertAfter(t(i.insertAfter)) : e.el.after(e.container.append(e.ul));
+    },
+    handle: function handle() {
+      var a = this;
+      a.container.find("li").each(function () {
+        var e = t(this);
+        e.click(function (t) {
+          t.preventDefault();
+          var i = e.data("page");
+          a.currentPage = i, a.show(i);
+        });
+      });
+    },
+    show: function show(t) {
+      this.render(t), this.handle();
+    }
+  }, t.fn.paginathing = function (t) {
+    return this.each(function () {
+      return new i(this, t);
+    });
+  }, t.fn.paginathing.defaults = {
+    perPage: 10,
+    limitPagination: !1,
+    prevNext: !0,
+    firstLast: !0,
+    prevText: "&laquo;",
+    nextText: "&raquo;",
+    firstText: "Previous",
+    lastText: "Next",
+    containerClass: "pagination-container",
+    ulClass: "pagination",
+    liClass: "page",
+    activeClass: "activeLink",
+    disabledClass: "disabled",
+    insertAfter: null,
+    pageNumbers: !1
+  };
+}(jQuery, window, document);
+
+/***/ }),
+
+/***/ "./resources/js/pagination.js":
+/*!************************************!*\
+  !*** ./resources/js/pagination.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ./paginathing.min */ "./resources/js/paginathing.min.js");
+
+(function ($) {
+  $('.list-item-container').each(function () {
+    $(this).find('tbody').paginathing({
+      perPage: 5,
+      limitPagination: false,
+      ulClass: 'pagination',
+      liClass: 'page',
+      activeClass: 'activeLink',
+      disabledClass: 'disabled',
+      insertAfter: $(this)
+    });
+  });
 })(jQuery);
 
 /***/ }),
@@ -63120,6 +63262,8 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
 
 __webpack_require__(/*! ./jquery.name.badges */ "./resources/js/jquery.name.badges.js");
 
+__webpack_require__(/*! ./pagination */ "./resources/js/pagination.js");
+
 (function ($) {
   var sidebarToggle = $(".custom-navbar__sidebar-toggle");
   var mainSidebar = $(".main-sidebar");
@@ -63130,15 +63274,31 @@ __webpack_require__(/*! ./jquery.name.badges */ "./resources/js/jquery.name.badg
   var slimscrollSize = "4px";
   var imageLabel = $(".image-label");
   var imagePreview = $(".image-preview");
-  var imageName = $(".image-name"); //Toggle Sidebar
+  var imageName = $(".image-name");
+  var screenBreakpoint = 768;
+  var body = $("body");
+  var iconToggle = $('.custom-navbar__logo'); //Toggle Sidebar
 
   sidebarToggle.on('click', function () {
-    mainSidebar.toggleClass('open');
-    content.toggleClass('open');
+    if (window.innerWidth < screenBreakpoint) {
+      body.toggleClass("sidebar-open");
+    } else {
+      body.toggleClass("sidebar-collapsed");
+    }
+
+    if (body.hasClass("sidebar-collapsed")) {
+      iconToggle.find('.full-logo').addClass('d-none');
+      iconToggle.find('.mini-logo').removeClass('d-none');
+    } else {
+      iconToggle.find('.full-logo').removeClass('d-none');
+      iconToggle.find('.mini-logo').addClass('d-none');
+    }
+
+    body.trigger("change");
   });
   content.on("click", function () {
-    mainSidebar.removeClass("open");
     $(this).removeClass("open");
+    mainSidebar.removeClass("open");
   }); //Initialise SlimScroll
 
   $(window).resize(function () {
@@ -63159,6 +63319,10 @@ __webpack_require__(/*! ./jquery.name.badges */ "./resources/js/jquery.name.badg
     if (this.href === window.location.href) {
       $(this).css('color', '#ff5a1a');
     }
+  }); // calender
+
+  $('.date_available').pignoseCalendar({
+    disabledWeekdays: [0, 6]
   });
 })(jQuery);
 

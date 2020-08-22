@@ -6,12 +6,11 @@
     display: flex;
     flex-direction: column;
 
-    &.open {
-        left: $sidebar-width;
-    }
-
-    @include media-breakpoint-up(lg) {
-        margin-left: $sidebar-width;
+    &-wrapper {
+        transition: all .5s ease-in-out;
+        @include media-breakpoint-up(md) {
+            margin-left: $sidebar-width !important;
+        }
     }
 
     &-body {

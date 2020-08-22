@@ -1,7 +1,8 @@
 <aside id="main-sidebar" class="main-sidebar">
     <div class="custom-navbar__logo text-center pt-2">
         <a href="/" class="text-white">
-            <h2>NAFRN</h2>
+            <h2 class="full-logo">NAFRN</h2>
+            <h2 class="mini-logo d-none">NF</h2>
         </a>
     </div>
 

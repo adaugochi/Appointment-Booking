@@ -24,7 +24,7 @@
 				'display': 'inline-block',
 				'font-family': 'Arial, \'Helvetica Neue\', Helvetica, sans-serif',
 				'font-size': settings.size * 0.4,
-				'border-radius': settings.size + 'px',
+				'border-radius': '4px',
 				'width': settings.size + 'px',
 				'height': settings.size + 'px',
 				'line-height': settings.size + 'px',

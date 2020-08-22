@@ -1,11 +1,22 @@
 .custom-navbar {
     padding: 0;
     height: $custom-navbar-height;
-    margin-left: $sidebar-width;
+    margin-left: 0;
+    transition: all .5s ease-in-out;
+
+    @include media-breakpoint-up(md) {
+        margin-left: $sidebar-width;
+    }
 
     &__logo {
         img {
             height: 26px;
+        }
+    }
+
+    &__menu-bar {
+        @include media-breakpoint-up(md) {
+            transition: all 1s ease-in-out;
         }
     }
 
@@ -14,25 +25,6 @@
         font-size: 26px;
         color: $brand-gray;
         cursor: pointer;
-        //display: none;
-    }
-}
-
-@include media-breakpoint-down(md) {
-    .custom-navbar {
-        //&__logo {
-        //  display: inline-flex;
-        //}
-
-        //&__sidebar-toggle {
-        //  cursor: pointer;
-        //  display: flex;
-        //  width: $custom-navbar-height;
-        //  height: $custom-navbar-height;
-        //  text-align: center;
-        //  align-items: center;
-        //  justify-content: center;
-        //}
     }
 }
 
