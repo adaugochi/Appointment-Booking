@@ -51,10 +51,6 @@
         width: 100% !important;
     }
 
-    &:disabled {
-        cursor: not-allowed;
-    }
-
     &:focus, &:active, &:hover {
         outline: none !important;
         box-shadow: none !important;
@@ -77,11 +73,5 @@
         color: $brand-grey;
         border-color: $disabled;
         opacity: 0.65;
-
-        &:hover, &:active {
-            background-color: $disabled !important;
-            border-color: $disabled !important;
-            opacity: 1;
-        }
     }
 }

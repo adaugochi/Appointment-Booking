@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="wrapper">
-        @if($isAdmin)
+        @if(\Auth::guard('admin')->check())
             @include('elements.admin-sidebar')
         @else
             @include('elements.sidebar')

@@ -5,51 +5,9 @@
     border: none;
     border-radius: 8px !important;
     transition: transform .3s;
+
     &-table {
         padding: 0 !important;
-    }
-
-    &-zoom:hover {
-        transform: scale(1.1);
-    }
-
-    &.customer {
-        &:hover {
-            box-shadow: unset;
-        }
-    }
-    &-image-width {
-        @include media-breakpoint-up(lg) {
-            width: 50% !important;
-        }
-    }
-    &-height {
-        @include media-breakpoint-up(lg) {
-            height: 400px;
-        }
-        @include media-breakpoint-only(md) {
-            height: 500px;
-        }
-    }
-
-    &-height-350 {
-        @include media-breakpoint-up(lg) {
-            height: 350px;
-        }
-        @include media-breakpoint-only(md) {
-            height: 450px;
-        }
-    }
-
-    &-scale {
-        border-bottom: 4px solid $brand-off-white;
-        transition: all .5s;
-        &:hover {
-            margin-top: -10px;
-        }
-        &.bg-lg {
-            border-bottom: 4px solid lighten($brand-primary, 10%) !important;
-        }
     }
 
     &-form {
@@ -90,23 +48,6 @@
     &__title {
         border-bottom: 1px solid $brand-accent;
         margin-bottom: 0.5rem;
-    }
-    &__icon {
-        &.blue {
-            color: $blue;
-        }
-        &.pink {
-            color: $pink;
-        }
-        &.green {
-            color: $green;
-        }
-        &.orange {
-            color: $orange;
-        }
-        &.indigo {
-            color: $indigo;
-        }
     }
 
     &-dashboard {

@@ -13,4 +13,9 @@ class Utils
     {
         return preg_replace('/^0/','+234', $phoneNumber);
     }
+
+    public static function generateToken()
+    {
+        return md5(rand(1, 10) . microtime()); //OR str_random(32);
+    }
 }

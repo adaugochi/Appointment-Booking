@@ -23,6 +23,10 @@ Route::prefix('admin')->group(function () {
 
     // Portal routes
     Route::get('/home', 'AdminHomeController@index')->name('admin.home');
+    Route::get('/honourable', 'AdminHonourableController@index')->name('admin.honourable');
+    Route::get('/honourable/new', 'AdminHonourableController@create')->name('new.honourable');
+    Route::post('/honourable/save', 'AdminHonourableController@save')->name('save.honourable');
+
 });
 
 Route::get('/schedule-booked/{id}', 'BookingController@bookSuccess')->name('booking-success');

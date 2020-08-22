@@ -62726,6 +62726,18 @@ $.ajaxSetup({
     rules: {
       schedule_time: "required",
       username: "required",
+      last_name: {
+        required: true,
+        lettersonly: true
+      },
+      middle_name: {
+        required: true,
+        lettersonly: true
+      },
+      first_name: {
+        required: true,
+        lettersonly: true
+      },
       visitors_name: {
         required: true,
         lettersonly: true
@@ -62734,6 +62746,13 @@ $.ajaxSetup({
         email: true
       },
       visitors_phone_number: {
+        required: true,
+        digits: true
+      },
+      email: {
+        email: true
+      },
+      phone_number: {
         required: true,
         digits: true
       },

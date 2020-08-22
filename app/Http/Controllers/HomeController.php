@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $isAdmin = false;
-        return view('home', compact('isAdmin'));
+        $user = User::find(auth()->user()->id);
+        return view('home', compact('user'));
     }
 }

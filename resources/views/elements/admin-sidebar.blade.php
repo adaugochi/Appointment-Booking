@@ -15,7 +15,7 @@
             </li>
 
             <li>
-                <a href="#" data-toggle="collapse" data-target="#subMenu4">
+                <a href="#">
                     <i class="fa fa-user-o md-48 icon" aria-hidden="true"></i>
                     <span class="nav-label">
                         Profile
@@ -24,7 +24,7 @@
             </li>
 
             <li>
-                <a href="#" data-toggle="collapse" data-target="#subMenu4">
+                <a href="{{ route('admin.honourable') }}">
                     <i class="fa fa-users md-48 icon" aria-hidden="true"></i>
                     <span class="nav-label">
                         Honourable
