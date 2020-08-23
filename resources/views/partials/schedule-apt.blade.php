@@ -26,9 +26,21 @@
                                 Actions
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="">
-                                    View Detail
+                                <a class="dropdown-item" href="{{ route('schedule.view', $apt->id) }}">
+                                    View Details
                                 </a>
+                                <span class="dropdown-item cursor-pointer" data-toggle="modal"
+                                      data-target="confirmApt" data-id="{{$apt->id}}" data-msg="confirm">
+                                    Confirm Appointment
+                                </span>
+                                <span class="dropdown-item cursor-pointer" data-toggle="modal"
+                                      data-target="cancelApt" data-id="{{$apt->id}}" data-msg="cancel">
+                                    Cancel Appointment
+                                </span>
+                                <span class="dropdown-item cursor-pointer" data-toggle="modal"
+                                      data-target="rescheduleModal" data-id="{{$apt->id}}" data-msg="reschedule">
+                                    Reschedule Appointment
+                                </span>
                             </div>
                         </div>
                     </td>

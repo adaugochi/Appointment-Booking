@@ -37,7 +37,7 @@ class Utils
         } elseif ($interval === '30min') {
             $endTime = date("h:iA", strtotime($time) + strtotime('00:30'));
         } else {
-            $endTime = date("h:iA", strtotime($time) + strtotime('00:60'));
+            $endTime = date("h:iA", strtotime($time) + strtotime('01:00'));
         }
         return $startTime . ' - ' .$endTime;
     }

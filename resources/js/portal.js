@@ -3,6 +3,7 @@ require('jquery-slimscroll');
 require('./validation');
 require('./jquery.name.badges');
 require('./pagination');
+require('./modal');
 
 (function ($) {
     let sidebarToggle = $(".custom-navbar__sidebar-toggle");

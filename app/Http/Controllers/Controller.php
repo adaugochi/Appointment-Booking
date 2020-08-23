@@ -28,9 +28,9 @@ class Controller extends BaseController
      */
     public function sendMessage($message, $recipient)
     {
-        $sid    = getenv('TWILIO_ACCOUNT_SID');
-        $token  = getenv('TWILIO_AUTH_TOKEN');
-        $from   = getenv('TWILIO_NUMBER');
+        $sid    = config('services.twilio.sid');
+        $token  = config('services.twilio.token');
+        $from   = config('services.twilio.from');
         $twilio = new Client($sid, $token);
 
         $twilio->messages->create(

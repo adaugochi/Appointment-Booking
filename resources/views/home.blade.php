@@ -24,7 +24,7 @@
                 <div class="col-md-10">
                     <div class="card bd-0">
                         <div class="card__title fs-20 pb-1">
-                            <i class="fa fa-calendar-check-o pr-2 card__icon blue" aria-hidden="true"></i>
+                            <i class="fa fa-calendar-check-o pr-2 card__icon green" aria-hidden="true"></i>
                             <span>Scheduled Appointment</span>
                         </div>
 
@@ -83,5 +83,6 @@
             @include('partials.limited-access')
         @endif()
     </div>
-
+    @include('modals.confirm-modal')
+    @include('modals.cancel-modal')
 @endsection

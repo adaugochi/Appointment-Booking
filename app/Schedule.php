@@ -18,6 +18,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Schedule extends Model
 {
+    const CONFIRM = 'confirm';
+    const CANCEL = 'cancel';
+    const PENDING = 'pending';
+    const RESCHEDULE = 'reschedule';
+
     protected $table = 'schedules';
     protected $fillable = [
         'schedule_date', 'schedule_time', 'duration', 'visitors_name',

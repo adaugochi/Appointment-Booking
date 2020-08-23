@@ -63105,6 +63105,33 @@ $.ajaxSetup({
 
 /***/ }),
 
+/***/ "./resources/js/modal.js":
+/*!*******************************!*\
+  !*** ./resources/js/modal.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function ($) {
+  var confirmApt = $("[data-target='confirmApt']"),
+      confirmAptModal = $("#confirmAptModal"),
+      cancelApt = $("[data-target='cancelApt']"),
+      cancelAptModal = $("#cancelAptModal"),
+      scheduleId = $(".id");
+  confirmApt.on('click', function (e) {
+    e.preventDefault();
+    confirmAptModal.modal('show');
+    scheduleId.val($(this).data('id'));
+  });
+  cancelApt.on('click', function (e) {
+    e.preventDefault();
+    cancelAptModal.modal('show');
+    scheduleId.val($(this).data('id'));
+  });
+})(jQuery);
+
+/***/ }),
+
 /***/ "./resources/js/paginathing.min.js":
 /*!*****************************************!*\
   !*** ./resources/js/paginathing.min.js ***!
@@ -63263,6 +63290,8 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
 __webpack_require__(/*! ./jquery.name.badges */ "./resources/js/jquery.name.badges.js");
 
 __webpack_require__(/*! ./pagination */ "./resources/js/pagination.js");
+
+__webpack_require__(/*! ./modal */ "./resources/js/modal.js");
 
 (function ($) {
   var sidebarToggle = $(".custom-navbar__sidebar-toggle");

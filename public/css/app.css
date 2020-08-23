@@ -11225,6 +11225,14 @@ body .pb-6 {
   margin-bottom: 0.5rem;
 }
 
+.card__icon.pink {
+  color: #f66d9b;
+}
+
+.card__icon.green {
+  color: #38c172;
+}
+
 .card-dashboard .card {
   padding: 16px !important;
 }
