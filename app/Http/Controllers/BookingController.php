@@ -17,7 +17,7 @@ class BookingController extends Controller
     public function index($username)
     {
         if ($this->getUserId($username)) {
-            $userFullname = User::where('username', $username)->first()->name;
+            $userFullname = User::where('username', $username)->first()->getFullName();
             return view('booking.index', compact('username', 'userFullname'));
         } else {
             return redirect('/');
@@ -95,7 +95,7 @@ class BookingController extends Controller
     {
         $schedule = Schedule::find($id);
         $user = User::find($schedule->user_id);
-        $userFullname = $user->name;
+        $userFullname = $user->getFullName();
         $username = $user->username;
         $scheduleDate = $schedule->schedule_date;
         $scheduleTime = $schedule->schedule_time;

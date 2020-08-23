@@ -37,6 +37,7 @@ require('./validation');
         disabledWeekdays: [0, 6],
         disabledDates: [getCurrentFormatDate()],
         minDate: getCurrentFormatDate(),
+        disabledRanges: [[]],
         click: function(event, context) {
             let $this = $(this);
             let date = $this.data('date');

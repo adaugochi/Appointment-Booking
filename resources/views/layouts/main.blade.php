@@ -11,6 +11,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/portal.css') }}" rel="stylesheet">
     <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
+    @yield('style')
 </head>
 <body>
     <div class="wrapper">

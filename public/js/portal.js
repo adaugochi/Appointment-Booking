@@ -63059,6 +63059,185 @@ $.ajaxSetup({
 
 /***/ }),
 
+/***/ "./resources/js/image-upload.js":
+/*!**************************************!*\
+  !*** ./resources/js/image-upload.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ./image-uploader.min */ "./resources/js/image-uploader.min.js");
+
+(function ($) {
+  var preloaded = [// {id: 1, src: '1.jpg'},
+    // {id: 2, src: '2.jpg'},
+    // {id: 3, src: '3.jpg'},
+    // more images here
+  ];
+  $('.input-images').imageUploader({
+    imagesInputName: 'images',
+    preloadedInputName: 'preloaded',
+    extensions: ['.jpg', '.jpeg', '.png', '.gif', '.svg'],
+    mimes: ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'],
+    maxSize: undefined,
+    maxFiles: undefined
+  });
+})(jQuery);
+
+/***/ }),
+
+/***/ "./resources/js/image-uploader.min.js":
+/*!********************************************!*\
+  !*** ./resources/js/image-uploader.min.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*! Image Uploader - v1.2.3 - 26/11/2019
+ * Copyright (c) 2019 Christian Bayer; Licensed MIT */
+!function (e) {
+  e.fn.imageUploader = function (t) {
+    var n,
+        i = {
+      preloaded: [],
+      imagesInputName: "images",
+      preloadedInputName: "preloaded",
+      label: "Drag & Drop files here or click to browse",
+      extensions: [".jpg", ".jpeg", ".png", ".gif", ".svg"],
+      mimes: ["image/jpeg", "image/png", "image/gif", "image/svg+xml"],
+      maxSize: void 0,
+      maxFiles: void 0
+    },
+        a = this,
+        s = new DataTransfer();
+    a.settings = {}, a.init = function () {
+      a.settings = e.extend(a.settings, i, t), a.each(function (t, n) {
+        var i = o();
+
+        if (e(n).append(i), i.on("dragover", r.bind(i)), i.on("dragleave", r.bind(i)), i.on("drop", p.bind(i)), a.settings.preloaded.length) {
+          i.addClass("has-files");
+
+          var _e = i.find(".uploaded");
+
+          for (var _t = 0; _t < a.settings.preloaded.length; _t++) {
+            _e.append(l(a.settings.preloaded[_t].src, a.settings.preloaded[_t].id, !0));
+          }
+        }
+      });
+    };
+
+    var o = function o() {
+      var t = e("<div>", {
+        "class": "image-uploader"
+      });
+      n = e("<input>", {
+        type: "file",
+        id: a.settings.imagesInputName + "-" + h(),
+        name: a.settings.imagesInputName + "[]",
+        accept: a.settings.extensions.join(","),
+        multiple: ""
+      }).appendTo(t);
+      e("<div>", {
+        "class": "uploaded"
+      }).appendTo(t);
+      var i = e("<div>", {
+        "class": "upload-text"
+      }).appendTo(t);
+      e("<i>", {
+        "class": "iui-cloud-upload"
+      }).appendTo(i), e("<span>", {
+        text: a.settings.label
+      }).appendTo(i);
+      return t.on("click", function (e) {
+        d(e), n.trigger("click");
+      }), n.on("click", function (e) {
+        e.stopPropagation();
+      }), n.on("change", p.bind(t)), t;
+    },
+        d = function d(e) {
+      e.preventDefault(), e.stopPropagation();
+    },
+        l = function l(t, i, o) {
+      var l = e("<div>", {
+        "class": "uploaded-image"
+      }),
+          r = (e("<img>", {
+        src: t
+      }).appendTo(l), e("<button>", {
+        "class": "delete-image"
+      }).appendTo(l));
+      e("<i>", {
+        "class": "iui-close"
+      }).appendTo(r);
+
+      if (o) {
+        l.attr("data-preloaded", !0);
+        e("<input>", {
+          type: "hidden",
+          name: a.settings.preloadedInputName + "[]",
+          value: i
+        }).appendTo(l);
+      } else l.attr("data-index", i);
+
+      return l.on("click", function (e) {
+        d(e);
+      }), r.on("click", function (t) {
+        d(t);
+        var o = l.parent();
+        if (!0 === l.data("preloaded")) a.settings.preloaded = a.settings.preloaded.filter(function (e) {
+          return e.id !== i;
+        });else {
+          var _t2 = parseInt(l.data("index"));
+
+          o.find(".uploaded-image[data-index]").each(function (n, i) {
+            n > _t2 && e(i).attr("data-index", n - 1);
+          }), s.items.remove(_t2), n.prop("files", s.files);
+        }
+        l.remove(), o.children().length || o.parent().removeClass("has-files");
+      }), l;
+    },
+        r = function r(t) {
+      d(t), "dragover" === t.type ? e(this).addClass("drag-over") : e(this).removeClass("drag-over");
+    },
+        p = function p(t) {
+      d(t);
+      var i = e(this),
+          o = Array.from(t.target.files || t.originalEvent.dataTransfer.files),
+          l = [];
+      e(o).each(function (e, t) {
+        a.settings.extensions && !g(t) || a.settings.mimes && !c(t) || a.settings.maxSize && !f(t) || a.settings.maxFiles && !m(l.length, t) || l.push(t);
+      }), l.length ? (i.removeClass("drag-over"), u(i, l)) : n.prop("files", s.files);
+    },
+        g = function g(e) {
+      return !(a.settings.extensions.indexOf(e.name.replace(new RegExp("^.*\\."), ".")) < 0) || (alert("The file \"".concat(e.name, "\" does not match with the accepted file extensions: \"").concat(a.settings.extensions.join('", "'), "\"")), !1);
+    },
+        c = function c(e) {
+      return !(a.settings.mimes.indexOf(e.type) < 0) || (alert("The file \"".concat(e.name, "\" does not match with the accepted mime types: \"").concat(a.settings.mimes.join('", "'), "\"")), !1);
+    },
+        f = function f(e) {
+      return !(e.size > a.settings.maxSize) || (alert("The file \"".concat(e.name, "\" exceeds the maximum size of ").concat(a.settings.maxSize / 1024 / 1024, "Mb")), !1);
+    },
+        m = function m(e, t) {
+      return !(e + s.items.length + a.settings.preloaded.length >= a.settings.maxFiles) || (alert("The file \"".concat(t.name, "\" could not be added because the limit of ").concat(a.settings.maxFiles, " files was reached")), !1);
+    },
+        u = function u(t, n) {
+      t.addClass("has-files");
+      var i = t.find(".uploaded"),
+          a = t.find('input[type="file"]');
+      e(n).each(function (e, t) {
+        s.items.add(t), i.append(l(URL.createObjectURL(t), s.items.length - 1), !1);
+      }), a.prop("files", s.files);
+    },
+        h = function h() {
+      return Date.now() + Math.floor(100 * Math.random() + 1);
+    };
+
+    return this.init(), this;
+  };
+}(jQuery);
+
+/***/ }),
+
 /***/ "./resources/js/jquery.name.badges.js":
 /*!********************************************!*\
   !*** ./resources/js/jquery.name.badges.js ***!
@@ -63293,6 +63472,8 @@ __webpack_require__(/*! ./pagination */ "./resources/js/pagination.js");
 
 __webpack_require__(/*! ./modal */ "./resources/js/modal.js");
 
+__webpack_require__(/*! ./image-upload */ "./resources/js/image-upload.js");
+
 (function ($) {
   var sidebarToggle = $(".custom-navbar__sidebar-toggle");
   var mainSidebar = $(".main-sidebar");
@@ -63351,7 +63532,8 @@ __webpack_require__(/*! ./modal */ "./resources/js/modal.js");
   }); // calender
 
   $('.date_available').pignoseCalendar({
-    disabledWeekdays: [0, 6]
+    disabledWeekdays: [0, 6],
+    multiple: true
   });
 })(jQuery);
 

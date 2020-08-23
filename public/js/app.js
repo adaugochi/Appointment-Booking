@@ -62570,6 +62570,7 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
     disabledWeekdays: [0, 6],
     disabledDates: [getCurrentFormatDate()],
     minDate: getCurrentFormatDate(),
+    disabledRanges: [[]],
     click: function click(event, context) {
       var $this = $(this);
       var date = $this.data('date');

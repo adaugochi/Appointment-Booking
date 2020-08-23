@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('is_profile_complete')->default(0);
             $table->string('has_registered')->default(0);
+            $table->string('date_availability')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

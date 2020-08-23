@@ -4,6 +4,7 @@ require('./validation');
 require('./jquery.name.badges');
 require('./pagination');
 require('./modal');
+require('./image-upload');
 
 (function ($) {
     let sidebarToggle = $(".custom-navbar__sidebar-toggle");
@@ -70,6 +71,7 @@ require('./modal');
     // calender
    $('.date_available').pignoseCalendar({
         disabledWeekdays: [0, 6],
+        multiple: true
     });
 
 })(jQuery);

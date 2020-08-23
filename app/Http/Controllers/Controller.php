@@ -15,7 +15,7 @@ class Controller extends BaseController
 
     public function getUserId($username)
     {
-        return User::select('id')->where('username', $username)->first();
+        return User::select('id')->where(['username' => $username, 'is_profile_complete' => 1])->first();
     }
 
     /**

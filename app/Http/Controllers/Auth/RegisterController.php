@@ -52,8 +52,9 @@ class RegisterController extends Controller
     }
 
     /**
-     * @param  array  $data
-     * @return \App\User
+     * @param  array $data
+     * @return array
+     * @throws \Exception
      */
     protected function create(array $data)
     {
@@ -85,7 +86,7 @@ class RegisterController extends Controller
         $user->password = Hash::make(request('password'));
         $user->has_registered = 1;
         if ($user->save()) {
-            return Redirect::to('/home')
+            return Redirect::to('/login')
                 ->with(['success' => 'Registration was successful']);
         }
         return redirect('/login')->with(['error' => 'registration was not successful']);

@@ -15,13 +15,15 @@ class AdminSeeder extends Seeder
     {
         DB::table('admins')->insert([
             [
-                'name' => 'Adaa Mgbede',
+                'first_name' => 'Adaa',
+                'last_name' => 'Mgbede',
                 'email' => 'adaamgbede@gmail.com',
                 'role' => 'system-admin',
                 'password' => Hash::make(12345678)
             ],
             [
-                'name' => 'Ayomide Ojo',
+                'first_name' => 'Ayomide',
+                'last_name' => 'Ojo',
                 'email' => 'antava1990@gmail.com',
                 'role' => 'project-manager',
                 'password' => Hash::make(12345678)

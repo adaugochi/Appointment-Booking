@@ -44,7 +44,7 @@
                             <td>{{ $user->formatDate() }}</td>
                             <td>
                                 <div class="dropdown">
-                                    <button type="button" class="btn btn-secondary dropdown-toggle"
+                                    <button type="button" class="btn btn-action btn-secondary dropdown-toggle"
                                             data-toggle="dropdown">
                                         Actions
                                     </button>
@@ -66,7 +66,7 @@
         @else
             <div class="empty-state">
                 <i class="fa fa-archive empty-state__icon icon-grey" aria-hidden="true"></i>
-                <p class="empty-state__description mt-2">No Blog post has been made yet.</p>
+                <p class="empty-state__description mt-2">No Honourable has been added yet.</p>
             </div>
         @endif
         {{ $users->render() }}
