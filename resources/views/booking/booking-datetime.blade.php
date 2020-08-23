@@ -3,6 +3,8 @@
     <main class="container">
         <div class="row ht-100v align-items-center justify-content-center">
             <div class="col-md-10 mx-auto">
+                <input type="hidden" value="{{ $user['end_date'] }}" id="endDate">
+                <input type="hidden" value="{{ $user['start_date'] }}" id="startDate">
                 <p class="fs-header text-center">
                         @if($duration == '30min')
                             <input type="hidden" value="{!! 30 !!}" class="duration">

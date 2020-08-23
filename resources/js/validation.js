@@ -11,6 +11,8 @@
         rules: {
             schedule_time: "required",
             welcome_message: "required",
+            start_date: "required",
+            end_date: "required",
             username: "required",
             last_name: {
                 required: true,

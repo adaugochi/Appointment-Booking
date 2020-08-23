@@ -62570,7 +62570,7 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
     disabledWeekdays: [0, 6],
     disabledDates: [getCurrentFormatDate()],
     minDate: getCurrentFormatDate(),
-    disabledRanges: [[]],
+    disabledRanges: [[$('#startDate').val(), $('#endDate').val()]],
     click: function click(event, context) {
       var $this = $(this);
       var date = $this.data('date');
@@ -62727,6 +62727,8 @@ $.ajaxSetup({
     rules: {
       schedule_time: "required",
       welcome_message: "required",
+      start_date: "required",
+      end_date: "required",
       username: "required",
       last_name: {
         required: true,

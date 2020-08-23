@@ -26,8 +26,12 @@ class BookingController extends Controller
 
     public function bookDate($username, $duration)
     {
-        if ($this->getUserId($username)) {
-            return view('booking.booking-datetime', compact('username', 'duration'));
+        $user = $this->getUserId($username);
+        if ($user) {
+            return view(
+                'booking.booking-datetime',
+                compact('username', 'duration', 'user')
+            );
         } else {
             return redirect('/');
         }

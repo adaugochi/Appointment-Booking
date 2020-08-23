@@ -11,6 +11,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/schedule/view/{id}', 'HomeController@viewDetail')->name('schedule.view');
 Route::post('/schedule/confirm', 'HomeController@confirmApt')->name('schedule.confirm');
 Route::post('/schedule/cancel', 'HomeController@cancelApt')->name('schedule.cancel');
+Route::post('/edit-availability', 'HomeController@editAvailability')->name('edit.availability');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::post('/update-profile', 'ProfileController@updateProfile')->name('update.profile');
 

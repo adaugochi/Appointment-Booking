@@ -20,7 +20,6 @@ require('./image-uploader.min');
     });
 
     $(document).ready(function () {
-        console.log(imageInputField.val());
         if(imageInputField.val()) {
             $('.uploaded').append(`
                 <div class="uploaded-image" data-index="0">

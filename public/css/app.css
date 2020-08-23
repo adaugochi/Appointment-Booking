@@ -11428,3 +11428,12 @@ textarea.card-form__input {
   font-size: 20px;
 }
 
+.form_available .fa-calendar {
+  position: absolute;
+  right: 0;
+  line-height: 4.3;
+  padding-right: 45px;
+  color: #7e7c7c;
+  font-size: 20px;
+}
+

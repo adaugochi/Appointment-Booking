@@ -69,9 +69,8 @@ require('./image-upload');
     });
 
     // calender
-   $('.date_available').pignoseCalendar({
-        disabledWeekdays: [0, 6],
-        multiple: true
+   $('.calendar').pignoseCalendar({
+
     });
 
 })(jQuery);

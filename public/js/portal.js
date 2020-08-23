@@ -63086,8 +63086,6 @@ __webpack_require__(/*! ./image-uploader.min */ "./resources/js/image-uploader.m
     }
   });
   $(document).ready(function () {
-    console.log(imageInputField.val());
-
     if (imageInputField.val()) {
       $('.uploaded').append("\n                <div class=\"uploaded-image\" data-index=\"0\">\n                    <img src=\"".concat(imageInputField.val(), "\">\n                    <button class=\"delete-image\">\n                        <i class=\"iui-close\"></i>\n                    </button>\n                </div>\n            "));
     }
@@ -63541,10 +63539,7 @@ __webpack_require__(/*! ./image-upload */ "./resources/js/image-upload.js");
     }
   }); // calender
 
-  $('.date_available').pignoseCalendar({
-    disabledWeekdays: [0, 6],
-    multiple: true
-  });
+  $('.calendar').pignoseCalendar({});
 })(jQuery);
 
 /***/ }),
@@ -63568,6 +63563,8 @@ __webpack_require__(/*! ./image-upload */ "./resources/js/image-upload.js");
     rules: {
       schedule_time: "required",
       welcome_message: "required",
+      start_date: "required",
+      end_date: "required",
       username: "required",
       last_name: {
         required: true,

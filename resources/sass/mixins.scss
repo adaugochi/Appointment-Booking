@@ -1,3 +1,12 @@
 @mixin borderTopColor($color) {
     border-top: 4px solid $color;
 }
+
+@mixin iconRight($pr, $lh) {
+    position: absolute;
+    right: 0;
+    line-height: $lh;
+    padding-right: $pr;
+    color: #7e7c7c;
+    font-size: 20px;
+}
