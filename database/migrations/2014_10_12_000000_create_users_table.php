@@ -27,6 +27,8 @@ class CreateUsersTable extends Migration
             $table->string('is_profile_complete')->default(0);
             $table->string('has_registered')->default(0);
             $table->string('date_availability')->nullable();
+            $table->text('image_url')->nullable();
+            $table->string('welcome_message')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

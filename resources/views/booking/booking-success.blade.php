@@ -19,9 +19,12 @@
                                     You appointment will be reviewed and we will send you a <strong>confirmation code</strong>
                                     via sms when you it is confirmed or might be reschedule to another date and time
                                 </p>
-                                <div class="text-success">Date: {{ $scheduleDate }}</div>
-                                <span class="text-success">Time: {{ $scheduleTime }}</span>
-                                <p class="text-success">Duration: {{ $duration }}</p>
+                                <div class="text-success">
+                                    Date: {{ \App\helpers\Utils::formatDate($scheduleDate) }}
+                                </div>
+                                <span class="text-success">
+                                    Time: {{ \App\helpers\Utils::convertToMinutesIntervals($scheduleTime, $duration) }}
+                                </span>
                                 <p>Thank you for your time</p>
                                 <a href="/{{$username}}" class="btn btn-brand-outline-pry btn-wd-100">
                                     Schedule Another Appointment

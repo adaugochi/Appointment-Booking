@@ -6,8 +6,8 @@
     <div class="justify-content-end">
         <div class="dropdown cursor-pointer">
             <a class="nav-link dropdown-toggle text-gray" data-toggle="dropdown">
-                <span class="image-name">{{ auth()->user()->getFullname() }}</span>
-                <span class="nav-text mr-3">{{ auth()->user()->getFullname() }}</span>
+                <span class="image-name">{{ auth()->user()->getFullName() }}</span>
+                <span class="nav-text mr-3">{{ auth()->user()->getFullName() }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

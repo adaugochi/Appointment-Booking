@@ -12,6 +12,7 @@ Route::get('/schedule/view/{id}', 'HomeController@viewDetail')->name('schedule.v
 Route::post('/schedule/confirm', 'HomeController@confirmApt')->name('schedule.confirm');
 Route::post('/schedule/cancel', 'HomeController@cancelApt')->name('schedule.cancel');
 Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::post('/update-profile', 'ProfileController@updateProfile')->name('update.profile');
 
 Route::prefix('admin')->group(function () {
     // Login routes

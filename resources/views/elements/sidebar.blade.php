@@ -9,14 +9,14 @@
     <section class="sidebar">
         <ul class="side-menu">
             <li>
-                <a href="#">
+                <a href="{{ route('home') }}">
                     <i class="fa fa-home md-48 icon" aria-hidden="true"></i>
                     <span class="nav-label">Dashboard</span>
                 </a>
             </li>
 
             <li>
-                <a href="#" data-toggle="collapse" data-target="#subMenu4">
+                <a href="{{ route('profile') }}">
                     <i class="fa fa-user-o md-48 icon" aria-hidden="true"></i>
                     <span class="nav-label">
                         Profile
@@ -25,7 +25,7 @@
             </li>
 
             <li>
-                <a href="#" data-toggle="collapse" data-target="#subMenu4">
+                <a href="#">
                     <i class="fa fa-users md-48 icon" aria-hidden="true"></i>
                     <span class="nav-label">
                         Visitors

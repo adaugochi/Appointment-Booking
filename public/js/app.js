@@ -62726,6 +62726,7 @@ $.ajaxSetup({
     onkeyup: false,
     rules: {
       schedule_time: "required",
+      welcome_message: "required",
       username: "required",
       last_name: {
         required: true,

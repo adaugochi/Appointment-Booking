@@ -63069,18 +63069,28 @@ $.ajaxSetup({
 __webpack_require__(/*! ./image-uploader.min */ "./resources/js/image-uploader.min.js");
 
 (function ($) {
-  var preloaded = [// {id: 1, src: '1.jpg'},
-    // {id: 2, src: '2.jpg'},
-    // {id: 3, src: '3.jpg'},
-    // more images here
-  ];
+  var imageInputField = $("#imageURL");
   $('.input-images').imageUploader({
     imagesInputName: 'images',
     preloadedInputName: 'preloaded',
     extensions: ['.jpg', '.jpeg', '.png', '.gif', '.svg'],
     mimes: ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'],
-    maxSize: undefined,
-    maxFiles: undefined
+    label: "Drag & Drop files here or Click to Upload Image"
+  });
+  $("#profileForm").on('submit', function (e) {
+    var imageUploader = $(this).find('.image-uploader');
+
+    if (imageUploader.hasClass('has-files')) {
+      var imageURL = imageUploader.find('img').attr('src');
+      imageInputField.val(imageURL);
+    }
+  });
+  $(document).ready(function () {
+    console.log(imageInputField.val());
+
+    if (imageInputField.val()) {
+      $('.uploaded').append("\n                <div class=\"uploaded-image\" data-index=\"0\">\n                    <img src=\"".concat(imageInputField.val(), "\">\n                    <button class=\"delete-image\">\n                        <i class=\"iui-close\"></i>\n                    </button>\n                </div>\n            "));
+    }
   });
 })(jQuery);
 
@@ -63557,6 +63567,7 @@ __webpack_require__(/*! ./image-upload */ "./resources/js/image-upload.js");
     onkeyup: false,
     rules: {
       schedule_time: "required",
+      welcome_message: "required",
       username: "required",
       last_name: {
         required: true,
