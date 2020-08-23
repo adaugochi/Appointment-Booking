@@ -74,6 +74,7 @@
                                 <div>
                                     @include('partials.schedule-apt', [
                                         'apts' => $upcoming,
+                                        'aptStatus' => 'upcoming',
                                         'icon' => 'fa-calendar-plus-o',
                                         'description' => 'No Meeting has been scheduled yet.'
                                     ])
@@ -83,6 +84,7 @@
                                 <div>
                                     @include('partials.schedule-apt', [
                                         'apts' => $unapproved,
+                                        'aptStatus' => 'unapproved',
                                         'icon' => 'fa-calendar-times-o',
                                         'description' => 'No Meeting has been unapproved yet.'
                                     ])
@@ -92,6 +94,7 @@
                                 <div>
                                     @include('partials.schedule-apt', [
                                         'apts' => $past,
+                                        'aptStatus' => 'past',
                                         'icon' => 'fa-calendar-minus-o',
                                         'description' => 'You have no past appointments'
                                     ])
@@ -107,4 +110,5 @@
     </div>
     @include('modals.confirm-modal')
     @include('modals.cancel-modal')
+    @include('modals.reschedule-modal')
 @endsection

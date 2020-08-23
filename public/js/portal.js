@@ -63304,7 +63304,11 @@ __webpack_require__(/*! ./image-uploader.min */ "./resources/js/image-uploader.m
       confirmAptModal = $("#confirmAptModal"),
       cancelApt = $("[data-target='cancelApt']"),
       cancelAptModal = $("#cancelAptModal"),
-      scheduleId = $(".id");
+      rescheduleApt = $("[data-target='rescheduleApt']"),
+      rescheduleAptModal = $("#rescheduleAptModal"),
+      scheduleId = $(".id"),
+      scheduleDate = $("#date"),
+      scheduleTime = $("#time");
   confirmApt.on('click', function (e) {
     e.preventDefault();
     confirmAptModal.modal('show');
@@ -63314,6 +63318,13 @@ __webpack_require__(/*! ./image-uploader.min */ "./resources/js/image-uploader.m
     e.preventDefault();
     cancelAptModal.modal('show');
     scheduleId.val($(this).data('id'));
+  });
+  rescheduleApt.on('click', function (e) {
+    e.preventDefault();
+    rescheduleAptModal.modal('show');
+    scheduleId.val($(this).data('id'));
+    scheduleDate.val($(this).data('date'));
+    scheduleTime.val($(this).data('time'));
   });
 })(jQuery);
 
@@ -63539,7 +63550,15 @@ __webpack_require__(/*! ./image-upload */ "./resources/js/image-upload.js");
     }
   }); // calender
 
-  $('.calendar').pignoseCalendar({});
+  $('.calendar').pignoseCalendar({}); // Time picker
+
+  $('.timing').timepicker({
+    timeFormat: 'H:i',
+    step: 30,
+    minTime: '9:00',
+    maxTime: '17:00',
+    disableTextInput: true
+  });
 })(jQuery);
 
 /***/ }),

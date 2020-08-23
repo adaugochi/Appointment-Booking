@@ -122,6 +122,11 @@ class HomeController extends Controller
         }
     }
 
+    public function rescheduleApt()
+    {
+
+    }
+
     public function editAvailability()
     {
         $user = User::find(auth()->user()->id);

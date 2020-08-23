@@ -73,4 +73,13 @@ require('./image-upload');
 
     });
 
+   // Time picker
+    $('.timing').timepicker( {
+        timeFormat: 'H:i',
+        step: 30,
+        minTime: '9:00',
+        maxTime: '17:00',
+        disableTextInput: true,
+    });
+
 })(jQuery);
