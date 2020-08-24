@@ -3,30 +3,28 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use App\User;
+use App\Security;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller
+class SecurityRegisterController extends Controller
 {
-    use RegistersUsers;
-
-    protected $redirectTo = RouteServiceProvider::HOME;
-    protected $loginURL = 'login';
+    protected $loginURL = '/security/login';
+    protected $redirectTo = 'security/home';
 
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:security');
     }
 
     public function showRegistrationForm()
     {
         $token = request()->token;
-        $regRoute = route('register');
+        $regRoute = route('security.sign-up');
         if ($token === null) {
             return redirect($this->loginURL)->with(['error' => 'Invalid sign up token']);
         }
@@ -41,29 +39,15 @@ class RegisterController extends Controller
     }
 
     /**
-     * @param  array $data
-     * @return array
-     * @throws \Exception
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }
-
-    /**
      * @param Request $request
      * @return mixed
      */
-    public function register(Request $request)
+    public function signUp(Request $request)
     {
         $request->validate([
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-        $user = User::where('token', request('token'))->first();
+        $user = Security::where('token', request('token'))->first();
         if (!$user) {
             return redirect($this->loginURL)->with(['error' => 'Invalid sign up token']);
         }
@@ -78,5 +62,15 @@ class RegisterController extends Controller
             return Redirect::to($this->redirectTo)->with(['success' => 'Registration was successful']);
         }
         return redirect($this->loginURL)->with(['error' => 'registration was not successful']);
+    }
+
+    /**
+     * Get the guard to be used during registration.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('security');
     }
 }

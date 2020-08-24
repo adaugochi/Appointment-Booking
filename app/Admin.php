@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Notifications\AdminResetPasswordNotification;
 use App\Traits\FormatDateTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;

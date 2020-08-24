@@ -19,15 +19,14 @@ use Illuminate\Notifications\Notifiable;
  * @property mixed email
  * @property mixed phone_number
  */
-class User extends Authenticatable
+class Security extends Authenticatable
 {
     use Notifiable, FormatDateTrait;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'securities';
+
+    protected $guard = 'security';
+
     protected $fillable = [
         'first_name', 'middle_name', 'last_name', 'email', 'password', 'username', 'phone_number', 'token'
     ];

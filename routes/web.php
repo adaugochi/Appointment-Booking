@@ -31,9 +31,22 @@ Route::prefix('admin')->group(function () {
     // Portal routes
     Route::get('/home', 'AdminHomeController@index')->name('admin.home');
     Route::get('/honourable', 'AdminHonourableController@index')->name('admin.honourable');
+    Route::get('/security', 'AdminSecurityController@index')->name('admin.security');
     Route::get('/honourable/new', 'AdminHonourableController@create')->name('new.honourable');
+    Route::get('/security/new', 'AdminSecurityController@create')->name('new.security');
     Route::post('/honourable/save', 'AdminHonourableController@save')->name('save.honourable');
+    Route::post('/security/save', 'AdminSecurityController@save')->name('save.security');
+});
 
+Route::prefix('security')->group(function () {
+    // Login routes
+    Route::get('/login', 'Auth\SecurityLoginController@showLoginForm')->name('security.login');
+    Route::post('/sign-in', 'Auth\SecurityLoginController@login')->name('security.sign-in');
+    Route::get('/register', 'Auth\SecurityRegisterController@showRegistrationForm')->name('security.register');
+    Route::post('/sign-up', 'Auth\SecurityRegisterController@signUp')->name('security.sign-up');
+    Route::post('/logout', 'Auth\SecurityLoginController@logout')->name('security.logout');
+    // Portal routes
+    Route::get('/home', 'SecurityHomeController@index')->name('security.home');
 });
 
 Route::get('/schedule-booked/{id}', 'BookingController@bookSuccess')->name('booking-success');

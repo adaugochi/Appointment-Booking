@@ -7,19 +7,28 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $user = User::find(auth()->user()->id);
         return view('profile.index', compact('user'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @author Maryfaith Mgbede <adaamgbede@gmail.com>
+     */
     public function updateProfile(Request $request)
     {
         $request->validate([
             'welcome_message' => 'required'
         ]);
         $user = User::find(auth()->user()->id);
-        //dd($request->all());
 
         if ($request->has('images')) {
             $origImageName = $request->images[0]->getClientOriginalName();

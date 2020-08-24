@@ -13,6 +13,11 @@ trait FormatDateTrait
         return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name) ;
     }
 
+    public function getUserName()
+    {
+        return strtolower($this->first_name . $this->middle_name[0] . $this->last_name);
+    }
+
     /**
      * @return false|string
      * @author Maryfaith Mgbede <adaamgbede@gmail.com>

@@ -9,7 +9,7 @@
     <section class="sidebar">
         <ul class="side-menu">
             <li>
-                <a href="{{ route('admin.home') }}">
+                <a href="{{ route('security.home') }}">
                     <i class="fa fa-home md-48 icon" aria-hidden="true"></i>
                     <span class="nav-label">Dashboard</span>
                 </a>
@@ -20,24 +20,6 @@
                     <i class="fa fa-user-o md-48 icon" aria-hidden="true"></i>
                     <span class="nav-label">
                         Profile
-                    </span>
-                </a>
-            </li>
-
-            <li>
-                <a href="{{ route('admin.honourable') }}">
-                    <i class="fa fa-briefcase md-48 icon" aria-hidden="true"></i>
-                    <span class="nav-label">
-                        Honourable
-                    </span>
-                </a>
-            </li>
-
-            <li>
-                <a href="{{ route('admin.security') }}">
-                    <i class="fa fa-user-secret md-48 icon" aria-hidden="true"></i>
-                    <span class="nav-label">
-                        Security
                     </span>
                 </a>
             </li>

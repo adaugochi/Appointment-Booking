@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @section('card-title', 'Sign Up')
-@section('route', route('register'))
+@section('route', $regRoute)
 @section('title', 'Register')
 @section('content')
     {{--<div class="form-group">--}}

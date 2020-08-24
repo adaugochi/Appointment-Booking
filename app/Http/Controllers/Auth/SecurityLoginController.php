@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class SecurityLoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/security/home';
 
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:security')->except('logout');
     }
 
     /**
@@ -24,7 +24,7 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         $isAdmin = false;
-        $loginRoute = route('login');
+        $loginRoute = route('security.sign-in');
         $forgotPwdRoute = route('password.request');
         return view('auth.login', compact('loginRoute', 'forgotPwdRoute', 'isAdmin'));
     }
@@ -32,5 +32,10 @@ class LoginController extends Controller
     public function username()
     {
         return 'username';
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('security');
     }
 }

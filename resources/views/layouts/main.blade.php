@@ -15,8 +15,10 @@
 </head>
 <body>
     <div class="wrapper">
-        @if(\Auth::guard('admin')->check())
+        @if(auth()->guard('admin')->check())
             @include('elements.admin-sidebar')
+        @elseif(auth()->guard('security')->check())
+            @include('elements.security-sidebar')
         @else
             @include('elements.sidebar')
         @endif()
