@@ -13,7 +13,8 @@
             <form action="{{ route('update.profile') }}" method="post" enctype="multipart/form-data"
                   class="validateForm" id="profileForm">
                 @csrf
-                <input type="hidden" name="image_url" id="imageURL" value="{{ asset('uploads/profile/'.$user->image_url) }}">
+                <input type="hidden" name="image_url" id="imageURL"
+                       value="{{ $user->image_url ? asset('uploads/profile/'.$user->image_url): '' }}">
                 <div class="row">
                     <div class="col-lg-8 col-md-6 mt-4 mt-md-0">
                         <div class="card bd-0">

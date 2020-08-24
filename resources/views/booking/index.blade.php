@@ -4,8 +4,11 @@
         <div class="container">
             <div class="row ht-100v align-items-center justify-content-center">
                 <div class="col-md-10 mx-auto">
-                    <p class="fs-header text-center">Honourable of the federal republic of Nigeria</p>
-                    <div class="fs-header text-center">Hon. {!! $userFullname !!}</div>
+                    <div class="img-wrapper">
+                        <img src="{{asset('uploads/profile/'.$imageURL)}}" class="img-wrapper_circle">
+                    </div>
+                    <p class="fs-20 text-center">{{ $welcomeMessage }}</p>
+                    {{--<div class="fs-header text-center">Hon. {!! $userFullname !!}</div>--}}
                     <div class="bg-white">
                         <div class="booking__align-header text-center">
                             <h3>Schedule A Meeting</h3>

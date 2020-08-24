@@ -11105,6 +11105,19 @@ body .pb-6 {
   color: #ffffff;
 }
 
+.img-wrapper {
+  width: 100px;
+  height: 100px;
+  overflow: auto;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.img-wrapper_circle {
+  width: 100px;
+  height: 100px;
+}
+
 .login_wrapper img {
   width: inherit;
 }

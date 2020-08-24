@@ -57,3 +57,16 @@
         color: $white;
     }
 }
+
+//img
+.img-wrapper {
+    width: 100px;
+    height: 100px;
+    overflow: auto;
+    border-radius: 50%;
+    margin: auto;
+    &_circle {
+        width: 100px;
+        height: 100px;
+    }
+}

@@ -21,7 +21,7 @@
             @include('elements.security-sidebar')
         @else
             @include('elements.sidebar')
-        @endif()
+        @endif
         <div class="content-wrapper ">
             @include('elements.header')
             <section class="content">

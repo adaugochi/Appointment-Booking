@@ -28,7 +28,8 @@ require('./image-uploader.min');
                         <i class="iui-close"></i>
                     </button>
                 </div>
-            `)
+            `);
+            $('.upload-text').empty();
         }
     })
 })(jQuery);

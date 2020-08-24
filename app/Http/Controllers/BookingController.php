@@ -9,16 +9,17 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
-//    public function __construct()
-//    {
-//        $this->middleware('guest');
-//    }
-
     public function index($username)
     {
         if ($this->getUserId($username)) {
-            $userFullname = User::where('username', $username)->first()->getFullName();
-            return view('booking.index', compact('username', 'userFullname'));
+            $user = User::where('username', $username)->first();
+            $userFullname = $user->getFullName();
+            $welcomeMessage = $user->welcome_message;
+            $imageURL = $user->image_url;
+            return view(
+                'booking.index',
+                compact('username', 'userFullname', 'welcomeMessage', 'imageURL')
+            );
         } else {
             return redirect('/');
         }
