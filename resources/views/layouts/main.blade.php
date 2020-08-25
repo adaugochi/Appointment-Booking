@@ -52,7 +52,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/portal.js') }}"></script>
+    <script src="/js/portal.js"></script>
     @include('partials.flash-messages')
 </body>
 </html>
