@@ -33,7 +33,7 @@
                     templateWrapper.append(`
                         <div class="card bd-0">
                             <div>
-                                <img src="${baseURL}uploads/profile/${res.image_url}" width="200">
+                                <img src="/uploads/profile/${res.image_url}" width="200">
                             </div>
                             <div class="mt-4">
                                 <p>Whom to see: ${res.full_name}</p>

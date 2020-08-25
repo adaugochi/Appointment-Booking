@@ -11300,10 +11300,10 @@ body .pb-6 {
   text-align: center;
 }
 
-.card-icon span {
-  font-size: 40px;
-  vertical-align: middle;
-  color: white;
+.card-icon i {
+  font-size: 25px;
+  vertical-align: -webkit-baseline-middle;
+  color: #ffffff;
 }
 
 label {
