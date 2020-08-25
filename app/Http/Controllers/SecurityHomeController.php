@@ -7,6 +7,7 @@ use App\Schedule;
 use App\Security;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SecurityHomeController extends Controller
 {
@@ -54,8 +55,29 @@ class SecurityHomeController extends Controller
         return response()->json(['status' => 'error']);
     }
 
-    public function saveClockInCode()
+    public function saveClockInCode(Request $request)
     {
+        DB::beginTransaction();
+        if($request->ajax()) {
+            $data = request('id');
+            $clockInCode = mt_rand(10000, 99999);
+            $schedule = Schedule::find($data);
 
+            if ($schedule) {
+                DB::table('schedules')->where('id', $data)->limit(1)
+                    ->update(['clock_in_code' =>  $clockInCode]);
+                $this->sendMessage(
+                    'Your clock in code: ' . $clockInCode,
+                    Utils::convertPhoneNumberToE164Format($schedule->visitors_phone_number)
+                );
+                DB::commit();
+                return response()->json([
+                    'status' => 'success'
+                ]);
+            }
+            DB::rollBack();
+            return response()->json(['status' => 'error']);
+        }
+        return response()->json(['status' => 'error']);
     }
 }

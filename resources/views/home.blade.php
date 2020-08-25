@@ -40,7 +40,7 @@
     <div>
         @if($user->is_profile_complete)
             <div class="alert alert-brand-primary fade show" role="alert">
-                Here is the link: <strong>{{ getenv('BASE_URL') }}{{ $user->username }}</strong>
+                Here is the link: <strong>{{ env('BASE_URL') }}{{ $user->username }}</strong>
             </div>
             <div class="row">
                 <div class="col-lg-10">

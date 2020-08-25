@@ -44,7 +44,9 @@ class HomeController extends Controller
 
     public function viewDetail($id)
     {
-
+        $schedule = Schedule::find($id);
+        $user = User::find(auth()->user()->id);
+        return view('view', compact('user', 'schedule'));
     }
 
     /**

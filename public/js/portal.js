@@ -63069,8 +63069,10 @@ $.ajaxSetup({
 (function ($) {
   var confirmCodeBtn = $('#confirmCode'),
       confirmCodeInput = $('#confirm_code_input'),
-      templateWrapper = $('#template');
-  baseURL = $('#baseURL').val();
+      templateWrapper = $('#template'),
+      _token = $('meta[name="csrf-token"]').attr('content'),
+      baseURL = $('#baseURL').val();
+
   confirmCodeBtn.click(function () {
     $this = $(this);
     $this.find('span').addClass('d-none');
@@ -63078,9 +63080,6 @@ $.ajaxSetup({
     $this.attr('disabled', true);
     var confirmCodeVal = confirmCodeInput.val();
     var currentURL = window.location.href;
-
-    var _token = $('meta[name="csrf-token"]').attr('content');
-
     $.ajax({
       url: currentURL,
       type: "POST",
@@ -63099,7 +63098,7 @@ $.ajaxSetup({
 
         if (response.result && response.status === 'success') {
           var res = response.result;
-          templateWrapper.append("\n                        <div class=\"card bd-0\">\n                            <div>\n                                <img src=\"".concat(baseURL, "uploads/profile/").concat(res.image_url, "\" width=\"200\">\n                            </div>\n                            <div class=\"mt-4\">\n                                <p>Whom to see: ").concat(res.full_name, "</p>\n                                <p>Appointment booked for ").concat(res.schedule_date, "</p>\n                                <p>Appointment confirmed on ").concat(res.date_confirmed, "</p>\n                                <p>Appointment time: ").concat(res.schedule_time, "</p>\n                            </div>\n                            <form>\n                                <input type=\"hidden\" value=\"").concat(res.id, "\" name=\"id\">\n                                <button type=\"button\" class=\"btn btn-brand-outline-pry btn-wd-100\" id=\"sendClockCode\">\n                                    <span>Send Clock In Code</span>\n                                    <i class=\"fa fa-spinner fa-spin d-none fs-20\"></i>\n                                </button>\n                            </form>\n                        </div>\n                    "));
+          templateWrapper.append("\n                        <div class=\"card bd-0\">\n                            <div>\n                                <img src=\"".concat(baseURL, "uploads/profile/").concat(res.image_url, "\" width=\"200\">\n                            </div>\n                            <div class=\"mt-4\">\n                                <p>Whom to see: ").concat(res.full_name, "</p>\n                                <p>Appointment booked for ").concat(res.schedule_date, "</p>\n                                <p>Appointment confirmed on ").concat(res.date_confirmed, "</p>\n                                <p>Appointment time: ").concat(res.schedule_time, "</p>\n                            </div>\n                            <form action=\"/\" method=\"post\">\n                                <input type=\"hidden\" name=\"_token\" value=\"").concat(_token, "\">\n                                <input type=\"hidden\" value=\"").concat(res.id, "\" name=\"id\" id=\"sch_id\">\n                                <button type=\"button\" class=\"btn btn-brand-outline-pry btn-wd-100\" id=\"sendClockCode\">\n                                    <span>Send Clock In Code</span>\n                                    <i class=\"fa fa-spinner fa-spin d-none fs-20\"></i>\n                                </button>\n                            </form>\n                        </div>\n                    "));
         } else {
           templateWrapper.append("\n                        <div class=\"card bd-0\">\n                            <div class=\"empty-state\">\n                                <i class=\"fa fa-address-card-o empty-state__icon icon-grey\"></i>\n                                <p class=\"empty-state__description mt-2\">\n                                    No result found\n                                </p>\n                            </div>\n                        </div>\n                    ");
         }
@@ -63109,6 +63108,9 @@ $.ajaxSetup({
         $this.find('i').addClass('d-none');
         $this.attr('disabled', false);
         console.log(request.responseText);
+      },
+      complete: function complete() {
+        sendCode();
       }
     });
   });
@@ -63119,6 +63121,32 @@ $.ajaxSetup({
       confirmCodeBtn.attr('disabled', true);
     }
   });
+  var clockbtn = '#sendClockCode';
+
+  function sendCode() {
+    $(clockbtn).on('click', function () {
+      $this = $(this);
+      $this.find('span').addClass('d-none');
+      $this.find('i').removeClass('d-none');
+      $this.attr('disabled', true);
+      var scheduleId = $('#sch_id').val();
+      var currentURL = baseURL + 'security/save-clock-code';
+      $.ajax({
+        url: currentURL,
+        type: "POST",
+        data: {
+          _token: _token,
+          id: scheduleId
+        },
+        success: function success(response) {
+          $this.find('span').removeClass('d-none');
+          $this.find('i').addClass('d-none');
+          $this.attr('disabled', false);
+          console.log(response.status);
+        }
+      });
+    });
+  }
 })(jQuery);
 
 /***/ }),
