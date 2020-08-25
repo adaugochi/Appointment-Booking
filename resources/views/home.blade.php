@@ -4,6 +4,9 @@
     <li>Dashboard</li>
     <li class="active">My Appointments</li>
 @endsection()
+@section('sidebar')
+    @include('elements/sidebar')
+@endsection
 @section('content-right')
     <div class="text-left text-md-right">
         <button data-toggle="collapse" data-target="#edit" class="btn btn-brand-primary">
@@ -40,7 +43,7 @@
     <div>
         @if($user->is_profile_complete)
             <div class="alert alert-brand-primary fade show" role="alert">
-                Here is the link: <strong>{{ env('BASE_URL') }}{{ $user->username }}</strong>
+                Here is the link: <strong class="overflow-wrap">{{ env('BASE_URL') }}{{ $user->username }}</strong>
             </div>
             <div class="row">
                 <div class="col-lg-10">

@@ -15,13 +15,7 @@
 </head>
 <body>
     <div class="wrapper">
-        @if(auth()->guard('admin')->check())
-            @include('elements.admin-sidebar')
-        @elseif(auth()->guard('security')->check())
-            @include('elements.security-sidebar')
-        @else
-            @include('elements.sidebar')
-        @endif
+        @yield('sidebar')
         <div class="content-wrapper ">
             @include('elements.header')
             <section class="content">

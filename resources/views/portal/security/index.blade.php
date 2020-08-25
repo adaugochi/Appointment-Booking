@@ -3,6 +3,9 @@
 @section('header-breadcrumb')
     <li class="active">Security</li>
 @endsection()
+@section('sidebar')
+    @include('elements/admin-sidebar')
+@endsection
 @section('content-header-right')
     <a href="{{ route('new.security') }}" class="btn btn-lg btn-brand-primary">
         <i class="fa fa-plus" aria-hidden="true"></i>

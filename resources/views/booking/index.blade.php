@@ -5,7 +5,7 @@
             <div class="row ht-100v align-items-center justify-content-center">
                 <div class="col-md-10 mx-auto">
                     <div class="img-wrapper">
-                        <img src="{{asset('uploads/profile/'.$imageURL)}}" class="img-wrapper_circle">
+                        <img src="/uploads/profile/{{$imageURL}}" class="img-wrapper_circle">
                     </div>
                     <p class="fs-20 text-center">{{ $welcomeMessage }}</p>
                     {{--<div class="fs-header text-center">Hon. {!! $userFullname !!}</div>--}}
@@ -25,7 +25,7 @@
                                     <a href="{{$username}}/15min" class="text-gray cursor-pointer">
                                         <div class="card">
                                             <div class="d-flex justify-content-between">
-                                                <div class="card-dashboard-icon d-content-center pink">15</div>
+                                                <div class="card-dashboard-icon d-content-center gray">15</div>
                                                 <div class="card-dashboard-text">
                                                     <p>Minute Meeting</p>
                                                 </div>
@@ -37,7 +37,7 @@
                                     <a href="{{$username}}/30min" class="text-gray cursor-pointer">
                                         <div class="card">
                                             <div class="d-flex justify-content-between">
-                                                <div class="card-dashboard-icon d-content-center indigo">30</div>
+                                                <div class="card-dashboard-icon d-content-center gray">30</div>
                                                 <div class="card-dashboard-text">
                                                     <p>Minute Meeting</p>
                                                 </div>
@@ -49,7 +49,7 @@
                                     <a href="{{$username}}/60min" class="text-gray cursor-pointer">
                                         <div class="card">
                                             <div class="d-flex justify-content-between">
-                                                <div class="card-dashboard-icon d-content-center green">60</div>
+                                                <div class="card-dashboard-icon d-content-center gray">60</div>
                                                 <div class="card-dashboard-text">
                                                     <p>Minute Meeting</p>
                                                 </div>

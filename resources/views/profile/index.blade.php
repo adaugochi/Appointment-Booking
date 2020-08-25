@@ -7,6 +7,9 @@
     <li>Profile</li>
     <li class="active">My Account</li>
 @endsection()
+@section('sidebar')
+    @include('elements/sidebar')
+@endsection
 @section('content-body')
     <div class="row">
         <div class="col">

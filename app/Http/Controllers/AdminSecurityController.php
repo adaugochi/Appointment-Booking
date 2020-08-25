@@ -31,7 +31,6 @@ class AdminSecurityController extends Controller
         $request->validate([
             'first_name' =>  'required',
             'last_name' => 'required',
-            'middle_name' => 'required',
             'phone_number' => 'required',
         ]);
 
@@ -39,16 +38,15 @@ class AdminSecurityController extends Controller
             $token = Utils::generateToken();
             $last_name = request('last_name');
             $first_name = request('first_name');
-            $middle_name = request('middle_name');
-            $username = strtolower($first_name . $middle_name[0] . $last_name);
+            $username = $username = Utils::generateUsername($first_name, $last_name);
+
             DB::table('securities')->insert([
                 'first_name' => $first_name,
-                'middle_name' => $middle_name,
                 'last_name' => $last_name,
                 'phone_number' => request('phone_number'),
                 'username' => $username,
-                'email' => request('email'),
-                'token' => $token
+                'token' => $token,
+                'created_at' => date('Y-m-d H:i:s')
             ]);
 
             $message = "Username: ". $username . " Registration link : "
@@ -62,7 +60,6 @@ class AdminSecurityController extends Controller
             return redirect(route('admin.security'))->with(['success' => 'Successful']);
         } catch (\Exception $ex) {
             DB::rollBack();
-            dd($ex->getMessage());
             return redirect()->back()->with(['error' => 'Failed']);
         }
     }

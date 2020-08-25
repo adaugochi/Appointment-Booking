@@ -54,4 +54,13 @@ class Utils
         }
         return $uniqueCode;
     }
+
+    public static function generateUsername($first_name, $last_name)
+    {
+        return strtolower(
+            substr($first_name, 0, 4) . '' .
+            substr($last_name, 0, 2) . '' .
+            mt_rand(10, 99)
+        );
+    }
 }

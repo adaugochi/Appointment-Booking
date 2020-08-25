@@ -5,6 +5,9 @@
     <li><a href="{{ route('home') }}">My Appointments</a></li>
     <li class="active">View Details</li>
 @endsection()
+@section('sidebar')
+    @include('elements/sidebar')
+@endsection
 @section('content-right')
     <div class="text-left text-md-right">
         <button data-toggle="collapse" data-target="#edit" class="btn btn-brand-primary">

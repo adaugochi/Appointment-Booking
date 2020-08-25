@@ -82,7 +82,7 @@
                         </div>
                         <div class="px-3 py-5">
                             <div class="row">
-                                <div class="mx-auto col-md-6">
+                                <div class="mx-auto col-lg-6 col-md-10">
                                     <form class="validateForm" method="post" action="{{ route('create-schedule') }}">
                                         @csrf
                                         <input type="hidden" name="username" value="{{ $username }}">
@@ -95,13 +95,6 @@
                                             </label>
                                             <input class="card-form__input form-control" type="text"
                                                    name="visitors_name">
-                                        </div>
-                                        <div class="form-group text-left">
-                                            <label class="card-form__label">
-                                                Email
-                                            </label>
-                                            <input class="card-form__input form-control" type="text"
-                                                   name="visitors_email">
                                         </div>
                                         <div class="form-group text-left">
                                             <label class="card-form__label">

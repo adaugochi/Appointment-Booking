@@ -11062,6 +11062,10 @@ body .pb-6 {
   justify-content: center;
 }
 
+.overflow-wrap {
+  overflow-wrap: break-word;
+}
+
 .wd {
   text-align: center;
   box-shadow: 0 16px 40px rgba(239, 239, 239, 0.02);

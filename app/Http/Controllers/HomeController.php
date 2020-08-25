@@ -74,7 +74,7 @@ class HomeController extends Controller
                 ]);
 
             $this->sendMessage(
-                'Your appointment has been confirm. This is your confirmation code: '. $confirmationCode,
+                'Your appointment with ' . auth()->user()->getFullName() . ' has been confirmed. Your appointment ID is ' . $confirmationCode . '. This code serves as your pass-code, kindly keep it secured.',
                 Utils::convertPhoneNumberToE164Format($phoneNumber)
             );
             DB::commit();
@@ -106,7 +106,6 @@ class HomeController extends Controller
     {
         DB::beginTransaction();
         $id =$request->id;
-        dd(10);
         $schedule = Schedule::find($id);
         if (!$schedule) {
             return redirect()->back()->with(['error' => 'failed']);

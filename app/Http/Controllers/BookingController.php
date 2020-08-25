@@ -78,8 +78,7 @@ class BookingController extends Controller
         $schedule_time = request('schedule_time');
         $schedule_date = request('schedule_date');
 
-        $message = ucwords($visitors_name) . " just schedule a " . $duration . " for " .
-            $schedule_time . " meeting on ". $schedule_date;
+        $message = ucwords($visitors_name) . " just booked an appointment with you for " . Utils::formatTime($schedule_time) . " on ". Utils::formatDate($schedule_date) . " Do login to your account to confirm, cancel or re-schedule appointment";
 
         try {
             $id = DB::table('schedules')->insertGetId([
@@ -88,7 +87,6 @@ class BookingController extends Controller
                 'schedule_time' => $schedule_time,
                 'duration' => $duration,
                 'visitors_name' => $visitors_name,
-                'visitors_email' => request('visitors_email'),
                 'visitors_phone_number' => request('visitors_phone_number'),
                 'reason_for_visit' => request('reason_for_visit')
             ]);

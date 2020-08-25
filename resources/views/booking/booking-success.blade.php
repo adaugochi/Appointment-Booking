@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <main class="container p-5">
+    <main class="container py-5 px-2">
         <div class="text-center">
             <div class="d-md-flex align-items-center justify-content-center m-1">
                 <div class="wd wd-md-700 bg-white mb-5" id="pick_date">
@@ -13,19 +13,19 @@
                         <div class="row">
                             <div class="mx-auto col-md-8 form_wrapper">
                                 <h4>
-                                    You have successfully scheduled a meeting with Hon. {!! ucwords($userFullname) !!}
+                                    Appointment scheduling with {!! ucwords($userFullname) !!} was successful.
                                 </h4>
                                 <p>
-                                    You appointment will be reviewed and we will send you a <strong>confirmation code</strong>
-                                    via sms when you it is confirmed or might be reschedule to another date and time
+                                    Your appointment is being reviewed and you will receive a
+                                    <strong>confirmation code</strong> via sms if confirmed.
+                                    NB: This appointment can be confirmed, cancelled, or re-scheduled.
                                 </p>
                                 <div class="text-success">
-                                    Date: {{ \App\helpers\Utils::formatDate($scheduleDate) }}
+                                    Date : {{ \App\helpers\Utils::formatDate($scheduleDate) }}
                                 </div>
-                                <span class="text-success">
-                                    Time: {{ \App\helpers\Utils::convertToMinutesIntervals($scheduleTime, $duration) }}
-                                </span>
-                                <p>Thank you for your time</p>
+                                <p class="text-success">
+                                    Time : {{ \App\helpers\Utils::convertToMinutesIntervals($scheduleTime, $duration) }}
+                                </p>
                                 <a href="/{{$username}}" class="btn btn-brand-outline-pry btn-wd-100">
                                     Schedule Another Appointment
                                 </a>
