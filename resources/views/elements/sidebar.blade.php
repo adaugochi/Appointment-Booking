@@ -26,7 +26,7 @@
 
             <li>
                 <a href="#">
-                    <i class="fa fa-users md-48 icon" aria-hidden="true"></i>
+                    <i class="fa fa-address-card-o md-48 icon" aria-hidden="true"></i>
                     <span class="nav-label">
                         Visitors
                     </span>

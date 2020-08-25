@@ -2,6 +2,9 @@
 
 namespace App\helpers;
 
+use App\Schedule;
+use Illuminate\Support\Str;
+
 class Utils
 {
     public static function slug($str)
@@ -40,5 +43,15 @@ class Utils
             $endTime = date("h:iA", strtotime($time) + strtotime('01:00'));
         }
         return $startTime . ' - ' .$endTime;
+    }
+
+    public static function generateConfirmationCode()
+    {
+       //return Str::uuid();
+        $uniqueCode = mt_rand(1000000000, 9999999999);
+        while(Schedule::where('confirmation_code', $uniqueCode)->exists()) {
+            $uniqueCode = Str::random(10);
+        }
+        return $uniqueCode;
     }
 }

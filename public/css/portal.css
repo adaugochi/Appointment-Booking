@@ -11390,6 +11390,15 @@ textarea.card-form__input {
   font-size: 20px;
 }
 
+.form_search .fa-search {
+  position: absolute;
+  right: 0;
+  line-height: 2.3;
+  padding-right: 44px;
+  color: #7e7c7c;
+  font-size: 20px;
+}
+
 .main-footer {
   background: #ffffff;
   padding: 16px 32px;

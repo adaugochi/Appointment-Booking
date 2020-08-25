@@ -72,7 +72,7 @@ require('./validation');
                 $this.find('i').addClass('d-none');
                 $this.attr('disabled', false);
 
-                if(response.result) {
+                if(response.result && response.status === 'success') {
                     response.result.forEach(function (item) {
                         pickedTime.push(convertToMinutesIntervals(item.schedule_time, 0));
                         pickedTime.push(convertToMinutesIntervals(item.schedule_time, 15));

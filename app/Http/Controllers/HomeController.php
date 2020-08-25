@@ -6,6 +6,7 @@ use App\helpers\Utils;
 use App\Schedule;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,7 @@ class HomeController extends Controller
     {
         $userAuthId = auth()->user()->id;
         $user = User::find($userAuthId);
+
         $upcoming = Schedule::whereIn('status', [Schedule::CONFIRM, Schedule::RESCHEDULE])
             ->where(['user_id' => $userAuthId, ['schedule_date', '>=', date('Y-m-d')]])
             ->orderBy('id', 'DESC')->get();
@@ -52,18 +54,28 @@ class HomeController extends Controller
      */
     public function confirmApt(Request $request)
     {
-        $schedule = Schedule::find($request->id);
+        DB::beginTransaction();
+        $id = $request->id;
+        $schedule = Schedule::find($id);
         if (!$schedule) {
             return redirect()->back()->with(['error' => 'failed']);
         }
         try {
             $phoneNumber = $schedule->visitors_phone_number;
-            $schedule->status = Schedule::CONFIRM;
-            $schedule->save();
+            $confirmationCode = Utils::generateConfirmationCode();
+
+            DB::table('schedules')->where('id', $id)->limit(1)
+                ->update([
+                    'status' => Schedule::CONFIRM,
+                    'confirmation_code' => $confirmationCode,
+                    'date_confirmed' => date('Y-m-d H:i:s')
+                ]);
+
             $this->sendMessage(
-                'Your appointment has been confirm',
+                'Your appointment has been confirm. This is your confirmation code: '. $confirmationCode,
                 Utils::convertPhoneNumberToE164Format($phoneNumber)
             );
+            DB::commit();
             return redirect()->back()->with(['success' => 'Successful']);
         } catch (\Exception $ex) {
             if ($ex->getCode() === 21211) {
@@ -90,21 +102,29 @@ class HomeController extends Controller
      */
     public function cancelApt(Request $request)
     {
-        $schedule = Schedule::find($request->id);
+        DB::beginTransaction();
+        $id =$request->id;
+        dd(10);
+        $schedule = Schedule::find($id);
         if (!$schedule) {
             return redirect()->back()->with(['error' => 'failed']);
         }
         try {
             $phoneNumber = $schedule->visitors_phone_number;
-            $schedule->status = Schedule::CANCEL;
-            $schedule->schedule_time = '00:00';
-            $schedule->save();
+
+            DB::table('schedules')
+                ->where('id', $id)  // find your user by id
+                ->limit(1)  // optional - to ensure only one record is updated.
+                ->update(['status' => Schedule::CANCEL, 'schedule_time' => '00:00']);
+
             $this->sendMessage(
                 'Your appointment was cancel',
                 Utils::convertPhoneNumberToE164Format($phoneNumber)
             );
+            DB::commit();
             return redirect()->back()->with(['success' => 'Successful']);
         } catch (\Exception $ex) {
+            DB::rollBack();
             if ($ex->getCode() === 21211) {
                 $errorMessage = "This phone number is invalid";
             } elseif ($ex->getCode() === 21408) {

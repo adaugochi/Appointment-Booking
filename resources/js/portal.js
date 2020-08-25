@@ -5,6 +5,7 @@ require('./jquery.name.badges');
 require('./pagination');
 require('./modal');
 require('./image-upload');
+require('./confirm-code');
 
 (function ($) {
     let sidebarToggle = $(".custom-navbar__sidebar-toggle");

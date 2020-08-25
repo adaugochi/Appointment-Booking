@@ -47,6 +47,8 @@ Route::prefix('security')->group(function () {
     Route::post('/logout', 'Auth\SecurityLoginController@logout')->name('security.logout');
     // Portal routes
     Route::get('/home', 'SecurityHomeController@index')->name('security.home');
+    Route::post('/home', 'SecurityHomeController@searchConfirmCode');
+    Route::post('/save-clock-code', 'SecurityHomeController@saveClockInCode');
 });
 
 Route::get('/schedule-booked/{id}', 'BookingController@bookSuccess')->name('booking-success');

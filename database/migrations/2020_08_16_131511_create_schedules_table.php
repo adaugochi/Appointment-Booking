@@ -23,7 +23,9 @@ class CreateSchedulesTable extends Migration
             $table->string('visitors_name');
             $table->string('visitors_email')->nullable();
             $table->string('visitors_phone_number');
-            $table->string('confirmation_code')->nullable();
+            $table->string('confirmation_code')->unique()->nullable();
+            $table->timestamp('date_confirmed', 0)->nullable();
+            $table->string('clock_in_code')->nullable();
             $table->text('reason_for_visit');
             $table->string('status')->default('pending'); // confirm, cancelled, reschedule
             $table->timestamps();

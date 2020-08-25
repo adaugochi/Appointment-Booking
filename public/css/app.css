@@ -11108,7 +11108,7 @@ body .pb-6 {
 .img-wrapper {
   width: 100px;
   height: 100px;
-  overflow: auto;
+  overflow: hidden;
   border-radius: 50%;
   margin: auto;
 }
@@ -11446,6 +11446,15 @@ textarea.card-form__input {
   right: 0;
   line-height: 4.3;
   padding-right: 45px;
+  color: #7e7c7c;
+  font-size: 20px;
+}
+
+.form_search .fa-search {
+  position: absolute;
+  right: 0;
+  line-height: 2.3;
+  padding-right: 44px;
   color: #7e7c7c;
   font-size: 20px;
 }

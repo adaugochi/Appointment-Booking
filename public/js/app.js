@@ -62602,7 +62602,7 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
         $this.find('i').addClass('d-none');
         $this.attr('disabled', false);
 
-        if (response.result) {
+        if (response.result && response.status === 'success') {
           response.result.forEach(function (item) {
             pickedTime.push(convertToMinutesIntervals(item.schedule_time, 0));
             pickedTime.push(convertToMinutesIntervals(item.schedule_time, 15));

@@ -6,6 +6,7 @@ use App\helpers\Utils;
 use App\User;
 use App\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
 {
@@ -38,18 +39,21 @@ class BookingController extends Controller
         }
     }
 
-    public function saveBookDate($username, $duration)
+    public function saveBookDate(Request $request, $username, $duration)
     {
-        $data = request('date');
-        $userId = $this->getUserId($username);
-        $response = Schedule::select('schedule_time', 'duration')
-            ->where(['schedule_date' => $data, 'user_id' => $userId['id']])
-            ->get();
+        if ($request->ajax()) {
+            $data = request('date');
+            $userId = $this->getUserId($username);
+            $response = Schedule::select('schedule_time', 'duration')
+                ->where(['schedule_date' => $data, 'user_id' => $userId['id']])
+                ->get();
 
-        return response()->json([
-            'status' => 'success',
-            'result' => $response
-        ]);
+            return response()->json([
+                'status' => 'success',
+                'result' => $response
+            ]);
+        }
+        return response()->json(['status' => 'error']);
     }
 
     /**
@@ -60,8 +64,8 @@ class BookingController extends Controller
      */
     public function createSchedule(Request $request, Schedule $schedule)
     {
-        $postData = $request->all();
-        $username = $postData['username'];
+        DB::beginTransaction();
+        $username = request('username');
         $userId = $this->getUserId($username);
         if (!$userId) {
             return redirect()->back()->with([
@@ -69,16 +73,32 @@ class BookingController extends Controller
             ]);
         }
         $recipient = User::select('phone_number')->where('username', $username)->first();
-        $message = ucwords($postData['visitors_name']) . " just schedule a " . $postData['duration'] . " for " .
-            $postData['schedule_time'] . " meeting on ". $postData['schedule_date'];
+        $visitors_name = request('visitors_name');
+        $duration = request('duration');
+        $schedule_time = request('schedule_time');
+        $schedule_date = request('schedule_date');
+
+        $message = ucwords($visitors_name) . " just schedule a " . $duration . " for " .
+            $schedule_time . " meeting on ". $schedule_date;
 
         try {
+            $id = DB::table('schedules')->insertGetId([
+                'user_id' => $userId['id'],
+                'schedule_date' => $schedule_date,
+                'schedule_time' => $schedule_time,
+                'duration' => $duration,
+                'visitors_name' => $visitors_name,
+                'visitors_email' => request('visitors_email'),
+                'visitors_phone_number' => request('visitors_phone_number'),
+                'reason_for_visit' => request('reason_for_visit')
+            ]);
             $this->sendMessage(
                 $message, Utils::convertPhoneNumberToE164Format($recipient->phone_number)
             );
-            $id = $schedule->create($postData, $userId['id']);
-            return redirect(route('booking-success', $id))->with('success', 'Schedule created successfully');
+            DB::commit();
+            return redirect(route('booking-success', $id))->with('success', 'Successfully');
         } catch (\Exception $ex) {
+            DB::rollBack();
             if ($ex->getCode() === 21211) {
                 $errorMessage = "This phone number is invalid";
             } elseif ($ex->getCode() === 21408) {

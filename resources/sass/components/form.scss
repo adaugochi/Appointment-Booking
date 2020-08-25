@@ -14,4 +14,10 @@
             @include iconRight(45px, 4.3);
         }
     }
+
+    &_search {
+        .fa-search{
+            @include iconRight(44px, 2.3);
+        }
+    }
 }
