@@ -1,9 +1,11 @@
 (function ($) {
     let confirmCodeBtn = $('#confirmCode'),
         confirmCodeInput = $('#confirm_code_input'),
+        clockInCodeBtn = $('#clockInCode'),
+        clockInCodeInput = $('#clock_in_code_input'),
         templateWrapper = $('#template'),
         _token   = $('meta[name="csrf-token"]').attr('content'),
-        baseURL = $('#baseURL').val();
+        baseURL = '/';
 
     confirmCodeBtn.click(function () {
         $this = $(this);
@@ -26,6 +28,7 @@
                 $this.attr('disabled', false);
                 if (templateWrapper.has('.card')) {
                     templateWrapper.empty();
+                    $('.clock-code-div').addClass('d-none');
                 }
 
                 if(response.result && response.status === 'success') {
@@ -76,12 +79,17 @@
         })
     });
 
-    confirmCodeInput.keyup(function () {
-        confirmCodeBtn.attr('disabled', false);
-        if (!$(this).val()) {
-            confirmCodeBtn.attr('disabled', true)
-        }
-    });
+    function enableDisableBtn($input, $btn) {
+        $input.keyup(function () {
+            $btn.attr('disabled', false);
+            if (!$(this).val()) {
+                $btn.attr('disabled', true)
+            }
+        });
+    }
+
+    enableDisableBtn(confirmCodeInput, confirmCodeBtn);
+    enableDisableBtn(clockInCodeInput, clockInCodeBtn);
 
     let clockbtn = '#sendClockCode';
     function sendCode() {
@@ -104,10 +112,50 @@
                     $this.find('span').removeClass('d-none');
                     $this.find('i').addClass('d-none');
                     $this.attr('disabled', false);
-                    console.log(response.status)
-                }
+
+                    if(response.status === 'success') {
+                        $('.clock-code-div').removeClass('d-none');
+                    }
+                },
+                error: function (request, status, error) {
+                    console.log(request.responseText);
+                },
             })
         })
     }
+
+    clockInCodeBtn.on('click', function () {
+        $this = $(this);
+        $this.find('span').addClass('d-none');
+        $this.find('i').removeClass('d-none');
+        $this.attr('disabled', true);
+        let clockInCode = $('#clock_in_code_input').val();
+        let scheduleId = $('#sch_id').val();
+        let currentURL = baseURL + 'security/confirm-clock-code';
+
+        $.ajax({
+            url: currentURL,
+            type: "POST",
+            data: {
+                _token: _token,
+                code: clockInCode,
+                id: scheduleId
+            },
+            success: function(response){
+                $this.find('span').removeClass('d-none');
+                $this.find('i').addClass('d-none');
+                $this.attr('disabled', false);
+                console.log(response)
+
+                if(response.status === 'success') {
+                    toastr.success("You are now confirmed");
+                }
+            },
+            error: function (request, status, error) {
+                toastr.error("We could not confirm this identity");
+                console.log(request.responseText);
+            },
+        })
+    })
 
 })(jQuery);

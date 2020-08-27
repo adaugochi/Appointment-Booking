@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('content')
-    <main class="container py-5 px-2">
-        <div class="text-center">
-            <div class="d-md-flex align-items-center justify-content-center m-1">
-                <div class="wd wd-md-700 bg-white mb-5" id="pick_date">
+    <main class="container">
+        <div class="row ht-100v align-items-center justify-content-center">
+            <div class="col-md-10 mx-auto">
+                <div class="bg-white">
                     <div class="booking__align-header">
-                        <div class="mx-auto">
+                        <div class="mx-auto text-center">
                             <i class="fa fa-check fs-icon-check text-success" aria-hidden="true"></i>
                         </div>
                     </div>
                     <div class="px-3 py-5">
                         <div class="row">
-                            <div class="mx-auto col-md-8 form_wrapper">
+                            <div class="mx-auto col-md-8 form_wrapper text-center">
                                 <h4>
                                     Appointment scheduling with {!! ucwords($userFullname) !!} was successful.
                                 </h4>

@@ -49,6 +49,7 @@ Route::prefix('security')->group(function () {
     Route::get('/home', 'SecurityHomeController@index')->name('security.home');
     Route::post('/home', 'SecurityHomeController@searchConfirmCode');
     Route::post('/save-clock-code', 'SecurityHomeController@saveClockInCode');
+    Route::post('/confirm-clock-code', 'SecurityHomeController@confirmClockInCode');
 });
 
 Route::get('/schedule-booked/{id}', 'BookingController@bookSuccess')->name('booking-success');

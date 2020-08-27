@@ -13,24 +13,27 @@
     <link href="/css/toastr.css" rel="stylesheet">
 </head>
 <body>
-    <div class="wrapper">
-        <nav class="float-right">
-            <div class="dropdown cursor-pointer">
-                <a class="nav-link dropdown-toggle text-gray" data-toggle="dropdown">
-                    <span class="image-name">{{ auth()->user()->getFullName() }}</span>
-                    <span class="mr-3">{{ auth()->user()->getFullName() }}</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                   document.getElementById('logout-form').submit();">Logout</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                        @csrf
-                    </form>
-                </div>
-            </div>
+
+        <nav class="navbar navbar-expand-sm bg-brand-gray navbar-dark">
+           <div class="container">
+               <a class="navbar-brand" href="/">
+                   <h4>NAFRN</h4>
+               </a>
+               <ul class="navbar-nav">
+                   <li class="nav-item">
+                       <a class="btn btn-brand-white-outline" href="{{ route('logout') }}" onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">Logout</a>
+                       <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                           @csrf
+                       </form>
+                   </li>
+               </ul>
+           </div>
         </nav>
 
-        <section class="security-body">
+    <div class="container" style="min-height: calc(100vh - 134px);">
+        <h5 class="py-5">Welcome Back {{ auth()->user()->getFullName() }}</h5>
+        <section class="pb-5">
             <div class="row">
                 <div class="col-md-10 col-lg-8 mx-auto">
                     <div class="card bd-0">
@@ -54,23 +57,42 @@
                 </div>
             </div>
 
-            <div class="row mt-5">
-                <div class="col-lg-8" id="template">
+            <div class="row mt-4">
+                <div class="col-lg-8 mx-auto" id="template">
                     <input type="hidden" value="{{ getenv('BASE_URL') }}" id="baseURL">
                 </div>
             </div>
-        </section>
 
-        <footer class="bg-white py-4">
-            <div class="text-center">
-                <span>
-                    © Copyright <?= date('Y'); ?>
-                    <a class="font-weight-bold text-brand-primary" href="/" target="_blank">nafrn</a>.
-                    All rights reserved.
-                </span>
+            <div class="row mt-4 d-none clock-code-div pb-5">
+                <div class="col-lg-8 mx-auto" id="template2">
+                    <div class="card bd-0">
+                        <div class="card__title fs-20 pb-1">
+                            <i class="fa fa-clock-o pr-2 card__icon green" aria-hidden="true"></i>
+                            <span>Confirm Clock In Code</span>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="card-form__input form-control" id="clock_in_code_input"
+                                   type="number" placeholder="Enter Clock In Code" name="clock_in_code">
+                        </div>
+                        <button type="button" class="btn btn-brand-outline-pry btn-wd-100" id="clockInCode" disabled>
+                            <span>Confirm</span>
+                            <i class="fa fa-spinner fa-spin d-none fs-20"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </footer>
+        </section>
     </div>
+    <footer class="bg-white py-4">
+        <div class="text-center">
+            <span>
+                © Copyright <?= date('Y'); ?>
+                <a class="font-weight-bold text-brand-primary" href="/" target="_blank">nafrn</a>.
+                All rights reserved.
+            </span>
+        </div>
+    </footer>
 
 <!-- Scripts -->
 <script src="/js/portal.js"></script>

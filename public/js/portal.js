@@ -63069,9 +63069,11 @@ $.ajaxSetup({
 (function ($) {
   var confirmCodeBtn = $('#confirmCode'),
       confirmCodeInput = $('#confirm_code_input'),
+      clockInCodeBtn = $('#clockInCode'),
+      clockInCodeInput = $('#clock_in_code_input'),
       templateWrapper = $('#template'),
       _token = $('meta[name="csrf-token"]').attr('content'),
-      baseURL = $('#baseURL').val();
+      baseURL = '/';
 
   confirmCodeBtn.click(function () {
     $this = $(this);
@@ -63094,6 +63096,7 @@ $.ajaxSetup({
 
         if (templateWrapper.has('.card')) {
           templateWrapper.empty();
+          $('.clock-code-div').addClass('d-none');
         }
 
         if (response.result && response.status === 'success') {
@@ -63114,13 +63117,19 @@ $.ajaxSetup({
       }
     });
   });
-  confirmCodeInput.keyup(function () {
-    confirmCodeBtn.attr('disabled', false);
 
-    if (!$(this).val()) {
-      confirmCodeBtn.attr('disabled', true);
-    }
-  });
+  function enableDisableBtn($input, $btn) {
+    $input.keyup(function () {
+      $btn.attr('disabled', false);
+
+      if (!$(this).val()) {
+        $btn.attr('disabled', true);
+      }
+    });
+  }
+
+  enableDisableBtn(confirmCodeInput, confirmCodeBtn);
+  enableDisableBtn(clockInCodeInput, clockInCodeBtn);
   var clockbtn = '#sendClockCode';
 
   function sendCode() {
@@ -63142,11 +63151,50 @@ $.ajaxSetup({
           $this.find('span').removeClass('d-none');
           $this.find('i').addClass('d-none');
           $this.attr('disabled', false);
-          console.log(response.status);
+
+          if (response.status === 'success') {
+            $('.clock-code-div').removeClass('d-none');
+          }
+        },
+        error: function error(request, status, _error2) {
+          console.log(request.responseText);
         }
       });
     });
   }
+
+  clockInCodeBtn.on('click', function () {
+    $this = $(this);
+    $this.find('span').addClass('d-none');
+    $this.find('i').removeClass('d-none');
+    $this.attr('disabled', true);
+    var clockInCode = $('#clock_in_code_input').val();
+    var scheduleId = $('#sch_id').val();
+    var currentURL = baseURL + 'security/confirm-clock-code';
+    $.ajax({
+      url: currentURL,
+      type: "POST",
+      data: {
+        _token: _token,
+        code: clockInCode,
+        id: scheduleId
+      },
+      success: function success(response) {
+        $this.find('span').removeClass('d-none');
+        $this.find('i').addClass('d-none');
+        $this.attr('disabled', false);
+        console.log(response);
+
+        if (response.status === 'success') {
+          toastr.success("You are now confirmed");
+        }
+      },
+      error: function error(request, status, _error3) {
+        toastr.error("We could not confirm this identity");
+        console.log(request.responseText);
+      }
+    });
+  });
 })(jQuery);
 
 /***/ }),
@@ -63733,7 +63781,7 @@ __webpack_require__(/*! ./confirm-code */ "./resources/js/confirm-code.js");
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\app_booking\resources\js\portal.js */"./resources/js/portal.js");
+module.exports = __webpack_require__(/*! /var/www/personal-project/Appointment-Booking/resources/js/portal.js */"./resources/js/portal.js");
 
 
 /***/ })

@@ -11140,6 +11140,10 @@ body .pb-6 {
   opacity: 0.7;
 }
 
+.bg-brand-gray {
+  background-color: #3d3d3d;
+}
+
 .fs-header {
   font-size: 26px !important;
 }

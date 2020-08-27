@@ -11085,6 +11085,10 @@ body .pb-6 {
   opacity: 0.7;
 }
 
+.bg-brand-gray {
+  background-color: #3d3d3d;
+}
+
 .fs-header {
   font-size: 26px !important;
 }
@@ -11773,6 +11777,12 @@ textarea.card-form__input {
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
   color: #3d3d3d !important;
+}
+
+@media (max-width: 767.98px) {
+  .nav-tabs .nav-item {
+    width: 100%;
+  }
 }
 
 .nav-tabs .nav-link.active {

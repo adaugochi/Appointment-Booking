@@ -50,7 +50,7 @@ class AdminHonourableController extends Controller
             ]);
 
             $message = "Username: ". $username . " Registration link : "
-                . getenv('BASE_URL') . "register?token=" . $token;
+                . env('BASE_URL') . "register?token=" . $token;
 
             $this->sendMessage(
                 $message,

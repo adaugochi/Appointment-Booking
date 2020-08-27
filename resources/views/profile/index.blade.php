@@ -26,28 +26,21 @@
                                 <span>Personal Information</span>
                             </div>
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="form-group text-left">
                                         <label class="card-form__label">First Name</label>
                                         <input class="card-form__input form-control" type="text"
                                                name="first_name" value="{{ $user->first_name }}" readonly>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group text-left">
-                                        <label class="card-form__label">Middle Name</label>
-                                        <input class="card-form__input form-control" type="text"
-                                               name="middle_name" value="{{ $user->middle_name }}" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="form-group text-left">
                                         <label class="card-form__label">Last Name</label>
                                         <input class="card-form__input form-control" type="text"
                                                name="last_name" value="{{ $user->last_name }}" readonly>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="form-group text-left">
                                         <label class="card-form__label">Phone Number</label>
                                         <input class="card-form__input form-control" type="text"

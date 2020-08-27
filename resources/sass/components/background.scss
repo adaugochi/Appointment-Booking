@@ -15,4 +15,8 @@
         position: absolute;
         opacity: 0.7;
     }
+
+    &-brand-gray {
+        background-color: $brand-gray;
+    }
 }

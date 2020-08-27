@@ -80,4 +80,20 @@ class SecurityHomeController extends Controller
         }
         return response()->json(['status' => 'error']);
     }
+
+    public function confirmClockInCode(Request $request)
+    {
+        if($request->ajax()) {
+            $code = request('code');
+            $id = request('id');
+            $schedule = Schedule::where(['clock_in_code' => trim($code), 'id' => $id])->first();
+            if ($schedule) {
+                return response()->json([
+                    'status' => 'success'
+                ]);
+            }
+            return response()->json(['status' => 'error']);
+        }
+        return response()->json(['status' => 'error']);
+    }
 }
