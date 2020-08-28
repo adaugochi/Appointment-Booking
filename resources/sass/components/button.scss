@@ -20,6 +20,33 @@
         }
     }
 
+    &-outline {
+        &-info {
+            color: $info !important;
+            &:hover {
+                color: $white !important;
+            }
+        }
+        &-danger {
+            color: $danger !important;
+            &:hover {
+                color: $white !important;
+            }
+        }
+        &-success {
+            color: $success !important;
+            &:hover {
+                color: $white !important;
+            }
+        }
+        &-warning {
+            color: $warning !important;
+            &:hover {
+                color: $white !important;
+            }
+        }
+    }
+
     &-brand {
         &-primary {
             background-color: $brand-primary;
@@ -49,6 +76,14 @@
                 border: 1px solid $brand-primary;
             }
         }
+    }
+
+    &-pd {
+        padding: 9px 13px !important;
+    }
+
+    &-unset-rd {
+        border-radius: 0.25rem !important;
     }
 
     &-wd-100 {

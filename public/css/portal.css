@@ -11308,6 +11308,38 @@ textarea.card-form__input {
   border-color: #665df5;
 }
 
+.btn-outline-info {
+  color: #17a2b8 !important;
+}
+
+.btn-outline-info:hover {
+  color: #ffffff !important;
+}
+
+.btn-outline-danger {
+  color: #dc3545 !important;
+}
+
+.btn-outline-danger:hover {
+  color: #ffffff !important;
+}
+
+.btn-outline-success {
+  color: #28a745 !important;
+}
+
+.btn-outline-success:hover {
+  color: #ffffff !important;
+}
+
+.btn-outline-warning {
+  color: #ffc107 !important;
+}
+
+.btn-outline-warning:hover {
+  color: #ffffff !important;
+}
+
 .btn-brand-primary {
   background-color: #665df5;
   border-color: #665df5;
@@ -11339,6 +11371,14 @@ textarea.card-form__input {
   background-color: transparent;
   color: #665df5;
   border: 1px solid #665df5;
+}
+
+.btn-pd {
+  padding: 9px 13px !important;
+}
+
+.btn-unset-rd {
+  border-radius: 0.25rem !important;
 }
 
 .btn-wd-100 {
@@ -11604,6 +11644,13 @@ textarea.card-form__input {
   }
 }
 
+.rep_custom-navbar {
+  padding: 0;
+  height: 60px;
+  margin-left: 0;
+  transition: all 0.5s ease-in-out;
+}
+
 .custom-navbar {
   padding: 0;
   height: 60px;
@@ -11652,11 +11699,11 @@ textarea.card-form__input {
 }
 
 @media (max-width: 991.98px) {
-  .table td {
-    min-width: 150px;
+  .table#admin_td td {
+    min-width: 100px;
   }
 
-  .table td:first-child {
+  .table#admin_td td:first-child {
     min-width: unset;
   }
 }

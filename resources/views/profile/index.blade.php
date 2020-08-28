@@ -1,16 +1,18 @@
-@extends('layouts.main')
+@extends('layouts.rep')
 @section('title', 'Profile')
 @section('style')
     <link href="{{ asset('css/image-uploader.min.css') }}" rel="stylesheet">
 @endsection()
-@section('header-breadcrumb')
-    <li>Profile</li>
-    <li class="active">My Account</li>
-@endsection()
-@section('sidebar')
-    @include('elements/sidebar')
-@endsection
-@section('content-body')
+@section('content')
+    <section class="py-4">
+        <div class="clearfix">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="fs-22">My Account</h1>
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="row">
         <div class="col">
             <form action="{{ route('update.profile') }}" method="post" enctype="multipart/form-data"

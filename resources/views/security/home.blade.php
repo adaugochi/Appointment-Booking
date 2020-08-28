@@ -14,22 +14,20 @@
 </head>
 <body>
 
-        <nav class="navbar navbar-expand-sm bg-brand-gray navbar-dark">
-           <div class="container">
-               <a class="navbar-brand" href="/">
-                   <h4>NAFRN</h4>
-               </a>
-               <ul class="navbar-nav">
-                   <li class="nav-item">
-                       <a class="btn btn-brand-white-outline" href="{{ route('logout') }}" onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">Logout</a>
-                       <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                           @csrf
-                       </form>
-                   </li>
-               </ul>
-           </div>
-        </nav>
+    <nav class="navbar navbar-expand-sm bg-brand-gray navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/"><h4>NAFRN</h4></a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="btn btn-brand-white-outline" href="{{ route('logout') }}" onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="container" style="min-height: calc(100vh - 134px);">
         <h5 class="py-5">Welcome Back {{ auth()->user()->getFullName() }}</h5>
@@ -46,7 +44,7 @@
                             <i class="fa fa-search" aria-hidden="true"></i>
                             <div class="form-group">
                                 <input class="card-form__input form-control" id="confirm_code_input"
-                                       type="text" placeholder="Enter Confirmation Code" name="confirm_code">
+                                       type="tel" placeholder="Enter Confirmation Code" name="confirm_code">
                             </div>
                             <button type="button" class="btn btn-brand-outline-pry btn-wd-100" id="confirmCode" disabled>
                                 <span>Continue</span>
@@ -58,9 +56,7 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col-lg-8 mx-auto" id="template">
-                    <input type="hidden" value="{{ getenv('BASE_URL') }}" id="baseURL">
-                </div>
+                <div class="col-lg-8 mx-auto" id="template"></div>
             </div>
 
             <div class="row mt-4 d-none clock-code-div pb-5">
@@ -73,7 +69,7 @@
 
                         <div class="form-group">
                             <input class="card-form__input form-control" id="clock_in_code_input"
-                                   type="number" placeholder="Enter Clock In Code" name="clock_in_code">
+                                   type="tel" placeholder="Enter Clock In Code" name="clock_in_code">
                         </div>
                         <button type="button" class="btn btn-brand-outline-pry btn-wd-100" id="clockInCode" disabled>
                             <span>Confirm</span>

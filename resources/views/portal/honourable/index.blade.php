@@ -16,7 +16,7 @@
     <div class="card bd-0 card-table">
         @if(sizeof($users) > 0)
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" id="admin_td">
                     <thead>
                         <tr>
                             <th class="field-name"><span>S/N</span></th>

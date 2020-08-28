@@ -9,8 +9,8 @@
         font-size: $body-font - 2px !important;
     }
     @include media-breakpoint-down(md) {
-        td {
-            min-width: 150px;
+        &#admin_td td {
+            min-width: 100px;
             &:first-child {
                 min-width: unset;
             }

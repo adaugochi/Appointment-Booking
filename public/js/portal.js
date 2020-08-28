@@ -63401,7 +63401,7 @@ __webpack_require__(/*! ./image-uploader.min */ "./resources/js/image-uploader.m
         color: '#ddd',
         width: 3
       },
-      colors: ['#a3a948', '#edb92e', '#f85931', '#ce1836', '#009989'],
+      colors: ['#665df5'],
       text: '#fff',
       size: 0,
       margin: 5,
