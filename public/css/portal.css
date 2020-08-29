@@ -11071,6 +11071,62 @@ body .pb-6 {
   padding: 150px 0;
 }
 
+.wd {
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(239, 239, 239, 0.02);
+}
+
+.wd-700 {
+  width: 800px;
+}
+
+@media (min-width: 768px) {
+  .wd-md-700 {
+    width: 800px;
+  }
+}
+
+.booking__main {
+  min-height: 100vh;
+}
+
+.booking__align {
+  height: 80vh;
+}
+
+.booking__align-header {
+  background-color: #d9d9d9;
+  padding: 2rem;
+}
+
+.booking__align-body {
+  padding: 3.2rem 2.5rem;
+}
+
+.ui-timepicker-wrapper {
+  width: 20em !important;
+}
+
+.ui-timepicker-list li:hover,
+.ui-timepicker-list .ui-timepicker-selected:hover,
+.ui-timepicker-list li:active {
+  background: #665df5 !important;
+  color: #ffffff;
+}
+
+.img-wrapper {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.img-wrapper_circle {
+  width: 100px;
+  height: 100px;
+}
+
 .bg-image {
   width: 100%;
   background-size: cover !important;
@@ -11105,6 +11161,12 @@ body .pb-6 {
 
 .fs-20 {
   font-size: 20px;
+}
+
+@media (max-width: 767.98px) {
+  .fs-20 {
+    font-size: 18px;
+  }
 }
 
 .fs-60 {

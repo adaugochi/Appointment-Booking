@@ -14,7 +14,7 @@ class Utils
 
     public static function convertPhoneNumberToE164Format($phoneNumber)
     {
-        return preg_replace('/^0/','+234', $phoneNumber);
+        return preg_replace('/^0/','234', $phoneNumber);
     }
 
     public static function generateToken()

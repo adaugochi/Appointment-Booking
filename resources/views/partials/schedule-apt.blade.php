@@ -11,9 +11,11 @@
             <tbody id="tbody">
             @foreach($apts as $key => $apt)
                 <tr>
-                    <td>{{ $key+1 }}</td>
                     <td>
-                        <div>{{ \App\helpers\Utils::formatDate($apt->schedule_date) }}</div>
+                        <div class="font-weight-bold">{{ $key+1 }}</div>
+                    </td>
+                    <td class="d-md-flex">
+                        <div class="pr-md-3">{{ \App\helpers\Utils::formatDate($apt->schedule_date) }}</div>
                         <span>{{ \App\helpers\Utils::convertToMinutesIntervals($apt->schedule_time, $apt->duration) }}</span>
                     </td>
                     <td>
@@ -26,7 +28,7 @@
                     <tr>
                         <td colspan="3" class="p-0">
                             <div id="demo{{$apt->id}}" class="collapse py-3 px-2">
-                                <p>Meeting schedule with {{ $apt->visitors_name }}</p>
+                                <p>Meeting schedule with <strong>{{ $apt->visitors_name }}</strong></p>
                                 <div class="d-flex">
                                     <div class="pr-2">
                                         <a class="btn btn-outline-info btn-pd btn-unset-rd"
@@ -44,12 +46,11 @@
                                             </button>
                                         </div>
                                         <div class="pr-2">
-                                            <button type="button" class="btn-outline-warning btn btn-pd btn-unset-rd" data-toggle="modal"
-                                                    data-target="rescheduleApt" data-id="{{$apt->id}}"
-                                                    data-date="{{$apt->schedule_date}}" data-time="{{$apt->schedule_time}}">
+                                            <a href="{{ route('schedule.show.reschedule', [$apt->id, $apt->schedule_date, $apt->duration]) }}"
+                                               class="btn-outline-warning btn btn-pd btn-unset-rd">
                                                 <i class="fa fa-repeat" aria-hidden="true"></i>
                                                 <span class="d-none d-md-inline">Reschedule</span>
-                                            </button>
+                                            </a>
                                         </div>
                                     @endif
                                     @if($aptStatus === 'unapproved' || $aptStatus === 'upcoming')

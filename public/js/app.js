@@ -62645,6 +62645,12 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
   firstBackIcon.on('click', function () {
     dateDiv.removeClass('d-none');
     timeDiv.addClass('d-none');
+    timeInput.trigger("focus");
+    var timeList = $('.ui-timepicker-list li');
+    timeList.each(function () {
+      $(this).removeClass('ui-timepicker-disabled');
+    });
+    pickedTime = [];
   });
   secondBackIcon.on('click', function () {
     timeDiv.removeClass('d-none');

@@ -13,7 +13,7 @@
             </div>
         </div>
     </section>
-    <div class="row">
+    <div class="row pb-5">
         <div class="col">
             <form action="{{ route('update.profile') }}" method="post" enctype="multipart/form-data"
                   class="validateForm" id="profileForm">

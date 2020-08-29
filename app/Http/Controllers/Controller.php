@@ -43,4 +43,23 @@ class Controller extends BaseController
             ]
         );
     }
+
+    public function getErrorMessage($code, $message)
+    {
+        if ($code === 21211) {
+            $errorMessage = "This phone number is invalid";
+        } elseif ($code === 21408) {
+            $errorMessage = "We don't have international permission necessary to SMS this phone number";
+        } elseif ($code === 21610) {
+            $errorMessage = "This phone number is blocked";
+        } elseif ($code === 21614) {
+            $errorMessage = "This phone number is incapable of receiving SMS messages";
+        } elseif ($message) {
+            $errorMessage = $message;
+        } else {
+            $errorMessage = "Could not send SMS notification to User";
+        }
+
+        return $errorMessage;
+    }
 }

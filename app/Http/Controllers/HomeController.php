@@ -36,7 +36,7 @@ class HomeController extends Controller
         $unapproved = Schedule::where(['status' => Schedule::PENDING, 'user_id' => $userAuthId])
             ->orderBy('id', 'DESC')->get();
         $past = Schedule::where(['status' => Schedule::CANCEL, 'user_id' => $userAuthId])
-            ->orWhere('schedule_date', '<', date('Y-m-d'))
+//            ->orWhere('schedule_date', '<', date('Y-m-d'))
             ->orderBy('id', 'DESC')->get();
 
         return view('home', compact('user', 'upcoming', 'unapproved', 'past'));
@@ -80,19 +80,8 @@ class HomeController extends Controller
             DB::commit();
             return redirect()->back()->with(['success' => 'Successful']);
         } catch (\Exception $ex) {
-            if ($ex->getCode() === 21211) {
-                $errorMessage = "This phone number is invalid";
-            } elseif ($ex->getCode() === 21408) {
-                $errorMessage = "We don't have international permission necessary to SMS this phone number";
-            } elseif ($ex->getCode() === 21610) {
-                $errorMessage = "This phone number is blocked";
-            } elseif ($ex->getCode() === 21614) {
-                $errorMessage = "This phone number is incapable of receiving SMS messages";
-            } elseif ($ex->getMessage()) {
-                $errorMessage = $ex->getMessage();
-            } else {
-                $errorMessage = "Could not send SMS notification to User";
-            }
+            DB::rollBack();
+            $errorMessage = $this->getErrorMessage($ex->getCode(), $ex->getMessage());
             return redirect()->back()->with(['error' => $errorMessage]);
         }
     }
@@ -105,7 +94,7 @@ class HomeController extends Controller
     public function cancelApt(Request $request)
     {
         DB::beginTransaction();
-        $id =$request->id;
+        $id = $request->id;
         $schedule = Schedule::find($id);
         if (!$schedule) {
             return redirect()->back()->with(['error' => 'failed']);
@@ -126,26 +115,61 @@ class HomeController extends Controller
             return redirect()->back()->with(['success' => 'Successful']);
         } catch (\Exception $ex) {
             DB::rollBack();
-            if ($ex->getCode() === 21211) {
-                $errorMessage = "This phone number is invalid";
-            } elseif ($ex->getCode() === 21408) {
-                $errorMessage = "We don't have international permission necessary to SMS this phone number";
-            } elseif ($ex->getCode() === 21610) {
-                $errorMessage = "This phone number is blocked";
-            } elseif ($ex->getCode() === 21614) {
-                $errorMessage = "This phone number is incapable of receiving SMS messages";
-            } elseif ($ex->getMessage()) {
-                $errorMessage = $ex->getMessage();
-            } else {
-                $errorMessage = "Could not send SMS notification to User";
-            }
+            $errorMessage = $this->getErrorMessage($ex->getCode(), $ex->getMessage());
             return redirect()->back()->with(['error' => $errorMessage]);
         }
     }
 
-    public function rescheduleApt()
+    public function showRescheduleApt($id, $date, $duration)
     {
+        $user = User::find(auth()->user()->id);
+        return view('reschedule', compact('id', 'date', 'duration', 'user'));
+    }
 
+    public function saveBookDate(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = request('date');
+            $response = Schedule::select('schedule_time', 'duration')
+                ->where(['schedule_date' => $data, 'user_id' => auth()->user()->id])
+                ->get();
+
+            return response()->json([
+                'status' => 'success',
+                'result' => $response
+            ]);
+        }
+        return response()->json(['status' => 'error']);
+    }
+
+    public function rescheduleApt(Request $request)
+    {
+        DB::beginTransaction();
+
+        $id = request('id');
+        $schedule = Schedule::find($id);
+        if (!$schedule) {
+            return redirect()->back()->with(['error' => 'failed']);
+        }
+        try {
+            $phoneNumber = $schedule->visitors_phone_number;
+            $scheduleDate =  request('schedule_date');
+            $scheduleTime = request('schedule_time');
+
+            DB::table('schedules')
+                ->where('id', $id)  // find your user by id
+                ->limit(1)  // optional - to ensure only one record is updated.
+                ->update(['schedule_date' => $scheduleDate, 'schedule_time' => $scheduleTime]);
+            $message = "Your appointment have been reschedule to " . Utils::formatDate($scheduleDate) . ' '  . Utils::formatTime($scheduleTime);
+            $this->sendMessage($message, Utils::convertPhoneNumberToE164Format($phoneNumber));
+
+            DB::commit();
+            return redirect(route('home'))->with(['success' => 'Successful']);
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            $errorMessage = $this->getErrorMessage($ex->getCode(), $ex->getMessage());
+            return redirect()->back()->with(['error' => $errorMessage]);
+        }
     }
 
     public function editAvailability()

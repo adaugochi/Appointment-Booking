@@ -1,20 +1,16 @@
-require('./bootstrap');
-require('./validation');
-
 (function ($) {
-    let dateDiv = $('#pick_date'),
-        timeDiv = $('#pick_time'),
-        infoDIv = $('#enter_details'),
-        calendar = $('.calendar'),
-        scheduleDateInput = $('#scheduleDate'),
-        selectDateBtn = $('#selectDate'),
-        scheduleTimeInput = $('#scheduleTime'),
-        selectTimeBtn = $('#selectTime'),
-        timeInput = $('.time'),
-        pickedTime = [],
-        timeInterval = $('.duration').val(),
-        firstBackIcon = $('#back_first'),
-        secondBackIcon = $('#back_second');
+    let resDateDiv = $('#pick_date_div'),
+        resTimeDiv = $('#pick_time_div'),
+        resCalendar = $('.res_calendar'),
+        resScheduleDateInput = $('#schedule_date'),
+        resSelectDateBtn = $('#select_date'),
+        resScheduleTimeInput = $('#schedule_time'),
+        resSelectTimeBtn = $('#select_time'),
+        resTimeInput = $('.res_time'),
+        resPickedTime = [],
+        resTimeInterval = $('.res_duration').val(),
+        resFirstBackIcon = $('#back_first'),
+        resSecondBackIcon = $('#back_second');
 
     function getCurrentFormatDate() {
         let today = new Date();
@@ -33,27 +29,24 @@ require('./validation');
         return (d.getHours() < 10 ? '0' : '') + d.getHours() + ":" + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
     }
 
-    calendar.pignoseCalendar({
+    resCalendar.pignoseCalendar({
         disabledWeekdays: [0, 6],
         disabledDates: [getCurrentFormatDate()],
         minDate: getCurrentFormatDate(),
         disabledRanges: [
-            [$('#startDate').val(), $('#endDate').val()]
+            [$('#res_startDate').val(), $('#res_endDate').val()]
         ],
         click: function(event, context) {
-            let $this = $(this);
-            let date = $this.data('date');
-            scheduleDateInput.val(date);
-            selectDateBtn.attr('disabled', false)
+            resSelectDateBtn.attr('disabled', false)
         }
     });
 
-    selectDateBtn.click(function () {
+    resSelectDateBtn.click(function () {
         $this = $(this);
         $this.find('span').addClass('d-none');
         $this.find('i').removeClass('d-none');
         $this.attr('disabled', true);
-        let scheduleDate = scheduleDateInput.val();
+        let scheduleDate = resScheduleDateInput.val();
         let currentURL = window.location.href;
         let _token   = $('meta[name="csrf-token"]').attr('content');
 
@@ -65,8 +58,8 @@ require('./validation');
                 date: scheduleDate
             },
             success: function(response){
-                dateDiv.addClass('d-none');
-                timeDiv.removeClass('d-none');
+                resDateDiv.addClass('d-none');
+                resTimeDiv.removeClass('d-none');
 
                 $this.find('span').removeClass('d-none');
                 $this.find('i').addClass('d-none');
@@ -74,14 +67,14 @@ require('./validation');
 
                 if(response.result && response.status === 'success') {
                     response.result.forEach(function (item) {
-                        pickedTime.push(convertToMinutesIntervals(item.schedule_time, 0));
-                        pickedTime.push(convertToMinutesIntervals(item.schedule_time, 15));
+                        resPickedTime.push(convertToMinutesIntervals(item.schedule_time, 0));
+                        resPickedTime.push(convertToMinutesIntervals(item.schedule_time, 15));
                         if (item.duration === '30min') {
-                            pickedTime.push(convertToMinutesIntervals(item.schedule_time, 30));
+                            resPickedTime.push(convertToMinutesIntervals(item.schedule_time, 30));
                         } else if (item.duration === '60min') {
-                            pickedTime.push(convertToMinutesIntervals(item.schedule_time, 30));
-                            pickedTime.push(convertToMinutesIntervals(item.schedule_time, 45));
-                            pickedTime.push(convertToMinutesIntervals(item.schedule_time, 60));
+                            resPickedTime.push(convertToMinutesIntervals(item.schedule_time, 30));
+                            resPickedTime.push(convertToMinutesIntervals(item.schedule_time, 45));
+                            resPickedTime.push(convertToMinutesIntervals(item.schedule_time, 60));
                         }
                     });
                 }
@@ -91,47 +84,38 @@ require('./validation');
             }
         })
     });
+    console.log(resPickedTime)
 
-    timeInput.timepicker( {
+    resTimeInput.timepicker( {
         timeFormat: 'H:i',
-        step: timeInterval,
+        step: resTimeInterval,
         minTime: '9:00',
         maxTime: '17:00',
         disableTextInput: true,
     });
 
-    timeInput.focus(function () {
+    resTimeInput.focus(function () {
         let timeList = $('.ui-timepicker-list li');
         timeList.each(function () {
-            if (pickedTime.includes($(this).text())) {
+            if (resPickedTime.includes($(this).text())) {
                 $(this).addClass('ui-timepicker-disabled')
             }
         });
-        scheduleTimeInput.val($(this).val());
+        resScheduleTimeInput.val($(this).val());
 
-        if (timeInput.val()) {
-            selectTimeBtn.attr('disabled', false)
+        if (resTimeInput.val()) {
+            resSelectTimeBtn.attr('disabled', false)
         }
     });
 
-    firstBackIcon.on('click', function () {
-        dateDiv.removeClass('d-none');
-        timeDiv.addClass('d-none');
-        timeInput.trigger( "focus" )
+    resFirstBackIcon.on('click', function () {
+        resDateDiv.removeClass('d-none');
+        resTimeDiv.addClass('d-none');
+        resTimeInput.trigger( "focus" )
         let timeList = $('.ui-timepicker-list li');
         timeList.each(function () {
             $(this).removeClass('ui-timepicker-disabled')
         });
-        pickedTime = [];
+        resPickedTime = [];
     });
-
-    secondBackIcon.on('click', function () {
-        timeDiv.removeClass('d-none');
-        infoDIv.addClass('d-none');
-    });
-
-    selectTimeBtn.click(function (e) {
-        timeDiv.addClass('d-none');
-        infoDIv.removeClass('d-none');
-    })
 })(jQuery);

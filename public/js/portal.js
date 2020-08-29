@@ -63059,6 +63059,131 @@ $.ajaxSetup({
 
 /***/ }),
 
+/***/ "./resources/js/calendar-time.js":
+/*!***************************************!*\
+  !*** ./resources/js/calendar-time.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function ($) {
+  var resDateDiv = $('#pick_date_div'),
+      resTimeDiv = $('#pick_time_div'),
+      resCalendar = $('.res_calendar'),
+      resScheduleDateInput = $('#schedule_date'),
+      resSelectDateBtn = $('#select_date'),
+      resScheduleTimeInput = $('#schedule_time'),
+      resSelectTimeBtn = $('#select_time'),
+      resTimeInput = $('.res_time'),
+      resPickedTime = [],
+      resTimeInterval = $('.res_duration').val(),
+      resFirstBackIcon = $('#back_first'),
+      resSecondBackIcon = $('#back_second');
+
+  function getCurrentFormatDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    dd = dd < 10 ? '0' + dd : dd;
+    mm = mm < 10 ? '0' + mm : mm;
+    return yyyy + '-' + mm + '-' + dd;
+  }
+
+  function convertToMinutesIntervals($time, $interval) {
+    var d = new Date("1970-01-01 " + $time);
+    d.setMinutes(d.getMinutes() + $interval);
+    return (d.getHours() < 10 ? '0' : '') + d.getHours() + ":" + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+  }
+
+  resCalendar.pignoseCalendar({
+    disabledWeekdays: [0, 6],
+    disabledDates: [getCurrentFormatDate()],
+    minDate: getCurrentFormatDate(),
+    disabledRanges: [[$('#res_startDate').val(), $('#res_endDate').val()]],
+    click: function click(event, context) {
+      resSelectDateBtn.attr('disabled', false);
+    }
+  });
+  resSelectDateBtn.click(function () {
+    $this = $(this);
+    $this.find('span').addClass('d-none');
+    $this.find('i').removeClass('d-none');
+    $this.attr('disabled', true);
+    var scheduleDate = resScheduleDateInput.val();
+    var currentURL = window.location.href;
+
+    var _token = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+      url: currentURL,
+      type: "POST",
+      data: {
+        _token: _token,
+        date: scheduleDate
+      },
+      success: function success(response) {
+        resDateDiv.addClass('d-none');
+        resTimeDiv.removeClass('d-none');
+        $this.find('span').removeClass('d-none');
+        $this.find('i').addClass('d-none');
+        $this.attr('disabled', false);
+
+        if (response.result && response.status === 'success') {
+          response.result.forEach(function (item) {
+            resPickedTime.push(convertToMinutesIntervals(item.schedule_time, 0));
+            resPickedTime.push(convertToMinutesIntervals(item.schedule_time, 15));
+
+            if (item.duration === '30min') {
+              resPickedTime.push(convertToMinutesIntervals(item.schedule_time, 30));
+            } else if (item.duration === '60min') {
+              resPickedTime.push(convertToMinutesIntervals(item.schedule_time, 30));
+              resPickedTime.push(convertToMinutesIntervals(item.schedule_time, 45));
+              resPickedTime.push(convertToMinutesIntervals(item.schedule_time, 60));
+            }
+          });
+        }
+      },
+      error: function error(request, status, _error) {
+        console.log(request.responseText);
+      }
+    });
+  });
+  console.log(resPickedTime);
+  resTimeInput.timepicker({
+    timeFormat: 'H:i',
+    step: resTimeInterval,
+    minTime: '9:00',
+    maxTime: '17:00',
+    disableTextInput: true
+  });
+  resTimeInput.focus(function () {
+    var timeList = $('.ui-timepicker-list li');
+    timeList.each(function () {
+      if (resPickedTime.includes($(this).text())) {
+        $(this).addClass('ui-timepicker-disabled');
+      }
+    });
+    resScheduleTimeInput.val($(this).val());
+
+    if (resTimeInput.val()) {
+      resSelectTimeBtn.attr('disabled', false);
+    }
+  });
+  resFirstBackIcon.on('click', function () {
+    resDateDiv.removeClass('d-none');
+    resTimeDiv.addClass('d-none');
+    resTimeInput.trigger("focus");
+    var timeList = $('.ui-timepicker-list li');
+    timeList.each(function () {
+      $(this).removeClass('ui-timepicker-disabled');
+    });
+    resPickedTime = [];
+  });
+})(jQuery);
+
+/***/ }),
+
 /***/ "./resources/js/confirm-code.js":
 /*!**************************************!*\
   !*** ./resources/js/confirm-code.js ***!
@@ -63571,7 +63696,7 @@ __webpack_require__(/*! ./image-uploader.min */ "./resources/js/image-uploader.m
     perPage: 10,
     limitPagination: !1,
     prevNext: !0,
-    firstLast: !0,
+    firstLast: 0,
     prevText: "&laquo;",
     nextText: "&raquo;",
     firstText: "Previous",
@@ -63600,8 +63725,8 @@ __webpack_require__(/*! ./paginathing.min */ "./resources/js/paginathing.min.js"
 (function ($) {
   $('.list-item-container').each(function () {
     $(this).find('tbody').paginathing({
-      perPage: 5,
-      limitPagination: false,
+      perPage: 10,
+      limitPagination: 1,
       ulClass: 'pagination',
       liClass: 'page',
       activeClass: 'activeLink',
@@ -63635,6 +63760,8 @@ __webpack_require__(/*! ./modal */ "./resources/js/modal.js");
 __webpack_require__(/*! ./image-upload */ "./resources/js/image-upload.js");
 
 __webpack_require__(/*! ./confirm-code */ "./resources/js/confirm-code.js");
+
+__webpack_require__(/*! ./calendar-time */ "./resources/js/calendar-time.js");
 
 (function ($) {
   var sidebarToggle = $(".custom-navbar__sidebar-toggle");
@@ -63693,15 +63820,7 @@ __webpack_require__(/*! ./confirm-code */ "./resources/js/confirm-code.js");
     }
   }); // calender
 
-  $('.calendar').pignoseCalendar({}); // Time picker
-
-  $('.timing').timepicker({
-    timeFormat: 'H:i',
-    step: 30,
-    minTime: '9:00',
-    maxTime: '17:00',
-    disableTextInput: true
-  });
+  $('.edit-calendar').pignoseCalendar({});
 })(jQuery);
 
 /***/ }),

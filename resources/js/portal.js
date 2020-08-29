@@ -6,6 +6,7 @@ require('./pagination');
 require('./modal');
 require('./image-upload');
 require('./confirm-code');
+require('./calendar-time');
 
 (function ($) {
     let sidebarToggle = $(".custom-navbar__sidebar-toggle");
@@ -70,17 +71,7 @@ require('./confirm-code');
     });
 
     // calender
-   $('.calendar').pignoseCalendar({
+   $('.edit-calendar').pignoseCalendar({
 
-    });
-
-   // Time picker
-    $('.timing').timepicker( {
-        timeFormat: 'H:i',
-        step: 30,
-        minTime: '9:00',
-        maxTime: '17:00',
-        disableTextInput: true,
-    });
-
+   });
 })(jQuery);

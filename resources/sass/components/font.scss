@@ -10,6 +10,9 @@
     }
     &-20 {
         font-size: 20px;
+        @include media-breakpoint-down(sm) {
+            font-size: 18px;
+        }
     }
     &-60 {
         font-size: 60px;
