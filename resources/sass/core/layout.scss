@@ -76,7 +76,13 @@ body {
 }
 
 .ht-100v {
-    height: 100vh;
+    @include media-breakpoint-up(md) {
+        height: 100vh;
+    }
+}
+
+.va-bottom {
+    vertical-align: bottom;
 }
 
 .d-content-center {

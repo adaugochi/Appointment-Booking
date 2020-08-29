@@ -1,7 +1,7 @@
 <div class="text-left text-md-right">
-    <button data-toggle="collapse" data-target="#edit" class="btn btn-brand-primary">
+    <button data-toggle="collapse" data-target="#edit" class="btn btn-brand-primary btn-show">
         Edit Availability
-        <i class="pl-3 fa fa-arrow-down" aria-hidden="true"></i>
+        <i class="pl-3 fa fa-caret-right fs-18 va-bottom" aria-hidden="true"></i>
     </button>
     <div id="edit" class="collapse">
         <div class="card bd-0">

@@ -30,7 +30,7 @@
     </nav>
 
     <div class="container" style="min-height: calc(100vh - 134px);">
-        <h5 class="py-5">Welcome Back {{ auth()->user()->getFullName() }}</h5>
+        <h5 class="py-5">Welcome Back, {{ auth()->user()->getFullName() }}</h5>
         <section class="pb-5">
             <div class="row">
                 <div class="col-md-10 col-lg-8 mx-auto">

@@ -9,8 +9,7 @@
         resTimeInput = $('.res_time'),
         resPickedTime = [],
         resTimeInterval = $('.res_duration').val(),
-        resFirstBackIcon = $('#back_first'),
-        resSecondBackIcon = $('#back_second');
+        resFirstBackIcon = $('#back_first');
 
     function getCurrentFormatDate() {
         let today = new Date();
@@ -84,7 +83,6 @@
             }
         })
     });
-    console.log(resPickedTime)
 
     resTimeInput.timepicker( {
         timeFormat: 'H:i',

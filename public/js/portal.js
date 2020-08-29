@@ -63077,8 +63077,7 @@ $.ajaxSetup({
       resTimeInput = $('.res_time'),
       resPickedTime = [],
       resTimeInterval = $('.res_duration').val(),
-      resFirstBackIcon = $('#back_first'),
-      resSecondBackIcon = $('#back_second');
+      resFirstBackIcon = $('#back_first');
 
   function getCurrentFormatDate() {
     var today = new Date();
@@ -63149,7 +63148,6 @@ $.ajaxSetup({
       }
     });
   });
-  console.log(resPickedTime);
   resTimeInput.timepicker({
     timeFormat: 'H:i',
     step: resTimeInterval,
@@ -63821,6 +63819,9 @@ __webpack_require__(/*! ./calendar-time */ "./resources/js/calendar-time.js");
   }); // calender
 
   $('.edit-calendar').pignoseCalendar({});
+  $('.btn-show').click(function () {
+    $(this).find('.fa').toggleClass('fa-caret-right fa-caret-down');
+  });
 })(jQuery);
 
 /***/ }),
@@ -63900,7 +63901,7 @@ __webpack_require__(/*! ./calendar-time */ "./resources/js/calendar-time.js");
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/personal-project/Appointment-Booking/resources/js/portal.js */"./resources/js/portal.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\app_booking\resources\js\portal.js */"./resources/js/portal.js");
 
 
 /***/ })

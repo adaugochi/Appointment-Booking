@@ -19,10 +19,10 @@
                         <span>{{ \App\helpers\Utils::convertToMinutesIntervals($apt->schedule_time, $apt->duration) }}</span>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-secondary btn-pd"
+                        <button type="button" class="btn btn-light text-gray btn-pd btn-show"
                                 data-toggle="collapse" data-target="#demo{{$apt->id}}">
-                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
                             <span class="d-none d-md-inline">Show Details</span>
+                            <i class="fa fa-caret-right fs-18 pl-md-2 va-bottom" aria-hidden="true"></i>
                         </button>
                     </td>
                     <tr>

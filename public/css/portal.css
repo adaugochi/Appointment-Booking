@@ -11052,8 +11052,14 @@ body .pb-6 {
   }
 }
 
-.ht-100v {
-  height: 100vh;
+@media (min-width: 768px) {
+  .ht-100v {
+    height: 100vh;
+  }
+}
+
+.va-bottom {
+  vertical-align: bottom;
 }
 
 .d-content-center {
@@ -11357,6 +11363,10 @@ textarea.card-form__input {
 
 .btn-action {
   padding: 5px 10px !important;
+}
+
+.btn-show .fa {
+  transition: all 0.5s;
 }
 
 .btn-brand-outline-pry {

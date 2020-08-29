@@ -15,7 +15,7 @@
     <link href="/css/toastr.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div>
+    <div class="py-md-0 py-5">
         @yield('content')
     </div>
 
