@@ -11058,6 +11058,10 @@ body .pb-6 {
   }
 }
 
+.vht-100 {
+  height: 100vh;
+}
+
 .va-bottom {
   vertical-align: bottom;
 }

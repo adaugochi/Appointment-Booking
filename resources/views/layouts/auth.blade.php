@@ -15,8 +15,8 @@
 <body>
     <div>
         <div class="container">
-            <div class="row ht-100v align-items-center justify-content-center">
-                <div class="col-md-6 col-lg-5 offset-lg-2 mx-auto">
+            <div class="row vht-100 align-items-center justify-content-center">
+                <div class="col-md-8 col-lg-6 offset-lg-2 mx-auto">
                     <div class="card mx-auto bd-0">
                         <h1 class="mb-3 card-box-title">@yield('card-title')</h1>
                         <div>

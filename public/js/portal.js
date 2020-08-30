@@ -63901,7 +63901,7 @@ __webpack_require__(/*! ./calendar-time */ "./resources/js/calendar-time.js");
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\app_booking\resources\js\portal.js */"./resources/js/portal.js");
+module.exports = __webpack_require__(/*! /var/www/personal-project/Appointment-Booking/resources/js/portal.js */"./resources/js/portal.js");
 
 
 /***/ })
