@@ -27,24 +27,24 @@
     }
 }
 
-// Calender
-//.pignose-calendar {
-//    border: none !important;
-//    box-shadow: none !important;
-//    &-top {
-//        background-color: transparent !important;
-//        border-bottom: unset !important;
-//        box-shadow: unset !important;
-//    }
-//    &-header, &-body {
-//        @include media-breakpoint-down(sm) {
-//            padding: unset !important;
-//        }
-//    }
-//    &-week-sat, &-week-sun, &-unit-sat a, &-unit-sun a {
-//        color: $brand-primary !important;
-//    }
-//}
+// Calendar
+
+.pignose-calendar {
+    .pignose-calendar-unit {
+        a {
+            color: $brand-gray !important;
+        }
+        &.pignose-calendar-unit-active a {
+            background-color: $success;
+            color: $white !important;
+        }
+    }
+    .pignose-calendar-unit-disabled {
+        a {
+            color: $danger !important;
+        }
+    }
+}
 
 // Time
 .ui-timepicker {
@@ -55,6 +55,10 @@
     &-list li:hover, &-list &-selected:hover, &-list li:active {
         background: $brand-primary !important;
         color: $white;
+    }
+
+    &-disabled {
+        color: $danger !important;
     }
 }
 

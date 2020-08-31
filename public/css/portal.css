@@ -11113,6 +11113,19 @@ body .pb-6 {
   padding: 3.2rem 2.5rem;
 }
 
+.pignose-calendar .pignose-calendar-unit a {
+  color: #3d3d3d !important;
+}
+
+.pignose-calendar .pignose-calendar-unit.pignose-calendar-unit-active a {
+  background-color: #28a745;
+  color: #ffffff !important;
+}
+
+.pignose-calendar .pignose-calendar-unit-disabled a {
+  color: #dc3545 !important;
+}
+
 .ui-timepicker-wrapper {
   width: 20em !important;
 }
@@ -11122,6 +11135,10 @@ body .pb-6 {
 .ui-timepicker-list li:active {
   background: #665df5 !important;
   color: #ffffff;
+}
+
+.ui-timepicker-disabled {
+  color: #dc3545 !important;
 }
 
 .img-wrapper {
@@ -11367,6 +11384,16 @@ textarea.card-form__input {
 
 .btn-action {
   padding: 5px 10px !important;
+}
+
+.btn-link {
+  background: #28a745;
+  font-size: 22px !important;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  padding: 7px 10px !important;
+  border-radius: 25px !important;
 }
 
 .btn-show .fa {

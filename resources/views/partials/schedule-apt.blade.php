@@ -28,40 +28,42 @@
                     <tr>
                         <td colspan="3" class="p-0">
                             <div id="demo{{$apt->id}}" class="collapse py-3 px-2">
-                                <p>Meeting schedule with <strong>{{ $apt->visitors_name }}</strong></p>
-                                <div class="d-flex">
-                                    <div class="pr-2">
-                                        <a class="btn btn-outline-info btn-pd btn-unset-rd"
-                                           href="{{ route('schedule.view', $apt->id) }}">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                            <span class="d-none d-md-inline">View</span>
-                                        </a>
-                                    </div>
-                                    @if($aptStatus === 'unapproved')
+                                <div class="flex-wrap d-flex justify-content-around">
+                                    <p>Meeting scheduled with <strong>{{ $apt->visitors_name }}</strong></p>
+                                    <div class="d-flex">
                                         <div class="pr-2">
-                                            <button type="button" class="btn-outline-success btn btn-pd btn-unset-rd" data-toggle="modal"
-                                                    data-target="confirmApt" data-id="{{$apt->id}}" data-msg="confirm">
-                                                <i class="fa fa-check" aria-hidden="true"></i>
-                                                <span class="d-none d-md-inline">Confirm</span>
-                                            </button>
-                                        </div>
-                                        <div class="pr-2">
-                                            <a href="{{ route('schedule.show.reschedule', [$apt->id, $apt->schedule_date, $apt->duration]) }}"
-                                               class="btn-outline-warning btn btn-pd btn-unset-rd">
-                                                <i class="fa fa-repeat" aria-hidden="true"></i>
-                                                <span class="d-none d-md-inline">Reschedule</span>
+                                            <a class="btn btn-outline-info btn-pd btn-unset-rd"
+                                               href="{{ route('schedule.view', $apt->id) }}">
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                                <span class="d-none d-md-inline">View</span>
                                             </a>
                                         </div>
-                                    @endif
-                                    @if($aptStatus === 'unapproved' || $aptStatus === 'upcoming')
-                                        <div class="pr-2">
-                                            <button type="button" class="btn-outline-danger btn btn-pd btn-unset-rd" data-toggle="modal"
-                                                    data-target="cancelApt" data-id="{{$apt->id}}" data-msg="cancel">
-                                                <i class="fa fa-ban" aria-hidden="true"></i>
-                                                <span class="d-none d-md-inline">Cancel</span>
-                                            </button>
-                                        </div>
-                                    @endif
+                                        @if($aptStatus === 'unapproved')
+                                            <div class="pr-2">
+                                                <button type="button" class="btn-outline-success btn btn-pd btn-unset-rd" data-toggle="modal"
+                                                        data-target="confirmApt" data-id="{{$apt->id}}" data-msg="confirm">
+                                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                                    <span class="d-none d-md-inline">Confirm</span>
+                                                </button>
+                                            </div>
+                                            <div class="pr-2">
+                                                <a href="{{ route('schedule.show.reschedule', [$apt->id, $apt->schedule_date, $apt->duration]) }}"
+                                                   class="btn-outline-warning btn btn-pd btn-unset-rd">
+                                                    <i class="fa fa-repeat" aria-hidden="true"></i>
+                                                    <span class="d-none d-md-inline">Reschedule</span>
+                                                </a>
+                                            </div>
+                                        @endif
+                                        @if($aptStatus === 'unapproved' || $aptStatus === 'upcoming')
+                                            <div class="pr-2">
+                                                <button type="button" class="btn-outline-danger btn btn-pd btn-unset-rd" data-toggle="modal"
+                                                        data-target="cancelApt" data-id="{{$apt->id}}" data-msg="cancel">
+                                                    <i class="fa fa-ban" aria-hidden="true"></i>
+                                                    <span class="d-none d-md-inline">Cancel</span>
+                                                </button>
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </td>

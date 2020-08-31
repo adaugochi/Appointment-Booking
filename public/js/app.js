@@ -62822,10 +62822,10 @@ $.ajaxSetup({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/personal-project/Appointment-Booking/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/personal-project/Appointment-Booking/resources/sass/portal.scss */"./resources/sass/portal.scss");
-__webpack_require__(/*! /var/www/personal-project/Appointment-Booking/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/personal-project/Appointment-Booking/resources/sass/toastr.scss */"./resources/sass/toastr.scss");
+__webpack_require__(/*! /var/www/html/personal-project/Appointment-Booking/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/html/personal-project/Appointment-Booking/resources/sass/portal.scss */"./resources/sass/portal.scss");
+__webpack_require__(/*! /var/www/html/personal-project/Appointment-Booking/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /var/www/html/personal-project/Appointment-Booking/resources/sass/toastr.scss */"./resources/sass/toastr.scss");
 
 
 /***/ })

@@ -16,13 +16,21 @@
     <section class="pb-5 pb-md-0">
         <div>
             @if($user->is_profile_complete)
-                <div class="alert alert-brand-primary fade show" role="alert">
-                    Here is the link:
-                    <strong class="overflow-wrap">{{ env('BASE_URL') }}{{ $user->username }}</strong>
-                </div>
                 <div class="row pb-md-5">
                     <div class="col-lg-10 mx-auto">
-                        <div class="card bd-0">
+                        <div class="d-flex">
+                            <button class="btn btn-link">
+                                <i class="fa fa-link" aria-hidden="true"></i>
+                            </button>
+                            <div class="pl-2 pl-md-3">
+                                <div>{{ auth()->user()->getFullName() }}</div>
+                                <a href="{{ env('BASE_URL') }}{{ $user->username }}"
+                                   class="overflow-wrap text-brand-primary text-underline" target="_blank">
+                                    {{ env('BASE_URL') }}{{ $user->username }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card bd-0 mt-4 mt-md-5">
                             <div class="card__title fs-20 pb-1">
                                 <i class="fa fa-calendar-check-o pr-2 card__icon green" aria-hidden="true"></i>
                                 <span>Scheduled Appointment</span>
