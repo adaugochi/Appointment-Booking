@@ -2,5 +2,6 @@
     'modalId' => 'confirmAptModal',
     'modalTitle' => 'Confirm Appointment',
     'modalAction' => route('schedule.confirm'),
-    'modalMsg' => 'confirm'
+    'modalMsg' => 'confirm',
+    'modalMsg2' => 'appointment'
 ])

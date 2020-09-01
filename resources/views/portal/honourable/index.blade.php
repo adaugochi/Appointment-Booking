@@ -34,9 +34,13 @@
                             <td>{{ $user->getFullName() }}</td>
                             <td>{{ $user->phone_number }}</td>
                             <td>
-                                @if($user->has_registered)
+                                @if($user->is_active && $user->has_registered)
                                     <span class="font-weight-bold status status-active }}">
                                         ACTIVE
+                                    </span>
+                                @elseif(!$user->is_active)
+                                    <span class="font-weight-bold status status-deactivate }}">
+                                        DEACTIVATE
                                     </span>
                                 @else
                                     <span class="font-weight-bold status status-pending }}">
@@ -52,12 +56,20 @@
                                         Actions
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="">
+                                        <a class="dropdown-item" href="{{ route('admin.hon.edit', $user->id) }}">
                                             Edit
                                         </a>
-                                        <a class="dropdown-item" href="">
+                                        <span class="dropdown-item"  data-toggle="modal"
+                                              data-target="resendInviteUser" data-id="{{$user->id}}">
+                                            Resend Invite
+                                        </span>
+                                        <a class="dropdown-item" href="{{ route('admin.hon.view', $user->id) }}">
                                             View
                                         </a>
+                                        <span class="dropdown-item"  data-toggle="modal"
+                                           data-target="deactivateUser" data-id="{{$user->id}}">
+                                            Deactivate
+                                        </span>
                                     </div>
                                 </div>
                             </td>
@@ -74,4 +86,6 @@
         @endif
         {{ $users->render() }}
     </div>
+    @include('modals.deactivate-modal')
+    @include('modals.resend-invite-modal')
 @endsection()

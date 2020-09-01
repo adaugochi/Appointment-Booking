@@ -34,9 +34,13 @@
                             <td>{{ $security->getFullName() }}</td>
                             <td>{{ $security->phone_number }}</td>
                             <td>
-                                @if($security->has_registered)
+                                @if($security->is_active && $security->has_registered)
                                     <span class="font-weight-bold status status-active }}">
                                         ACTIVE
+                                    </span>
+                                @elseif(!$security->is_active)
+                                    <span class="font-weight-bold status status-deactivate }}">
+                                        DEACTIVATE
                                     </span>
                                 @else
                                     <span class="font-weight-bold status status-pending }}">
@@ -52,12 +56,17 @@
                                         Actions
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="">
+                                        <a class="dropdown-item" href="{{ route('admin.security.edit', $security->id) }}">
                                             Edit
                                         </a>
-                                        <a class="dropdown-item" href="">
-                                            View
-                                        </a>
+                                        <span class="dropdown-item"  data-toggle="modal"
+                                              data-target="resendInviteSecurity" data-id="{{$security->id}}">
+                                            Resend Invite
+                                        </span>
+                                        <span class="dropdown-item"  data-toggle="modal"
+                                              data-target="deactivateSecurity" data-id="{{$security->id}}">
+                                            Deactivate
+                                        </span>
                                     </div>
                                 </div>
                             </td>
@@ -74,4 +83,6 @@
         @endif
         {{ $securities->render() }}
     </div>
+    @include('modals.deactivate-security-modal')
+    @include('modals.resend-invite-security-modal')
 @endsection()

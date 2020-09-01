@@ -34,11 +34,22 @@ Route::prefix('admin')->group(function () {
     // Portal routes
     Route::get('/home', 'AdminHomeController@index')->name('admin.home');
     Route::get('/honourable', 'AdminHonourableController@index')->name('admin.honourable');
+    Route::get('/honourable/edit/{id}', 'AdminHonourableController@edit')->name('admin.hon.edit');
+    Route::get('/honourable/view/{id}', 'AdminHonourableController@show')->name('admin.hon.view');
+    Route::get('/security/edit/{id}', 'AdminSecurityController@edit')->name('admin.security.edit');
     Route::get('/security', 'AdminSecurityController@index')->name('admin.security');
     Route::get('/honourable/new', 'AdminHonourableController@create')->name('new.honourable');
     Route::get('/security/new', 'AdminSecurityController@create')->name('new.security');
     Route::post('/honourable/save', 'AdminHonourableController@save')->name('save.honourable');
+    Route::post('/honourable/update', 'AdminHonourableController@update')->name('update.honourable');
+    Route::post('/honourable/deactivate', 'AdminHonourableController@deactivate')->name('deactivate.honourable');
+    Route::post('/honourable/resend-invite', 'AdminHonourableController@resendInvite')
+        ->name('resend-invite.honourable');
     Route::post('/security/save', 'AdminSecurityController@save')->name('save.security');
+    Route::post('/security/update', 'AdminSecurityController@update')->name('update.security');
+    Route::post('/security/deactivate', 'AdminSecurityController@deactivate')->name('deactivate.security');
+    Route::post('/security/resend-invite', 'AdminSecurityController@resendInvite')
+        ->name('resend-invite.security');
 });
 
 Route::prefix('security')->group(function () {

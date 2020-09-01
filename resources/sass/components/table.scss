@@ -34,6 +34,10 @@
         color: darken($success, 10%);
         background-color: lighten($success, 30%);
     }
+    &-deactivate {
+        color: darken($red, 10%);
+        background-color: lighten($red, 30%);
+    }
     &-confirm {
         color: darken($info, 10%);
         background-color: lighten($info, 30%);

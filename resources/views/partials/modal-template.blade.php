@@ -15,7 +15,7 @@
                     @csrf
                     <div class="form-group">
                         <input type="hidden" class="id" name="id">
-                        <p>Are you sure to want to <strong>{{ $modalMsg }}</strong> this appointment?</p>
+                        <p>Are you sure to want to <strong>{{ $modalMsg }}</strong> this {{ $modalMsg2 }}?</p>
                     </div>
 
                     <input type="submit" class="btn btn-brand-primary" value="Yes">
