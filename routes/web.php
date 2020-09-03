@@ -8,7 +8,6 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/schedule/view/{id}', 'HomeController@viewDetail')->name('schedule.view');
 Route::get('/schedule/reschedule/{id}/{date}/{duration}', 'HomeController@showRescheduleApt')
     ->name('schedule.show.reschedule');
 Route::post('/schedule/reschedule/{id}/{date}/{time}', 'HomeController@saveBookDate');

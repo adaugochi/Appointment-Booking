@@ -65,7 +65,7 @@
                                             'apts' => $unapproved,
                                             'aptStatus' => 'unapproved',
                                             'icon' => 'fa-calendar-times-o',
-                                            'description' => 'No Meeting has been unapproved yet.'
+                                  et          'description' => 'No Meeting has been unapproved yet.'
                                         ])
                                     </div>
                                 </div>

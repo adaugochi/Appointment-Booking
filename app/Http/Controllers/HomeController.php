@@ -42,13 +42,6 @@ class HomeController extends Controller
         return view('home', compact('user', 'upcoming', 'unapproved', 'past'));
     }
 
-    public function viewDetail($id)
-    {
-        $schedule = Schedule::find($id);
-        $user = User::find(auth()->user()->id);
-        return view('view', compact('user', 'schedule'));
-    }
-
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
