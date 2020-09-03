@@ -39,9 +39,8 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validateLogin($request);
-
         $user = User::where(['username' => $request->username])->first();
-        if ($user->is_active === 0) {
+        if ($user && $user->is_active === 0) {
             return redirect(route('login'))->with(['error' => 'This account has been deactivated. You can no longer sign in']);
         }
 
@@ -57,7 +56,6 @@ class LoginController extends Controller
         }
 
         $this->incrementLoginAttempts($request);
-
         return $this->sendFailedLoginResponse($request);
     }
 }

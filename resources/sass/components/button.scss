@@ -37,28 +37,10 @@
     }
 
     &-outline {
-        &-info {
-            color: $info !important;
+        &-action {
+            border: solid 1px $brand-gray !important;
             &:hover {
-                color: $white !important;
-            }
-        }
-        &-danger {
-            color: $danger !important;
-            &:hover {
-                color: $white !important;
-            }
-        }
-        &-success {
-            color: $success !important;
-            &:hover {
-                color: $white !important;
-            }
-        }
-        &-warning {
-            color: $warning !important;
-            &:hover {
-                color: $white !important;
+                border-color: $brand-primary !important;
             }
         }
     }

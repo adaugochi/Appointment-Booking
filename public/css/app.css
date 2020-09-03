@@ -11063,7 +11063,7 @@ body .pb-6 {
 }
 
 .va-bottom {
-  vertical-align: bottom;
+  vertical-align: text-bottom;
 }
 
 .d-content-center {
@@ -11128,7 +11128,7 @@ body .pb-6 {
 .ui-timepicker-list li:hover,
 .ui-timepicker-list .ui-timepicker-selected:hover,
 .ui-timepicker-list li:active {
-  background: #665df5 !important;
+  background: #3490dc !important;
   color: #ffffff;
 }
 
@@ -11361,7 +11361,7 @@ textarea.card-form__input {
 }
 
 .text-brand-primary {
-  color: #665df5;
+  color: #3490dc;
 }
 
 .text-gray {
@@ -11405,57 +11405,33 @@ textarea.card-form__input {
 }
 
 .btn-brand-outline-pry:hover {
-  background-color: #665df5;
+  background-color: #3490dc;
   color: #ffffff !important;
-  border-color: #665df5;
+  border-color: #3490dc;
 }
 
-.btn-outline-info {
-  color: #17a2b8 !important;
+.btn-outline-action {
+  border: solid 1px #3d3d3d !important;
 }
 
-.btn-outline-info:hover {
-  color: #ffffff !important;
-}
-
-.btn-outline-danger {
-  color: #dc3545 !important;
-}
-
-.btn-outline-danger:hover {
-  color: #ffffff !important;
-}
-
-.btn-outline-success {
-  color: #28a745 !important;
-}
-
-.btn-outline-success:hover {
-  color: #ffffff !important;
-}
-
-.btn-outline-warning {
-  color: #ffc107 !important;
-}
-
-.btn-outline-warning:hover {
-  color: #ffffff !important;
+.btn-outline-action:hover {
+  border-color: #3490dc !important;
 }
 
 .btn-brand-primary {
-  background-color: #665df5;
-  border-color: #665df5;
+  background-color: #3490dc;
+  border-color: #3490dc;
 }
 
 .btn-brand-primary:hover {
   color: #ffffff;
-  background-color: #392df2;
-  border-color: #392df2;
+  background-color: #2176bd;
+  border-color: #2176bd;
 }
 
 .btn-brand-white {
   background-color: #ffffff;
-  color: #665df5;
+  color: #3490dc;
 }
 
 .btn-brand-white-outline {
@@ -11466,13 +11442,13 @@ textarea.card-form__input {
 
 .btn-brand-white-outline:hover {
   background-color: #ffffff;
-  color: #665df5;
+  color: #3490dc;
 }
 
 .btn-brand-white:hover {
   background-color: transparent;
-  color: #665df5;
-  border: 1px solid #665df5;
+  color: #3490dc;
+  border: 1px solid #3490dc;
 }
 
 .btn-pd {
@@ -11519,7 +11495,7 @@ textarea.card-form__input {
 }
 
 .alert-brand-primary {
-  background-color: #c1bdfb;
+  background-color: #8bc0eb;
 }
 
 .form-control {

@@ -89,5 +89,6 @@
         </div>
     </section>
 @include('modals.confirm-modal')
+@include('modals.view-apt-details')
 @include('modals.cancel-modal')
 @endsection()

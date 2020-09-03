@@ -13,9 +13,18 @@
             </div>
         </div>
     </section>
-    <div>
-        <div class="alert alert-brand-primary fade show" role="alert">
-            Here is the link: <strong>{{ getenv('BASE_URL') }}{{ $user->username }}</strong>
+    <div class="mb-5">
+        <div class="d-flex">
+            <button class="btn btn-link">
+                <i class="fa fa-link" aria-hidden="true"></i>
+            </button>
+            <div class="pl-2 pl-md-3">
+                <div>{{ auth()->user()->getFullName() }}</div>
+                <a href="{{ env('BASE_URL') }}{{ $user->username }}"
+                   class="overflow-wrap text-brand-primary text-underline" target="_blank">
+                    {{ env('BASE_URL') }}{{ $user->username }}
+                </a>
+            </div>
         </div>
     </div>
     <div class="pb-5">
@@ -34,6 +43,11 @@
 
             <div class="bg-white" id="pick_date_div">
                 <div class="booking__align-header px-3 d-flex align-items-fe">
+                    <a href="{{route('home')}}">
+                        <div class="card-dashboard-icon gray">
+                            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                        </div>
+                    </a>
                     <h3 class="mx-auto">Select A Date</h3>
                 </div>
                 <div class="px-3 py-5">

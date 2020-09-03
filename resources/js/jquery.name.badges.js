@@ -5,7 +5,7 @@
 				color: '#ddd',
 				width: 3
 			},
-			colors: ['#665df5'],
+			colors: ['#3490dc'],
 			text: '#fff',
 			size: 0,
 			margin: 5,

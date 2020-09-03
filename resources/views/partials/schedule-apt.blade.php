@@ -32,23 +32,29 @@
                                     <p>Meeting scheduled with <strong>{{ $apt->visitors_name }}</strong></p>
                                     <div class="d-flex">
                                         <div class="pr-2">
-                                            <a class="btn btn-outline-info btn-pd btn-unset-rd"
-                                               href="{{ route('schedule.view', $apt->id) }}">
+                                            <button type="button" class="btn btn-brand-outline-pry btn-pd btn-outline-action"
+                                                    data-toggle="modal" data-target="viewApt" data-id="{{$apt->id}}"
+                                                    data-name="{{$apt->visitors_name}}" data-pnum="{{$apt->visitors_phone_number}}"
+                                                    data-date="{{\App\helpers\Utils::formatDate($apt->schedule_date)}}"
+                                                    data-time="{{\App\helpers\Utils::formatTime($apt->schedule_time)}}"
+                                                    data-reason="{{$apt->reason_for_visit}}">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                                 <span class="d-none d-md-inline">View</span>
-                                            </a>
+                                            </button>
                                         </div>
                                         @if($aptStatus === 'unapproved')
                                             <div class="pr-2">
-                                                <button type="button" class="btn-outline-success btn btn-pd btn-unset-rd" data-toggle="modal"
-                                                        data-target="confirmApt" data-id="{{$apt->id}}" data-msg="confirm">
+                                                <button type="button" class="btn btn-brand-outline-pry btn-pd btn-outline-action"
+                                                        data-toggle="modal" data-target="confirmApt" data-id="{{$apt->id}}">
                                                     <i class="fa fa-check" aria-hidden="true"></i>
                                                     <span class="d-none d-md-inline">Confirm</span>
                                                 </button>
                                             </div>
+                                        @endif
+                                        @if($aptStatus === 'unapproved' || $aptStatus === 'past')
                                             <div class="pr-2">
                                                 <a href="{{ route('schedule.show.reschedule', [$apt->id, $apt->schedule_date, $apt->duration]) }}"
-                                                   class="btn-outline-warning btn btn-pd btn-unset-rd">
+                                                   class="btn btn-brand-outline-pry btn-pd btn-outline-action">
                                                     <i class="fa fa-repeat" aria-hidden="true"></i>
                                                     <span class="d-none d-md-inline">Reschedule</span>
                                                 </a>
@@ -56,8 +62,8 @@
                                         @endif
                                         @if($aptStatus === 'unapproved' || $aptStatus === 'upcoming')
                                             <div class="pr-2">
-                                                <button type="button" class="btn-outline-danger btn btn-pd btn-unset-rd" data-toggle="modal"
-                                                        data-target="cancelApt" data-id="{{$apt->id}}" data-msg="cancel">
+                                                <button type="button" class="btn btn-brand-outline-pry btn-pd btn-outline-action"
+                                                        data-toggle="modal" data-target="cancelApt" data-id="{{$apt->id}}">
                                                     <i class="fa fa-ban" aria-hidden="true"></i>
                                                     <span class="d-none d-md-inline">Cancel</span>
                                                 </button>

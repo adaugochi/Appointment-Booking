@@ -3,8 +3,8 @@
         confirmAptModal = $("#confirmAptModal"),
         cancelApt = $("[data-target='cancelApt']"),
         cancelAptModal = $("#cancelAptModal"),
-        rescheduleApt = $("[data-target='rescheduleApt']"),
-        rescheduleAptModal = $("#rescheduleAptModal"),
+        viewApt = $("[data-target='viewApt']"),
+        viewAptModal = $("#viewAptModal"),
         deactivateUser = $("[data-target='deactivateUser']"),
         deactivateUserModal = $("#deactivateUserModal"),
         resendInviteUser = $("[data-target='resendInviteUser']"),
@@ -14,8 +14,11 @@
         resendInviteSecurity = $("[data-target='resendInviteSecurity']"),
         resendInviteSecurityModal = $("#resendInviteSecurityModal"),
         id = $(".id"),
-        scheduleDate = $("#date"),
-        scheduleTime = $("#time");
+        visitorName = $('.visitor-name'),
+        visitorPnum = $('.visitor-pnum'),
+        visitorReason = $('.visitor-reason'),
+        scheduleDate = $(".visitor-sdate"),
+        scheduleTime = $(".visitor-stime");
 
     function popModal($select, $modal) {
         $select.on('click', function (e) {
@@ -32,11 +35,13 @@
     popModal(resendInviteSecurity, resendInviteSecurityModal);
     popModal(cancelApt, cancelAptModal);
 
-    rescheduleApt.on('click', function (e) {
+    viewApt.on('click', function (e) {
         e.preventDefault();
-        rescheduleAptModal.modal('show');
-        id.val($(this).data('id'));
-        scheduleDate.val($(this).data('date'));
-        scheduleTime.val($(this).data('time'))
+        viewAptModal.modal('show');
+        scheduleDate.text($(this).data('date'));
+        scheduleTime.text($(this).data('time'));
+        visitorName.text($(this).data('name'));
+        visitorPnum.text($(this).data('pnum'));
+        visitorReason.text($(this).data('reason'));
     });
 })(jQuery);
