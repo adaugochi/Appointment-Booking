@@ -156,10 +156,12 @@ class HomeController extends Controller
             $scheduleDate =  request('schedule_date');
             $scheduleTime = request('schedule_time');
 
-            DB::table('schedules')
-                ->where('id', $id)  // find your user by id
-                ->limit(1)  // optional - to ensure only one record is updated.
-                ->update(['schedule_date' => $scheduleDate, 'schedule_time' => $scheduleTime]);
+            DB::table('schedules')->where('id', $id)->limit(1)
+                ->update([
+                    'schedule_date' => $scheduleDate,
+                    'schedule_time' => $scheduleTime,
+                    'status' => Schedule::RESCHEDULE
+                ]);
             $message = "Your appointment have been reschedule to " . Utils::formatDate($scheduleDate) . ' '  . Utils::formatTime($scheduleTime);
             $this->sendMessage($message, Utils::convertPhoneNumberToE164Format($phoneNumber));
 

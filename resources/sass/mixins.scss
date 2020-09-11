@@ -10,3 +10,12 @@
     color: #7e7c7c;
     font-size: 20px;
 }
+
+@mixin headerBottomBorder($m) {
+    content: "";
+    display: block;
+    margin: $m;
+    width: 50px;
+    height: 3px;
+    background-image: linear-gradient(to right, $brand-primary, lighten($brand-primary, 20%));
+}

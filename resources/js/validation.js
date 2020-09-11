@@ -53,7 +53,10 @@
                 minlength: 8,
                 equalTo: "#password"
             },
-            reason_for_visit: "required",
+            reason_for_visit: {
+                rangelength: [20, 200],
+                required: true,
+            }
         }
     });
 })(jQuery);

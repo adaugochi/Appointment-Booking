@@ -6,7 +6,7 @@
         border-top: none !important;
     }
     td {
-        font-size: $body-font - 2px !important;
+        font-size: $body-font !important;
     }
     @include media-breakpoint-down(md) {
         &#admin_td td {

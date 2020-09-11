@@ -5,7 +5,7 @@
         <div class="clearfix">
             <div class="row">
                 <div class="col-md-4">
-                    <p class="fs-22">My Appointments</p>
+                    <p class="fs-22 font-weight-bold">My Appointments</p>
                 </div>
                 <div class="col-md-8">
                    @include('partials.edit-availability')
@@ -33,7 +33,7 @@
                         <div class="card bd-0 mt-4 mt-md-5">
                             <div class="card__title fs-20 pb-1">
                                 <i class="fa fa-calendar-check-o pr-2 card__icon green" aria-hidden="true"></i>
-                                <span>Scheduled Appointment</span>
+                                <span class="font-weight-bold">Scheduled Appointment</span>
                             </div>
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">

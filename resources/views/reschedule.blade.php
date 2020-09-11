@@ -5,7 +5,7 @@
         <div class="clearfix">
             <div class="row">
                 <div class="col-md-4">
-                    <p class="fs-22">Reschedule Appointment</p>
+                    <p class="fs-22 font-weight-bold">Reschedule Appointment</p>
                 </div>
                 <div class="col-md-8">
                     @include('partials.edit-availability')

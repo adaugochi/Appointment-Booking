@@ -5,7 +5,7 @@
             <div class="col-md-10 mx-auto">
                 <input type="hidden" value="{{ $user['end_date'] }}" id="endDate">
                 <input type="hidden" value="{{ $user['start_date'] }}" id="startDate">
-                <p class="fs-header text-center">
+                <p class="fs-header text-center font-weight-bold">
                         @if($duration == '30min')
                             <input type="hidden" value="{!! 30 !!}" class="duration">
                             {!! 30 !!}
@@ -18,7 +18,7 @@
                         @endif
                         Minute Meeting
                     </p>
-                <p class="text-center">
+                <p class="text-center fs-18">
                     Kindly select the date most convenient for you.
                     Do ensure the date you select does not fall on a weekend.
                 </p>
@@ -109,6 +109,7 @@
                                             </label>
                                             <textarea class="card-form__input form-control"
                                                       name="reason_for_visit" rows="3"></textarea>
+                                            <p class="fs-12">Maximum of 200 characters</p>
                                         </div>
 
                                         <input type="submit" value="Schedule An Appointment"
