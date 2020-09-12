@@ -11355,6 +11355,7 @@ label {
 label.error {
   font-size: 12px;
   color: #db232f;
+  font-weight: bold;
 }
 
 textarea.card-form__input {

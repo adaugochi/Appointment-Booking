@@ -14,7 +14,7 @@
                 <a href="/" class="fs-28 cursor-pointer text-white">NAFRN</a>
                 <div class="justify-content-end">
                     @if (Route::has('login'))
-                        <div class="top-right links">
+                        <div class="links">
                             @auth
                                 <a href="{{ url('/home') }}">Home</a>
                             @else

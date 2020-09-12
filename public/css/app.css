@@ -11153,12 +11153,6 @@ body .pb-6 {
   width: inherit;
 }
 
-.top-right {
-  position: absolute;
-  right: 10px;
-  top: 18px;
-}
-
 .header-wrapper {
   padding: 0 0 50px 0;
 }
@@ -11400,6 +11394,7 @@ label {
 label.error {
   font-size: 12px;
   color: #db232f;
+  font-weight: bold;
 }
 
 textarea.card-form__input {

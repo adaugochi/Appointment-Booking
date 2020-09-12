@@ -33,11 +33,12 @@ class SecurityHomeController extends Controller
     {
         if($request->ajax()){
             $data = request('code');
-            $schedule = Schedule::where(['confirmation_code' => trim($data), 'clock_in_code' => null])->first();
+            $schedule = Schedule::where(['confirmation_code' => trim($data)])->first();
             if ($schedule) {
                 $user = User::find($schedule->user_id);
                 $response = [
                     'full_name' => $user->getFullName(),
+                    'orig_date' => $schedule->schedule_date,
                     'schedule_date' => Utils::formatDate($schedule->schedule_date),
                     'schedule_time' => Utils::convertToMinutesIntervals($schedule->time, $schedule->duration),
                     'date_confirmed' => Utils::formatDate($schedule->date_confirmed),

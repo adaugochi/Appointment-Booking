@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top bg-white main-header custom-navbar">
     <a class="custom-navbar__sidebar-toggle text-gray">
-        <i class="fa fa-bars custom-navbar__menu-bar"></i>
+        <i class="fa fa-navicon custom-navbar__menu-bar"></i>
     </a>
 
     <div class="justify-content-end">
