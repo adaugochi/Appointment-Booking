@@ -10,16 +10,22 @@
         {{--@include('partials.error', ['fieldName' => 'username'])--}}
     {{--</div>--}}
     <input type="hidden" value="{{ $token }}" name="token">
-    <div class="form-group">
-        <label class="card-form__label">Password</label>
-        <input type="password" class="card-form__input form-control @error('password') is-invalid @enderror"
-               name="password" id="password" value="{{ old('password') }}">
-        @include('partials.error', ['fieldName' => 'password'])
+    <div class="form_available toggle-eyes">
+        <i class="fa fa-eye-slash cursor-pointer" aria-hidden="true"></i>
+        <div class="form-group">
+            <label class="card-form__label">Password</label>
+            <input type="password" class="card-form__input form-control @error('password') is-invalid @enderror"
+                   name="password" id="password" value="{{ old('password') }}">
+            @include('partials.error', ['fieldName' => 'password'])
+        </div>
     </div>
-    <div class="form-group">
-        <label class="card-form__label">Re-enter Password</label>
-        <input type="password" class="card-form__input form-control @error('password') is-invalid @enderror"
-               name="password_confirmation">
+    <div class="form_available toggle-eyes">
+        <i class="fa fa-eye-slash cursor-pointer" aria-hidden="true"></i>
+        <div class="form-group">
+            <label class="card-form__label">Re-enter Password</label>
+            <input type="password" class="card-form__input form-control @error('password') is-invalid @enderror"
+                   name="password_confirmation">
+        </div>
     </div>
     <div class="fs-12 form-group">
         By clicking the “Sign Up” button, you agree to Our

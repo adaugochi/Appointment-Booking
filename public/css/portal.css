@@ -11521,7 +11521,9 @@ textarea.card-form__input {
   font-size: 20px;
 }
 
-.form_available .fa-calendar {
+.form_available .fa-calendar,
+.form_available .fa-eye-slash,
+.form_available .fa-eye {
   position: absolute;
   right: 0;
   line-height: 4.3;

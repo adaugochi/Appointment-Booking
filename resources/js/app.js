@@ -14,7 +14,8 @@ require('./validation');
         pickedTime = [],
         timeInterval = $('.duration').val(),
         firstBackIcon = $('#back_first'),
-        secondBackIcon = $('#back_second');
+        secondBackIcon = $('#back_second'),
+        toggleEyes = $('.toggle-eyes');
 
     function getCurrentFormatDate() {
         let today = new Date();
@@ -137,5 +138,20 @@ require('./validation');
     selectTimeBtn.click(function (e) {
         timeDiv.addClass('d-none');
         infoDIv.removeClass('d-none');
+    });
+
+    toggleEyes.find('.fa').on('click', function () {
+
+        if ($(this).hasClass('fa-eye-slash')) {
+            console.log(1);
+            $(this).removeClass('fa-eye-slash');
+            $(this).addClass('fa-eye');
+            $(this).siblings().find('input').attr('type', 'text');
+        } else {
+            console.log(2);
+            $(this).addClass('fa-eye-slash');
+            $(this).removeClass('fa-eye');
+            $(this).siblings().find('input').attr('type', 'password');
+        }
     })
 })(jQuery);

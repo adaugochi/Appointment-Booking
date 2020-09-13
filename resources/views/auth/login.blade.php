@@ -18,9 +18,12 @@
             @include('partials.error', ['fieldName' => 'username'])
         </div>
     @endif
-    <div class="form-group">
-        <label class="card-form__label">Password</label>
-        <input type="password" name="password" class="card-form__input form-control">
+    <div class="form_available toggle-eyes">
+        <i class="fa fa-eye-slash cursor-pointer" aria-hidden="true"></i>
+        <div class="form-group">
+            <label class="card-form__label">Password</label>
+            <input type="password" name="password" class="card-form__input form-control">
+        </div>
     </div>
     <div class="form-group text__underline">
         <a href="{{ $forgotPwdRoute }}" class="text-brand-primary text-underline">Forgot Password?</a>
