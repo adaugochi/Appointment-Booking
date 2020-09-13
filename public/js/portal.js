@@ -63155,7 +63155,8 @@ $.ajaxSetup({
     maxTime: '17:00',
     disableTextInput: true
   });
-  resTimeInput.focus(function () {
+  resTimeInput.focus(function (e) {
+    e.preventDefault();
     var timeList = $('.ui-timepicker-list li');
     timeList.each(function () {
       if (resPickedTime.includes($(this).text())) {

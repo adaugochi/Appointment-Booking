@@ -80,7 +80,7 @@
                             <i class="fa fa-clock-o" aria-hidden="true"></i>
                             <div class="form-group">
                                 <input class="card-form__input form-control res_time" id="schedule_time"
-                                       placeholder="pick a time" name="schedule_time" onkeydown="return false">
+                                       placeholder="pick a time" name="schedule_time" onkeydown="return false;">
                             </div>
                             <button type="submit" class="btn btn-brand-outline-pry btn-wd-100" id="select_time" disabled>
                                 Reschedule

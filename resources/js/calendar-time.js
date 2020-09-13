@@ -92,7 +92,8 @@
         disableTextInput: true,
     });
 
-    resTimeInput.focus(function () {
+    resTimeInput.focus(function (e) {
+        e.preventDefault();
         let timeList = $('.ui-timepicker-list li');
         timeList.each(function () {
             if (resPickedTime.includes($(this).text())) {

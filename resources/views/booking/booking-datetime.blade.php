@@ -63,7 +63,7 @@
                                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                                     <div class="form-group">
                                         <input class="card-form__input form-control time" name="time"
-                                               placeholder="pick a time" onkeydown="return false">
+                                               placeholder="pick a time" onkeydown="return false;">
                                     </div>
                                     <button type="button" class="btn btn-brand-outline-pry btn-wd-100" id="selectTime" disabled>
                                         Continue

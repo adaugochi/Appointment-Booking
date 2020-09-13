@@ -103,7 +103,8 @@ require('./validation');
         disableTextInput: true,
     });
 
-    timeInput.focus(function () {
+    timeInput.focus(function (e) {
+        e.preventDefault();
         let timeList = $('.ui-timepicker-list li');
         timeList.each(function () {
             if (pickedTime.includes($(this).text())) {

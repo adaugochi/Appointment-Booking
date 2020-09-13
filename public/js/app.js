@@ -62632,7 +62632,8 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
     maxTime: '17:00',
     disableTextInput: true
   });
-  timeInput.focus(function () {
+  timeInput.focus(function (e) {
+    e.preventDefault();
     var timeList = $('.ui-timepicker-list li');
     timeList.each(function () {
       if (pickedTime.includes($(this).text())) {
