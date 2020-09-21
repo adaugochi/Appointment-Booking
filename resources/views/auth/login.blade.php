@@ -1,6 +1,7 @@
 @extends('layouts.auth')
 @section('card-title', 'Sign In')
 @section('route', $loginRoute)
+@section('back-route', '/')
 @section('title', 'Login')
 @section('content')
     @if($isAdmin)

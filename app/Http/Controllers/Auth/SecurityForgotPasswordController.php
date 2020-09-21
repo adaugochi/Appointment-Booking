@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\helpers\Utils;
 use App\Http\Controllers\Controller;
-use App\User;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ForgotPasswordController extends Controller
+class SecurityForgotPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -32,8 +31,8 @@ class ForgotPasswordController extends Controller
     public function showLinkRequestForm()
     {
         $isAdmin = false;
-        $loginRoute = route('login');
-        $pwdResetRoute = route('password.forget');
+        $loginRoute = route('security.login');
+        $pwdResetRoute = route('security.password.forget');
         return view(
             'auth.passwords.forget-password',
             compact('loginRoute', 'pwdResetRoute', 'isAdmin')
@@ -46,11 +45,6 @@ class ForgotPasswordController extends Controller
         $request->validate([
             'phone_number' => 'required',
         ]);
-
-        $user = User::where(['phone_number' => request('phone_number')])->first();
-        if (!$user) {
-            return redirect()->back()->with(['error' => 'Could not find this user']);
-        }
 
         try {
             $token = Utils::generateToken();
@@ -68,11 +62,10 @@ class ForgotPasswordController extends Controller
                 Utils::convertPhoneNumberToE164Format(request('phone_number'))
             );
             DB::commit();
-            return redirect()->back()->with(['success' => 'Successful']);
+            return redirect(route('admin.honourable'))->with(['success' => 'Successful']);
         } catch (\Exception $ex) {
             DB::rollBack();
-            $errorMessage = $this->getErrorMessage($ex->getCode(), $ex->getMessage());
-            return redirect()->back()->with(['error' => $errorMessage]);
+            return redirect()->back()->with(['error' => 'Failed']);
         }
     }
 }

@@ -63,11 +63,10 @@ class AdminHonourableController extends Controller
                 'created_at' => date('Y-m-d H:i:s')
             ]);
 
-            $message = "Hello, here is your username: ". $username . " and a registration link : "
-                . env('BASE_URL') . "register?token=" . $token . " to sign up.";
+            $url = env('BASE_URL') . "register?token=" . $token;
 
             $this->sendMessage(
-                $message,
+                "Hello, here is your username: {$username} and a registration link : {$url} to sign up.",
                 Utils::convertPhoneNumberToE164Format(request('phone_number'))
             );
             DB::commit();
@@ -108,9 +107,8 @@ class AdminHonourableController extends Controller
                     'has_registered' => 0,
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
-
-            $message = "Hello, here is your new username: ". $username . " .Ensure to sign up with this new registration link : "
-                . env('BASE_URL') . "register?token=" . $token;
+            $url = env('BASE_URL') . "register?token=" . $token;
+            $message = "Hello, here is your new username: {$username} Ensure to sign up with this new registration link : {$url}";
 
             $this->sendMessage(
                 $message,
@@ -151,12 +149,9 @@ class AdminHonourableController extends Controller
         if (!$user) {
             return redirect()->back()->with(['error' => 'Invalid user']);
         }
-
-        $message = "Hello, here is your username: ". $user->username . " and a registration link : "
-            . env('BASE_URL') . "register?token=" . $user->token . " to sign up.";
-
+        $url = env('BASE_URL') . "register?token=" . $user->token;
         $this->sendMessage(
-            $message,
+            "Hello, here is your username: {$user->username} and a registration link : {$url} to sign up.",
             Utils::convertPhoneNumberToE164Format($user->phone_number)
         );
         return redirect(route('admin.honourable'))->with(['success' => 'Successful']);

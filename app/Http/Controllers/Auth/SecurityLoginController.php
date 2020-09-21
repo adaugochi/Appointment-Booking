@@ -27,7 +27,7 @@ class SecurityLoginController extends Controller
     {
         $isAdmin = false;
         $loginRoute = route('security.sign-in');
-        $forgotPwdRoute = route('password.request');
+        $forgotPwdRoute = route('security.password.request');
         return view('auth.login', compact('loginRoute', 'forgotPwdRoute', 'isAdmin'));
     }
 
