@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class ResetPasswordController extends Controller
+class SecurityResetPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -38,8 +38,8 @@ class ResetPasswordController extends Controller
             return redirect()->route('password.request')->with(['error' => 'Invalid token']);
         }
         $phoneNumber = $isTokenValid->email;
-        $pwdResetRoute = route('password.update');
-        $forgetPwdRoute = route('password.request');
+        $pwdResetRoute = route('security.password.update');
+        $forgetPwdRoute = route('security.password.request');
         return view(
             'auth.passwords.reset',
             compact('token', 'pwdResetRoute', 'forgetPwdRoute', 'phoneNumber')
@@ -54,11 +54,12 @@ class ResetPasswordController extends Controller
             'password' => 'required|confirmed|min:8',
         ]);
 
-        $user = DB::table('users')->where(['phone_number' => request('phone_number')])
+        $user = DB::table('securities')->where(['phone_number' => request('phone_number')])
             ->limit(1)->update(['password' => Hash::make(request('password'))]);
         if (!$user) {
             return redirect()->back()->with(['error' => 'Failed']);
         }
-        return redirect()->route('login')->with(['success' => 'Your password reset was successful']);
+        return redirect()->route('security.login')
+            ->with(['success' => 'Your password reset was successful']);
     }
 }

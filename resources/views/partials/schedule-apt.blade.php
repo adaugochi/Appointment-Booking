@@ -3,7 +3,7 @@
         <table class="table list-item-container"  id="accordion">
             <thead>
             <tr>
-                <th class="field-name d-none d-md-block"><span>S/N</span></th>
+                {{--<th class="field-name d-none d-md-block"><span>S/N</span></th>--}}
                 <th class="field-name"><span>Date & Time</span></th>
                 <th class="field-name"><span>Action</span></th>
             </tr>
@@ -11,9 +11,9 @@
             <tbody id="tbody">
             @foreach($apts as $key => $apt)
                 <tr>
-                    <td class="d-none d-md-block">
-                        <div class="font-weight-bold">{{ $key+1 }}</div>
-                    </td>
+                    {{--<td class="d-none d-md-block">--}}
+                        {{--<div class="font-weight-bold">{{ $key+1 }}</div>--}}
+                    {{--</td>--}}
                     <td class="d-md-flex">
                         <div class="pr-md-3">{{ \App\helpers\Utils::formatDate($apt->schedule_date) }}</div>
                         <span>{{ \App\helpers\Utils::convertToMinutesIntervals($apt->schedule_time, $apt->duration) }}</span>

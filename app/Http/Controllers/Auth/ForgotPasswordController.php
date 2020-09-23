@@ -43,9 +43,7 @@ class ForgotPasswordController extends Controller
     public function sendResetLink(Request $request)
     {
         DB::beginTransaction();
-        $request->validate([
-            'phone_number' => 'required',
-        ]);
+        $request->validate(['phone_number' => 'required',]);
 
         $user = User::where(['phone_number' => request('phone_number')])->first();
         if (!$user) {
@@ -62,13 +60,11 @@ class ForgotPasswordController extends Controller
             $url = env('BASE_URL') . "password/reset?token=" . $token;
 
             $this->sendMessage(
-                "You are receiving this SMS because we received a password reset request for your account.
-                 Copy and paste this link : {$url} on your web browser. This password reset link will expire in
-                  15 minutes. If you did not request a password reset, no further action is required",
+                "You are receiving this SMS because we received a password reset request for your account. Copy and paste this link : {$url} on your web browser. This password reset link will expire in 15 minutes. If you did not request a password reset, no further action is required",
                 Utils::convertPhoneNumberToE164Format(request('phone_number'))
             );
             DB::commit();
-            return redirect()->back()->with(['success' => 'Successful']);
+            return redirect()->back()->with(['success' => 'A password reset link was sent successfully']);
         } catch (\Exception $ex) {
             DB::rollBack();
             $errorMessage = $this->getErrorMessage($ex->getCode(), $ex->getMessage());

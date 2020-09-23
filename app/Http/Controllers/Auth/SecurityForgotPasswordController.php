@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\helpers\Utils;
 use App\Http\Controllers\Controller;
+use App\Security;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -42,9 +43,12 @@ class SecurityForgotPasswordController extends Controller
     public function sendResetLink(Request $request)
     {
         DB::beginTransaction();
-        $request->validate([
-            'phone_number' => 'required',
-        ]);
+        $request->validate(['phone_number' => 'required']);
+        $security = DB::table('securities')
+            ->where('phone_number', request('phone_number'))->first();
+        if (!$security) {
+            return redirect()->back()->with(['error' => 'This account does not exist']);
+        }
 
         try {
             $token = Utils::generateToken();
@@ -53,16 +57,14 @@ class SecurityForgotPasswordController extends Controller
                 'token' => $token,
                 'created_at' => date('Y-m-d H:i:s')
             ]);
-            $url = env('BASE_URL') . "password/reset?token=" . $token;
+            $url = env('BASE_URL') . "security/password/reset/" . $token;
 
             $this->sendMessage(
-                "You are receiving this SMS because we received a password reset request for your account.
-                 Copy and paste this link : {$url} on your web browser. This password reset link will expire in
-                  15 minutes. If you did not request a password reset, no further action is required",
+                "You are receiving this SMS because we received a password reset request for your account. Copy and paste this link : {$url} on your web browser. This password reset link will expire in 15 minutes. If you did not request a password reset, no further action is required",
                 Utils::convertPhoneNumberToE164Format(request('phone_number'))
             );
             DB::commit();
-            return redirect(route('admin.honourable'))->with(['success' => 'Successful']);
+            return redirect()->back()->with(['success' => 'Successful']);
         } catch (\Exception $ex) {
             DB::rollBack();
             return redirect()->back()->with(['error' => 'Failed']);
