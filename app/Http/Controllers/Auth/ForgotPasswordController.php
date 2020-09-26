@@ -57,7 +57,7 @@ class ForgotPasswordController extends Controller
                 'token' => $token,
                 'created_at' => date('Y-m-d H:i:s')
             ]);
-            $url = env('BASE_URL') . "password/reset?token=" . $token;
+            $url = env('BASE_URL') . "password/reset/" . $token;
 
             $this->sendMessage(
                 "You are receiving this SMS because we received a password reset request for your account. Copy and paste this link : {$url} on your web browser. This password reset link will expire in 15 minutes. If you did not request a password reset, no further action is required",

@@ -29,6 +29,11 @@ class SecurityHomeController extends Controller
         return view('security.home');
     }
 
+    public function snapShot($id)
+    {
+        return view('security.snapshot');
+    }
+
     public function searchConfirmCode(Request $request)
     {
         if($request->ajax()){

@@ -63230,7 +63230,7 @@ $.ajaxSetup({
           var currentDate = new Date();
 
           if (givenDate.setHours(0, 0, 0, 0) === currentDate.setHours(0, 0, 0, 0)) {
-            templateWrapper.append("\n                            <div class=\"card bd-0\">\n                                <div>\n                                    <img src=\"/uploads/profile/".concat(res.image_url, "\" width=\"200\">\n                                </div>\n                                <div class=\"mt-4\">\n                                    <p>Whom to see: ").concat(res.full_name, "</p>\n                                    <p>Appointment booked for ").concat(res.schedule_date, "</p>\n                                    <p>Appointment confirmed on ").concat(res.date_confirmed, "</p>\n                                    <p>Appointment time: ").concat(res.schedule_time, "</p>\n                                </div>\n                                <form action=\"/\" method=\"post\">\n                                    <input type=\"hidden\" name=\"_token\" value=\"").concat(_token, "\">\n                                    <input type=\"hidden\" value=\"").concat(res.id, "\" name=\"id\" id=\"sch_id\">\n                                    <button type=\"button\" class=\"btn btn-brand-outline-pry btn-wd-100\"\n                                     id=\"sendClockCode\">\n                                        <span>Send Clock In Code</span>\n                                        <i class=\"fa fa-spinner fa-spin d-none fs-20\"></i>\n                                    </button>\n                                </form>\n                            </div>\n                        "));
+            templateWrapper.append("\n                            <div class=\"card bd-0\">\n                                <div class=\"card__title fs-20 pb-1\">\n                                    <i class=\"fa fa-user-o pr-2 card__icon green\" aria-hidden=\"true\"></i>\n                                    <span>Schedule Details</span>\n                                </div>\n                                <div>\n                                    <img src=\"/uploads/profile/".concat(res.image_url, "\" width=\"200\">\n                                </div>\n                                <div class=\"mt-4\">\n                                    <p>Whom to see: ").concat(res.full_name, "</p>\n                                    <p>Appointment booked for ").concat(res.schedule_date, "</p>\n                                    <p>Appointment confirmed on ").concat(res.date_confirmed, "</p>\n                                    <p>Appointment time: ").concat(res.schedule_time, "</p>\n                                </div>\n                                <form action=\"/\" method=\"post\">\n                                    <input type=\"hidden\" name=\"_token\" value=\"").concat(_token, "\">\n                                    <input type=\"hidden\" value=\"").concat(res.id, "\" name=\"id\" id=\"sch_id\">\n                                    <button type=\"button\" class=\"btn btn-brand-outline-pry btn-wd-100\"\n                                     id=\"sendClockCode\">\n                                        <span>Send Clock In Code</span>\n                                        <i class=\"fa fa-spinner fa-spin d-none fs-20\"></i>\n                                    </button>\n                                </form>\n                            </div>\n                        "));
           } else if (givenDate < currentDate) {
             templateWrapper.append("\n                            <div class=\"card bd-0\">\n                                <div class=\"empty-state\">\n                                    <i class=\"fa fa-address-card-o empty-state__icon icon-grey\"></i>\n                                    <p class=\"empty-state__description mt-2\">\n                                        The date scheduled for this appointment have passed\n                                    </p>\n                                </div>\n                            </div>\n                        ");
           } else {
@@ -63319,7 +63319,8 @@ $.ajaxSetup({
         $this.attr('disabled', false);
 
         if (response.status === 'success') {
-          location.reload();
+          //location.reload();
+          location.href = baseURL + 'security/snapshot/' + scheduleId;
           toastr.success("You are now confirmed");
         }
       },
@@ -63790,6 +63791,8 @@ __webpack_require__(/*! ./confirm-code */ "./resources/js/confirm-code.js");
 
 __webpack_require__(/*! ./calendar-time */ "./resources/js/calendar-time.js");
 
+__webpack_require__(/*! ./webcam.min */ "./resources/js/webcam.min.js");
+
 (function ($) {
   var sidebarToggle = $(".custom-navbar__sidebar-toggle");
   var mainSidebar = $(".main-sidebar");
@@ -63923,6 +63926,17 @@ __webpack_require__(/*! ./calendar-time */ "./resources/js/calendar-time.js");
     }
   });
 })(jQuery);
+
+/***/ }),
+
+/***/ "./resources/js/webcam.min.js":
+/*!************************************!*\
+  !*** ./resources/js/webcam.min.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
 
 /***/ }),
 

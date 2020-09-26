@@ -7,6 +7,7 @@ require('./modal');
 require('./image-upload');
 require('./confirm-code');
 require('./calendar-time');
+require('./webcam.min');
 
 (function ($) {
     let sidebarToggle = $(".custom-navbar__sidebar-toggle");

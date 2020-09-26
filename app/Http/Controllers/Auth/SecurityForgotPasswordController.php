@@ -60,7 +60,7 @@ class SecurityForgotPasswordController extends Controller
             $url = env('BASE_URL') . "security/password/reset/" . $token;
 
             $this->sendMessage(
-                "You are receiving this SMS because we received a password reset request for your account. Copy and paste this link : {$url} on your web browser. This password reset link will expire in 15 minutes. If you did not request a password reset, no further action is required",
+                "This password reset link will expire in 15 minutes. Click on the link : {$url}. If you did not request a password reset, no further action is required",
                 Utils::convertPhoneNumberToE164Format(request('phone_number'))
             );
             DB::commit();

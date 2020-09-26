@@ -40,6 +40,10 @@
                     if (givenDate.setHours(0,0,0,0) === currentDate.setHours(0,0,0,0)) {
                         templateWrapper.append(`
                             <div class="card bd-0">
+                                <div class="card__title fs-20 pb-1">
+                                    <i class="fa fa-user-o pr-2 card__icon green" aria-hidden="true"></i>
+                                    <span>Schedule Details</span>
+                                </div>
                                 <div>
                                     <img src="/uploads/profile/${res.image_url}" width="200">
                                 </div>
@@ -177,7 +181,8 @@
                 $this.attr('disabled', false);
 
                 if(response.status === 'success') {
-                    location.reload();
+                    //location.reload();
+                    location.href = baseURL + 'security/snapshot/' + scheduleId;
                     toastr.success("You are now confirmed");
                 }
             },
