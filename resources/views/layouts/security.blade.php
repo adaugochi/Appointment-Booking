@@ -6,6 +6,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') | NAFRN</title>
+
     <!-- Icon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Styles -->
@@ -45,24 +46,8 @@
 
     <!-- Scripts -->
     <script src="/js/portal.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
-    <script language="JavaScript">
-      Webcam.set({
-        width: 490,
-        height: 390,
-        image_format: 'jpeg',
-        jpeg_quality: 90
-      });
+    @yield('script')
 
-      Webcam.attach( '#my_camera' );
-
-      function take_snapshot() {
-        Webcam.snap( function(data_uri) {
-          $(".image-tag").val(data_uri);
-          document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
-        } );
-      }
-    </script>
     @include('partials.flash-messages')
 </body>
 </html>

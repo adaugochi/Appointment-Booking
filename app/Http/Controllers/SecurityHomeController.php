@@ -31,7 +31,15 @@ class SecurityHomeController extends Controller
 
     public function snapShot($id)
     {
-        return view('security.snapshot');
+        $visitor = Schedule::find($id);
+        if (!$visitor) {
+            return redirect(route('security.home'))->with(['error' => "Invalid visitor's ID"]);
+        } elseif (!$visitor->confirmation_code) {
+            return redirect(route('security.home'))->with(['error' => 'Visitor does not have confirmation code']);
+        } elseif (!$visitor->clock_in_code) {
+            return redirect(route('security.home'))->with(['error' => 'Visitor does not have clock-in code']);
+        }
+        return view('security.snapshot', compact('id'));
     }
 
     public function searchConfirmCode(Request $request)
@@ -101,5 +109,27 @@ class SecurityHomeController extends Controller
             return response()->json(['status' => 'error']);
         }
         return response()->json(['status' => 'error']);
+    }
+
+    public function savePhoto()
+    {
+        $visitor = Schedule::find(request('id'));
+        if (!$visitor) {
+            return redirect(route('security.home'))->with(['error' => "Invalid visitor's ID"]);
+        }
+        $data = request('image_url');
+        if (!$data) {
+            return redirect(route('security.snapshot', request('id')))
+                ->with(['error' => "Could not find visitor's photo"]);
+        }
+        $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $data));
+        $imageName = env('APP_NAME') .'_'. time() .'.png';
+        file_put_contents(public_path('uploads/visitors/').$imageName, $data);
+        $visitor->image_url = $imageName;
+        if (!$visitor->save()) {
+            return redirect(route('security.snapshot', request('id')))
+                ->with(['error' => "Could not save photo"]);
+        }
+        return redirect(route('security.home'))->with(['success' => "Photo saved successfully"]);
     }
 }

@@ -94,11 +94,6 @@
         box-shadow: none !important;
     }
 
-    &:active, &:focus {
-        color: $white !important;
-        background-color: $brand-primary !important;
-    }
-
     &-gray {
         background-color: #ddd;
         color: #0e0e0e;

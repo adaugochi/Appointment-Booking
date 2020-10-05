@@ -25,11 +25,11 @@
         </div>
 
         <div class="row mt-4">
-            <div class="col-lg-8 mx-auto" id="template"></div>
+            <div class="col-md-10 col-lg-8 mx-auto" id="template"></div>
         </div>
 
         <div class="row mt-4 d-none clock-code-div pb-5">
-            <div class="col-lg-8 mx-auto" id="template2">
+            <div class="col-md-10 col-lg-8 mx-auto" id="template2">
                 <div class="card bd-0">
                     <div class="card__title fs-20 pb-1">
                         <i class="fa fa-clock-o pr-2 card__icon green" aria-hidden="true"></i>
