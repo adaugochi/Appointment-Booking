@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\helpers\Messages;
 use App\helpers\Utils;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -47,7 +48,7 @@ class ForgotPasswordController extends Controller
 
         $user = User::where(['phone_number' => request('phone_number')])->first();
         if (!$user) {
-            return redirect()->back()->with(['error' => 'Could not find this user']);
+            return redirect()->back()->with(['error' => Messages::USER_NOT_FOUND]);
         }
 
         try {
@@ -64,7 +65,7 @@ class ForgotPasswordController extends Controller
                 Utils::convertPhoneNumberToE164Format(request('phone_number'))
             );
             DB::commit();
-            return redirect()->back()->with(['success' => 'A password reset link was sent successfully']);
+            return redirect()->back()->with(['success' => Messages::FORGET_PASSWORD_MSG]);
         } catch (\Exception $ex) {
             DB::rollBack();
             $errorMessage = $this->getErrorMessage($ex->getCode(), $ex->getMessage());

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\helpers\Messages;
 use App\Http\Controllers\Controller;
 use App\Security;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -48,14 +49,12 @@ class SecurityLoginController extends Controller
 
         $user = Security::where(['username' => $request->username])->first();
         if ($user->is_active === 0) {
-            return redirect(route('security.login'))
-                ->with(['error' => 'This account has been deactivated. You can no longer sign in']);
+            return redirect(route('security.login'))->with(['error' => Messages::ACCT_DEACTIVATE]);
         }
 
         if (method_exists($this, 'hasTooManyLoginAttempts') &&
             $this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
-
             return $this->sendLockoutResponse($request);
         }
 
@@ -64,7 +63,6 @@ class SecurityLoginController extends Controller
         }
 
         $this->incrementLoginAttempts($request);
-
         return $this->sendFailedLoginResponse($request);
     }
 

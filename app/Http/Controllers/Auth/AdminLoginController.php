@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\helpers\Messages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +43,7 @@ class AdminLoginController extends Controller
         if ($auth) {
             return redirect()->intended(route('admin.home'));
         }
-        return redirect()->back()->with(['error' => 'Incorrect login credentials']);
+        return redirect()->back()->with(['error' => Messages::INCORRECT_CREDS]);
     }
 
     /**

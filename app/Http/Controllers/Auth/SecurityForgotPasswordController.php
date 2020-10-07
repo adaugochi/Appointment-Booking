@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\helpers\Messages;
 use App\helpers\Utils;
 use App\Http\Controllers\Controller;
-use App\Security;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -47,7 +47,7 @@ class SecurityForgotPasswordController extends Controller
         $security = DB::table('securities')
             ->where('phone_number', request('phone_number'))->first();
         if (!$security) {
-            return redirect()->back()->with(['error' => 'This account does not exist']);
+            return redirect()->back()->with(['error' => Messages::ACCT_NOT_EXIST]);
         }
 
         try {
@@ -64,7 +64,7 @@ class SecurityForgotPasswordController extends Controller
                 Utils::convertPhoneNumberToE164Format(request('phone_number'))
             );
             DB::commit();
-            return redirect()->back()->with(['success' => 'Successful']);
+            return redirect()->back()->with(['success' => Messages::FORGET_PASSWORD_MSG]);
         } catch (\Exception $ex) {
             DB::rollBack();
             return redirect()->back()->with(['error' => 'Failed']);

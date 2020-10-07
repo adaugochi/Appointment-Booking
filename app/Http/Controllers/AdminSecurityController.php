@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\helpers\Messages;
 use App\helpers\Utils;
 use App\Security;
 use Illuminate\Http\Request;
@@ -83,7 +84,7 @@ class AdminSecurityController extends Controller
 
         $security = Security::find(request('id'));
         if (!$security) {
-            return redirect()->back()->with(['error' => 'Invalid user']);
+            return redirect()->back()->with(['error' => Messages::ACCT_DEACTIVATE]);
         }
 
         try {
@@ -124,7 +125,7 @@ class AdminSecurityController extends Controller
         $id = request('id');
         $security = Security::find($id);
         if (!$security) {
-            return redirect()->back()->with(['error' => 'Invalid user']);
+            return redirect()->back()->with(['error' => Messages::ACCT_DEACTIVATE]);
         }
 
         try {
@@ -143,7 +144,7 @@ class AdminSecurityController extends Controller
     {
         $security = Security::find(request('id'));
         if (!$security) {
-            return redirect()->back()->with(['error' => 'Invalid user']);
+            return redirect()->back()->with(['error' => Messages::ACCT_DEACTIVATE]);
         }
 
         $message = "Hello, here is your username: ". $security->username . " and a registration link : "

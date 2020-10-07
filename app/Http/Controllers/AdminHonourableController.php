@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\helpers\Messages;
 use App\helpers\Utils;
 use App\User;
 use Illuminate\Http\Request;
@@ -128,7 +129,7 @@ class AdminHonourableController extends Controller
         $id = request('id');
         $user = User::find($id);
         if (!$user) {
-            return redirect()->back()->with(['error' => 'Invalid user']);
+            return redirect()->back()->with(['error' => Messages::ACCT_DEACTIVATE]);
         }
 
         try {
@@ -147,7 +148,7 @@ class AdminHonourableController extends Controller
     {
         $user = User::find(request('id'));
         if (!$user) {
-            return redirect()->back()->with(['error' => 'Invalid user']);
+            return redirect()->back()->with(['error' => Messages::ACCT_DEACTIVATE]);
         }
         $url = env('BASE_URL') . "register?token=" . $user->token;
         $this->sendMessage(

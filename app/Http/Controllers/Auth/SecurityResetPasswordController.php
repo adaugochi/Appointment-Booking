@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\helpers\Messages;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class SecurityResetPasswordController extends Controller
 {
+    const EXPIRES = 960; // 16 minutes
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -35,8 +37,12 @@ class SecurityResetPasswordController extends Controller
     {
         $isTokenValid = DB::table('password_resets')->where('token', $token)->first();
         if (!$isTokenValid) {
-            return redirect()->route('password.request')->with(['error' => 'Invalid token']);
+            return redirect()->route('password.request')->with(['error' => Messages::INVALID_TOKEN]);
         }
+        if (time() > (strtotime($isTokenValid->created_at) + self::EXPIRES)) {
+            return redirect()->route('password.request')->with(['error' => Messages::TOKEN_EXPIRED]);
+        }
+
         $phoneNumber = $isTokenValid->email;
         $pwdResetRoute = route('security.password.update');
         $forgetPwdRoute = route('security.password.request');
@@ -59,7 +65,6 @@ class SecurityResetPasswordController extends Controller
         if (!$user) {
             return redirect()->back()->with(['error' => 'Failed']);
         }
-        return redirect()->route('security.login')
-            ->with(['success' => 'Your password reset was successful']);
+        return redirect()->route('security.login')->with(['success' => Messages::PWD_RESET_MSG]);
     }
 }
