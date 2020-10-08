@@ -77,20 +77,22 @@ class SecurityHomeController extends Controller
             $clockInCode = mt_rand(10000, 99999);
             $schedule = Schedule::find($data);
 
-            if ($schedule) {
-                DB::table('schedules')->where('id', $data)->limit(1)
-                    ->update(['clock_in_code' =>  $clockInCode]);
-                $this->sendMessage(
-                    'Your clock in code: ' . $clockInCode,
-                    Utils::convertPhoneNumberToE164Format($schedule->visitors_phone_number)
-                );
-                DB::commit();
-                return response()->json([
-                    'status' => 'success'
-                ]);
+            try {
+                if ($schedule) {
+                    DB::table('schedules')->where('id', $data)->limit(1)
+                        ->update(['clock_in_code' =>  $clockInCode]);
+                    $this->sendMessage(
+                        'Your clock in code: ' . $clockInCode,
+                        Utils::convertPhoneNumberToE164Format($schedule->visitors_phone_number)
+                    );
+                    DB::commit();
+                    return response()->json(['status' => 'success']);
+                }
+            } catch (\Exception $ex) {
+                DB::rollBack();
+                $errorMessage = $this->getErrorMessage($ex->getCode(), $ex->getMessage());
+                return response()->json(['status' => 'error', 'message' => $errorMessage]);
             }
-            DB::rollBack();
-            return response()->json(['status' => 'error']);
         }
         return response()->json(['status' => 'error']);
     }
