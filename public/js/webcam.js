@@ -62597,6 +62597,10 @@ $.ajaxSetup({
       webcam.stop();
     }
   });
+  $('#webcam-flip').click(function () {
+    webcam.flip();
+    webcam.start();
+  });
 
   function cameraStopped() {
     $('.md-effect-12').addClass('d-none');
