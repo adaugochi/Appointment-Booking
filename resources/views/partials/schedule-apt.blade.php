@@ -51,7 +51,7 @@
                                                 </button>
                                             </div>
                                         @endif
-                                        @if($aptStatus === 'unapproved' || $aptStatus === 'past')
+                                        @if($aptStatus === 'unapproved' || $aptStatus === 'cancelled')
                                             <div class="pr-2">
                                                 <a href="{{ route('schedule.show.reschedule', [$apt->id, $apt->schedule_date, $apt->duration]) }}"
                                                    class="btn btn-brand-outline-pry btn-pd btn-outline-action">

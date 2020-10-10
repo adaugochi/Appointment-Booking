@@ -14,7 +14,7 @@ class AlterSchedulesTable extends Migration
     public function up()
     {
         Schema::table('schedules', function (Blueprint $table) {
-            $table->string('image_url')->after('status');
+            $table->string('image_url')->after('status')->nullable();
         });
     }
 

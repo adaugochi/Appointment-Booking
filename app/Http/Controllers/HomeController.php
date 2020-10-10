@@ -31,16 +31,23 @@ class HomeController extends Controller
         $userAuthId = auth()->user()->id;
         $user = User::find($userAuthId);
 
-        $upcoming = Schedule::whereIn('status', [Schedule::CONFIRM, Schedule::RESCHEDULE])
-            ->where(['user_id' => $userAuthId, ['schedule_date', '>=', date('Y-m-d')]])
-            ->orderBy('id', 'DESC')->get();
-        $unapproved = Schedule::where(['status' => Schedule::PENDING, 'user_id' => $userAuthId])
-            ->orderBy('id', 'DESC')->get();
-        $past = Schedule::where(['status' => Schedule::CANCEL, 'user_id' => $userAuthId])
-//            ->orWhere('schedule_date', '<', date('Y-m-d'))
-            ->orderBy('id', 'DESC')->get();
+        $upcoming = Schedule::where([
+            'status' => Schedule::CONFIRM,
+            'user_id' => $userAuthId,
+            ['schedule_date', '>=', date('Y-m-d')]
+        ])->orderBy('id', 'DESC')->get();
 
-        return view('home', compact('user', 'upcoming', 'unapproved', 'past'));
+        $unapproved = Schedule::whereIn('status', [Schedule::PENDING, Schedule::RESCHEDULE])
+            ->where('user_id', $userAuthId)->orderBy('id', 'DESC')->get();
+        $cancelled = Schedule::where(['status' => Schedule::CANCEL, 'user_id' => $userAuthId])
+            ->orderBy('id', 'DESC')->get();
+        $past = Schedule::where([
+            'status' => Schedule::CONFIRM,
+            'user_id' => $userAuthId,
+            ['schedule_date', '<', date('Y-m-d')]
+        ])->orderBy('id', 'DESC')->get();
+
+        return view('home', compact('user', 'upcoming', 'unapproved', 'past', 'cancelled'));
     }
 
     public function viewDetail($id)

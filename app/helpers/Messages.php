@@ -14,5 +14,5 @@ class Messages
     const ACCT_DEACTIVATE = 'This account has been deactivated. You can no longer sign in';
     const ACCT_EXIST = 'This account is registered already, you can login';
     const INVALID_SIGNUP_TOKEN = "Invalid sign up token";
-    const DATE_HAS_EXPIRED = 'The date scheduled for an appointment has expired. Kindly reschedule the appointment and confirm it again';
+    const DATE_HAS_EXPIRED = 'The date scheduled for an appointment has expired. Kindly reschedule the appointment and confirm the appointment';
 }
