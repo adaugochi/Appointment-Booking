@@ -39,7 +39,7 @@
 
     &-outline {
         &-action {
-            border: solid 1px $brand-gray !important;
+            border: unset !important;
             &:hover {
                 border-color: $brand-primary !important;
             }

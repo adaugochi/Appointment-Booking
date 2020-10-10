@@ -47,6 +47,6 @@
     </section>
 @endsection()
 @section('script')
-    <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+    <script src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
     <script src="/js/webcam.js"></script>
 @endsection()

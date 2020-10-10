@@ -44,29 +44,24 @@ class SecurityHomeController extends Controller
 
     public function searchConfirmCode(Request $request)
     {
-        if($request->ajax()){
-            $data = request('code');
-            $schedule = Schedule::where(['confirmation_code' => trim($data)])->first();
-            if ($schedule) {
-                $user = User::find($schedule->user_id);
-                $response = [
-                    'full_name' => $user->getFullName(),
-                    'orig_date' => $schedule->schedule_date,
-                    'schedule_date' => Utils::formatDate($schedule->schedule_date),
-                    'schedule_time' => Utils::convertToMinutesIntervals($schedule->time, $schedule->duration),
-                    'date_confirmed' => Utils::formatDate($schedule->date_confirmed),
-                    'image_url' => $user->image_url,
-                    'id' => $schedule->id
-                ];
-
-                return response()->json([
-                    'status' => 'success',
-                    'result' => $response
-                ]);
-            }
+        if(!$request->ajax()) {
             return response()->json(['status' => 'error']);
         }
-        return response()->json(['status' => 'error']);
+        $schedule = Schedule::where(['confirmation_code' => trim(request('code'))])->first();
+        if (!$schedule) {
+            return response()->json(['status' => 'error']);
+        }
+        $user = User::find($schedule->user_id);
+        $response = [
+            'full_name' => $user->getFullName(),
+            'orig_date' => $schedule->schedule_date,
+            'schedule_date' => Utils::formatDate($schedule->schedule_date),
+            'schedule_time' => Utils::convertToMinutesIntervals($schedule->time, $schedule->duration),
+            'date_confirmed' => Utils::formatDate($schedule->date_confirmed),
+            'image_url' => $user->image_url,
+            'id' => $schedule->id
+        ];
+        return response()->json(['status' => 'success', 'result' => $response]);
     }
 
     public function saveClockInCode(Request $request)
@@ -104,9 +99,7 @@ class SecurityHomeController extends Controller
             $id = request('id');
             $schedule = Schedule::where(['clock_in_code' => trim($code), 'id' => $id])->first();
             if ($schedule) {
-                return response()->json([
-                    'status' => 'success'
-                ]);
+                return response()->json(['status' => 'success']);
             }
             return response()->json(['status' => 'error']);
         }

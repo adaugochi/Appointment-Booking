@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\helpers\Messages;
 use App\helpers\Utils;
 use App\Schedule;
 use App\User;
@@ -60,9 +61,10 @@ class HomeController extends Controller
         $id = $request->id;
         $schedule = Schedule::find($id);
         if (!$schedule) {
-            return redirect()->back()->with(['error' => 'failed']);
+            return redirect()->back()->with(['error' => Messages::USER_NOT_FOUND]);
         }
         try {
+            $schedule->dateHasExpired();
             $phoneNumber = $schedule->visitors_phone_number;
             $confirmationCode = Utils::generateConfirmationCode();
 
@@ -72,7 +74,6 @@ class HomeController extends Controller
                     'confirmation_code' => $confirmationCode,
                     'date_confirmed' => date('Y-m-d H:i:s')
                 ]);
-
             $this->sendMessage(
                 'Your appointment with ' . auth()->user()->getFullName() . ' has been confirmed. Your appointment ID is ' . $confirmationCode . '. This code serves as your pass-code, kindly keep it secured.',
                 Utils::convertPhoneNumberToE164Format($phoneNumber)
@@ -97,7 +98,7 @@ class HomeController extends Controller
         $id = $request->id;
         $schedule = Schedule::find($id);
         if (!$schedule) {
-            return redirect()->back()->with(['error' => 'failed']);
+            return redirect()->back()->with(['error' => Messages::USER_NOT_FOUND]);
         }
         try {
             $phoneNumber = $schedule->visitors_phone_number;
@@ -149,7 +150,7 @@ class HomeController extends Controller
         $id = request('id');
         $schedule = Schedule::find($id);
         if (!$schedule) {
-            return redirect()->back()->with(['error' => 'failed']);
+            return redirect()->back()->with(['error' => Messages::USER_NOT_FOUND]);
         }
         try {
             $phoneNumber = $schedule->visitors_phone_number;

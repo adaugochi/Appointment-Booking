@@ -11414,7 +11414,7 @@ textarea.card-form__input {
 }
 
 .btn-outline-action {
-  border: solid 1px #3d3d3d !important;
+  border: unset !important;
 }
 
 .btn-outline-action:hover {

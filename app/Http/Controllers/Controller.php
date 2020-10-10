@@ -59,7 +59,6 @@ class Controller extends BaseController
         } else {
             $errorMessage = "Could not send SMS notification to User";
         }
-
         return $errorMessage;
     }
 }

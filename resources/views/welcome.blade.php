@@ -9,16 +9,16 @@
         <link href="/css/app.css" rel="stylesheet">
     </head>
     <body class="bg-white">
-        <nav class="navbar bg-brand-gray main-header rep_custom-navbar">
+        <nav class="navbar main-header py-4 rep_custom-navbar">
             <div class="container">
-                <a href="/" class="fs-28 cursor-pointer text-white">NAFRN</a>
+                <a href="/" class="fs-28 cursor-pointer text-brand-primary">NAFRN</a>
                 <div class="justify-content-end">
                     @if (Route::has('login'))
                         <div class="links">
                             @auth
                                 <a href="{{ url('/home') }}">Home</a>
                             @else
-                                <a href="{{ route('login') }}">Login</a>
+                                <a href="{{ route('login') }}" class="text-gray">Login</a>
                             @endauth
                         </div>
                     @endif
@@ -26,7 +26,7 @@
             </div>
         </nav>
 
-        <div class="container" style="min-height: calc(100vh - 130px);">
+        <div class="container" style="min-height: calc(100vh - 162px);">
             <div class="row header-wrapper">
                 <div class="col-md-6 py-5 py-md-0 pt-lg-5 text-md-left text-center">
                     <div class="header-text">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img src="{{ asset('images/booking.svg') }}">
+                    <img src="{{ asset('images/calendar.svg') }}">
                 </div>
             </div>
         </div>

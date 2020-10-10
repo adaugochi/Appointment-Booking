@@ -8,7 +8,7 @@
     @elseif (session()->has('info'))
     toastr.info("{{ session()->get('info') }}");
 
-    @elseif (session()->has('error'))
-    toastr.error("{{ session()->get('error') }}");
+    @elseif (Session::has('error'))
+    toastr.error("{{ Session::get('error') }}");
     @endif
 </script>
