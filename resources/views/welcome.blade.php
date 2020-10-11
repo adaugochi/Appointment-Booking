@@ -16,7 +16,7 @@
                     @if (Route::has('login'))
                         <div class="links">
                             @auth
-                                <a href="{{ url('/home') }}">Home</a>
+                                <a href="{{ url('/home') }}">Dashboard</a>
                             @else
                                 <a href="{{ route('login') }}" class="text-gray">Login</a>
                             @endauth
@@ -28,12 +28,12 @@
 
         <div class="container" style="min-height: calc(100vh - 162px);">
             <div class="row header-wrapper">
-                <div class="col-md-6 py-5 py-md-0 pt-lg-5 text-md-left text-center">
+                <div class="col-lg-5 col-md-6  py-5 py-md-0 pt-lg-5 text-md-left text-center">
                     <div class="header-text">
                         <h1 class="font-weight-bold">
                             Welcome Back!!!
                         </h1>
-                        <p class="text-gray fs-18">
+                        <p class="text-gray fs-18 my-4">
                             NAFRN helps you schedule meetings without the back-and-forth emails
                             and long awaiting queue. Proceed to login and share your link with people
                             to schedule appointment with you
@@ -43,7 +43,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 offset-lg-1">
                     <img src="{{ asset('images/calendar.svg') }}">
                 </div>
             </div>
