@@ -63144,7 +63144,10 @@ $.ajaxSetup({
         }
       },
       error: function error(request, status, _error) {
-        console.log(request.responseText);
+        $this.find('span').removeClass('d-none');
+        $this.find('i').addClass('d-none');
+        $this.attr('disabled', false);
+        toastr.error("An error occurred. Refresh the page and try again");
       }
     });
   });

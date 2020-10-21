@@ -42,6 +42,11 @@ class SecurityHomeController extends Controller
         return view('security.snapshot', compact('id'));
     }
 
+    public function visitorPreview($id)
+    {
+        return view('security.preview', compact('id'));
+    }
+
     public function searchConfirmCode(Request $request)
     {
         if(!$request->ajax()) {
@@ -125,6 +130,7 @@ class SecurityHomeController extends Controller
             return redirect(route('security.snapshot', request('id')))
                 ->with(['error' => "Could not save photo"]);
         }
-        return redirect(route('security.home'))->with(['success' => "Photo saved successfully"]);
+        return redirect(route('security.preview', $visitor->id))
+            ->with(['success' => "Photo saved successfully"]);
     }
 }

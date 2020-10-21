@@ -8,7 +8,7 @@
     <title>@yield('title') | NAFRN</title>
 
     <!-- Icon-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Styles -->
     <link href="/css/portal.css" rel="stylesheet">
     <link href="/css/toastr.css" rel="stylesheet">
@@ -19,9 +19,10 @@
             <a class="navbar-brand" href="/"><h4>NAFRN</h4></a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="btn btn-brand-white-outline" href="{{ route('logout') }}" onclick="event.preventDefault();
-                              document.getElementById('logout-form').submit();">Logout</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    <a class="btn btn-brand-white-outline" href="{{ route('security.logout') }}"
+                       onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ route('security.logout') }}" method="POST">
                         @csrf
                     </form>
                 </li>

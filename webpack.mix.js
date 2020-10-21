@@ -13,7 +13,8 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/portal.js', 'public/js')
-    .js('resources/js/webcam.js', 'public/js')
+    .js('resources/js/webcam/webcam.js', 'public/js')
+    .js('resources/js/html2pdf/html2pdf.js', 'public/js')
     .sass('resources/sass/portal.scss', 'public/css')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/toastr.scss', 'public/css');

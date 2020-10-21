@@ -77,6 +77,8 @@ Route::prefix('security')->group(function () {
     // Portal routes
     Route::get('/home', 'SecurityHomeController@index')->name('security.home');
     Route::get('/snapshot/{id}', 'SecurityHomeController@snapShot')->name('security.snapshot');
+    Route::get('/preview/{id}', 'SecurityHomeController@visitorPreview')
+        ->name('security.preview');
     Route::post('/snapshot/save-photo', 'SecurityHomeController@savePhoto')->name('save.photo');
     Route::post('/home', 'SecurityHomeController@searchConfirmCode');
     Route::post('/save-clock-code', 'SecurityHomeController@saveClockInCode');

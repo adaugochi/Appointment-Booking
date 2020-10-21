@@ -3,6 +3,7 @@
     "/css/portal.css": "/css/portal.css",
     "/css/app.css": "/css/app.css",
     "/css/toastr.css": "/css/toastr.css",
+    "/js/html2pdf.js": "/js/html2pdf.js",
     "/js/portal.js": "/js/portal.js",
     "/js/webcam.js": "/js/webcam.js"
 }

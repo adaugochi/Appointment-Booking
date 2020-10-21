@@ -2,14 +2,18 @@
     const webcamElement = document.getElementById('webcam');
     const canvasElement = document.getElementById('canvas');
     const webcam = new Webcam(webcamElement, 'user', canvasElement);
-    let webcamSwitch = $('#webcam-switch');
+    let webcamSwitch = $('#webcam-switch'),
+        webcamFlip = $('#webcam-flip'),
+        webcamSnap = $("#webcam-snap"),
+        imgPreview = $('#image-preview'),
+        webcamWrapper = $('.webcam-container');
 
     webcamSwitch.click(function () {
         if ($(this).text().trim() === 'Start Camera') {
             webcam.start().then(result => {
                 cameraStarted();
             }).catch(err => {
-                //displayError();
+                toastr.error(err)
             });
         } else {
             cameraStopped();
@@ -17,35 +21,35 @@
         }
     });
 
-    $('#webcam-flip').click(function() {
+    webcamFlip.click(function() {
         webcam.flip();
         webcam.start();
     });
 
     function cameraStopped() {
-        $('.md-effect-12').addClass('d-none');
+        webcamWrapper.addClass('d-none');
         webcamSwitch.text('Start Camera');
         webcamSwitch.removeClass('btn-danger');
         webcamSwitch.addClass('btn-success');
     }
 
     function cameraStarted() {
-        $('.md-effect-12').removeClass('d-none');
+        webcamWrapper.removeClass('d-none');
         webcamSwitch.text('Stop Camera');
         webcamSwitch.removeClass('btn-success');
         $('#webcam').removeClass('d-none');
         $('#canvas').addClass('d-none');
         webcamSwitch.addClass('btn-danger');
-        $('#webcam-snap').removeClass('d-none');
+        webcamSnap.removeClass('d-none');
         $('#download-photo').addClass('d-none');
     }
 
-    $("#webcam-snap").click(function () {
+    webcamSnap.click(function () {
         beforeTakePhoto();
         let picture = webcam.snap();
         $('#download-photo').attr('href', picture);
-        $('#image-preview').removeClass('d-none');
-        $('#image-preview').attr('src', picture);
+        imgPreview.removeClass('d-none');
+        imgPreview.attr('src', picture);
         $('#image-url').val(picture);
         afterTakePhoto();
     });
@@ -62,7 +66,7 @@
     function afterTakePhoto(){
         webcam.stop();
         $('#canvas').removeClass('d-none');
-        $('#webcam-snap').addClass('d-none');
+        webcamSnap.addClass('d-none');
         $('#webcam').addClass('d-none');
         $('#download-photo').removeClass('d-none');
         webcamSwitch.text('Start Camera');

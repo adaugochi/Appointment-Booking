@@ -62667,12 +62667,10 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
   });
   toggleEyes.find('.fa').on('click', function () {
     if ($(this).hasClass('fa-eye-slash')) {
-      console.log(1);
       $(this).removeClass('fa-eye-slash');
       $(this).addClass('fa-eye');
       $(this).siblings().find('input').attr('type', 'text');
     } else {
-      console.log(2);
       $(this).addClass('fa-eye-slash');
       $(this).removeClass('fa-eye');
       $(this).siblings().find('input').attr('type', 'password');

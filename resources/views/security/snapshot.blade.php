@@ -9,7 +9,7 @@
                             Start Camera
                         </button>
                     </div>
-                    <div class="d-none md-effect-12">
+                    <div class="d-none webcam-container">
                         <div class="my-3">
                             <video id="webcam" class="d-none" autoplay playsinline style="width: 100%; height: unset"></video>
                             <canvas id="canvas" class="d-none" style="width: 100%;"></canvas>
