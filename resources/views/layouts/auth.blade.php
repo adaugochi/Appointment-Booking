@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') | NAFRN</title>
     <!-- Font Awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet" type="text/css">
     <link href="/css/toastr.css" rel="stylesheet" type="text/css">
@@ -18,7 +18,14 @@
             <div class="row vht-100 align-items-center justify-content-center">
                 <div class="col-md-8 col-lg-6 offset-lg-2 mx-auto">
                     <div class="card mx-auto bd-0">
-                        <h1 class="mb-3 card-box-title">@yield('card-title')</h1>
+                        <div class="d-flex mb-4">
+                            <a href="@yield('back-route')">
+                                <div class="card-dashboard-icon gray">
+                                    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                            <h1 class="card-box-title mx-auto fs-28 align-self-end">@yield('card-title')</h1>
+                        </div>
                         <div>
                             <form class="card-form__wrapper validateForm" action="@yield('route')" method="post">
                                 @csrf

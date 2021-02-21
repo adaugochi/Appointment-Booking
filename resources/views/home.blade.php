@@ -5,7 +5,7 @@
         <div class="clearfix">
             <div class="row">
                 <div class="col-md-4">
-                    <p class="fs-22">My Appointments</p>
+                    <p class="fs-22 font-weight-bold">My Appointments</p>
                 </div>
                 <div class="col-md-8">
                    @include('partials.edit-availability')
@@ -16,8 +16,8 @@
     <section class="pb-5 pb-md-0">
         <div>
             @if($user->is_profile_complete)
-                <div class="row pb-md-5">
-                    <div class="col-lg-10 mx-auto">
+                <div class="pb-md-5">
+                    <div>
                         <div class="d-flex">
                             <button class="btn btn-link">
                                 <i class="fa fa-link" aria-hidden="true"></i>
@@ -33,7 +33,7 @@
                         <div class="card bd-0 mt-4 mt-md-5">
                             <div class="card__title fs-20 pb-1">
                                 <i class="fa fa-calendar-check-o pr-2 card__icon green" aria-hidden="true"></i>
-                                <span>Scheduled Appointment</span>
+                                <span class="font-weight-bold">Scheduled Appointment</span>
                             </div>
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
@@ -45,6 +45,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#past">Past Appointments</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#cancelled">Cancelled Appointments</a>
+                                </li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -55,7 +58,7 @@
                                             'apts' => $upcoming,
                                             'aptStatus' => 'upcoming',
                                             'icon' => 'fa-calendar-plus-o',
-                                            'description' => 'No Meeting has been scheduled yet.'
+                                            'description' => 'You have no upcoming appointments yet.'
                                             ])
                                     </div>
                                 </div>
@@ -65,7 +68,7 @@
                                             'apts' => $unapproved,
                                             'aptStatus' => 'unapproved',
                                             'icon' => 'fa-calendar-times-o',
-                                  et          'description' => 'No Meeting has been unapproved yet.'
+                                            'description' => 'You have no pending appointments yet.'
                                         ])
                                     </div>
                                 </div>
@@ -76,6 +79,16 @@
                                             'aptStatus' => 'past',
                                             'icon' => 'fa-calendar-minus-o',
                                             'description' => 'You have no past appointments'
+                                        ])
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="cancelled">
+                                    <div>
+                                        @include('partials.schedule-apt', [
+                                            'apts' => $cancelled,
+                                            'aptStatus' => 'cancelled',
+                                            'icon' => 'fa-calendar-minus-o',
+                                            'description' => 'You have no cancelled appointments'
                                         ])
                                     </div>
                                 </div>

@@ -11,11 +11,11 @@
                     {{--<div class="fs-header text-center">Hon. {!! $userFullname !!}</div>--}}
                     <div class="bg-white">
                         <div class="booking__align-header text-center">
-                            <h3>Schedule A Meeting</h3>
+                            <h3 class="font-weight-bold">Schedule A Meeting</h3>
                         </div>
                         <div class="booking__align-body">
                             <div class="pb-4 text-center">
-                                <p>
+                                <p class="fs-18">
                                     Please select the date and time most convenient for you. Do ensure
                                     you do not select a day which falls on a weekend.
                                 </p>
@@ -25,7 +25,9 @@
                                     <a href="{{$username}}/15min" class="text-gray cursor-pointer">
                                         <div class="card">
                                             <div class="d-flex justify-content-between">
-                                                <div class="card-dashboard-icon d-content-center gray">15</div>
+                                                <div class="card-dashboard-icon d-content-center gray font-weight-bold">
+                                                    15
+                                                </div>
                                                 <div class="card-dashboard-text">
                                                     <p>Minute Meeting</p>
                                                 </div>
@@ -37,7 +39,9 @@
                                     <a href="{{$username}}/30min" class="text-gray cursor-pointer">
                                         <div class="card">
                                             <div class="d-flex justify-content-between">
-                                                <div class="card-dashboard-icon d-content-center gray">30</div>
+                                                <div class="card-dashboard-icon d-content-center gray font-weight-bold">
+                                                    30
+                                                </div>
                                                 <div class="card-dashboard-text">
                                                     <p>Minute Meeting</p>
                                                 </div>
@@ -49,7 +53,9 @@
                                     <a href="{{$username}}/60min" class="text-gray cursor-pointer">
                                         <div class="card">
                                             <div class="d-flex justify-content-between">
-                                                <div class="card-dashboard-icon d-content-center gray">60</div>
+                                                <div class="card-dashboard-icon d-content-center gray font-weight-bold">
+                                                    60
+                                                </div>
                                                 <div class="card-dashboard-text">
                                                     <p>Minute Meeting</p>
                                                 </div>

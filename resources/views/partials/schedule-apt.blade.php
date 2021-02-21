@@ -1,9 +1,9 @@
 @if(sizeof($apts) > 0)
     <div class="">
-        <table class="table list-item-container">
+        <table class="table list-item-container"  id="accordion">
             <thead>
             <tr>
-                <th class="field-name"><span>S/N</span></th>
+                {{--<th class="field-name d-none d-md-block"><span>S/N</span></th>--}}
                 <th class="field-name"><span>Date & Time</span></th>
                 <th class="field-name"><span>Action</span></th>
             </tr>
@@ -11,9 +11,9 @@
             <tbody id="tbody">
             @foreach($apts as $key => $apt)
                 <tr>
-                    <td>
-                        <div class="font-weight-bold">{{ $key+1 }}</div>
-                    </td>
+                    {{--<td class="d-none d-md-block">--}}
+                        {{--<div class="font-weight-bold">{{ $key+1 }}</div>--}}
+                    {{--</td>--}}
                     <td class="d-md-flex">
                         <div class="pr-md-3">{{ \App\helpers\Utils::formatDate($apt->schedule_date) }}</div>
                         <span>{{ \App\helpers\Utils::convertToMinutesIntervals($apt->schedule_time, $apt->duration) }}</span>
@@ -27,7 +27,7 @@
                     </td>
                     <tr>
                         <td colspan="3" class="p-0">
-                            <div id="demo{{$apt->id}}" class="collapse py-3 px-2">
+                            <div id="demo{{$apt->id}}" class="collapse py-3 px-2" data-parent="#accordion">
                                 <div class="flex-wrap d-flex justify-content-around">
                                     <p>Meeting scheduled with <strong>{{ $apt->visitors_name }}</strong></p>
                                     <div class="d-flex">
@@ -51,7 +51,7 @@
                                                 </button>
                                             </div>
                                         @endif
-                                        @if($aptStatus === 'unapproved' || $aptStatus === 'past')
+                                        @if($aptStatus === 'unapproved' || $aptStatus === 'cancelled')
                                             <div class="pr-2">
                                                 <a href="{{ route('schedule.show.reschedule', [$apt->id, $apt->schedule_date, $apt->duration]) }}"
                                                    class="btn btn-brand-outline-pry btn-pd btn-outline-action">

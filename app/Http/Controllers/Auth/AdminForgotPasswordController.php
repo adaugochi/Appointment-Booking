@@ -26,8 +26,12 @@ class AdminForgotPasswordController extends Controller
 
     public function showLinkRequestForm()
     {
+        $isAdmin = true;
         $loginRoute = route('admin.login');
-        $pwdResetEmail = route('admin.password.email');
-        return view('auth.passwords.email', compact('loginRoute', 'pwdResetEmail'));
+        $pwdResetRoute = route('admin.password.email');
+        return view(
+            'auth.passwords.forget-password',
+            compact('loginRoute', 'pwdResetRoute', 'isAdmin')
+        );
     }
 }

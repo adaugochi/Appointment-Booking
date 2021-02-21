@@ -19,7 +19,7 @@ class Utils
 
     public static function generateToken()
     {
-        return md5(rand(1, 10) . microtime()); //OR str_random(32);
+        return Str::random(60);//md5(rand(1, 10) . microtime()); //OR str_random(32);
     }
 
     public static function formatDate($timestamp)

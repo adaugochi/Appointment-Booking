@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\helpers\Messages;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
@@ -70,6 +71,6 @@ class AdminResetPasswordController extends Controller
     {
         return redirect()->back()
             ->withInput($request->only('email'))
-            ->with(['error' => 'Your password reset token has expired. Please go to forget password to request for new token']);
+            ->with(['error' => Messages::TOKEN_EXPIRED]);
     }
 }

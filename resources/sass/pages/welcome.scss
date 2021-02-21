@@ -1,0 +1,29 @@
+.header {
+    &-wrapper {
+        padding: 0 0 50px 0;
+        @include media-breakpoint-up(sm) {
+            padding: 70px 0 0 0;
+        }
+        img {
+            width: inherit;
+            vertical-align: middle;
+            border-style: none;
+        }
+    }
+
+    &-text h1:after {
+        @include headerBottomBorder(0 auto);
+        @include media-breakpoint-up(md) {
+            margin: 0 !important;
+        }
+    }
+}
+
+.links > a {
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}

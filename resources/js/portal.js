@@ -71,9 +71,7 @@ require('./calendar-time');
     });
 
     // calender
-   $('.edit-calendar').pignoseCalendar({
-
-   });
+   $('.edit-calendar').pignoseCalendar({});
 
    $('.btn-show').click(function () {
       $(this).find('.fa').toggleClass('fa-caret-right fa-caret-down')

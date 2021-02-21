@@ -10,8 +10,10 @@
     }
 
     &_available {
-        .fa-calendar {
-            @include iconRight(45px, 4.3);
+        .fa {
+            &-calendar, &-eye-slash, &-eye {
+                @include iconRight(45px, 4.3);
+            }
         }
     }
 

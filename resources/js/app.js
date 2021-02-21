@@ -14,7 +14,8 @@ require('./validation');
         pickedTime = [],
         timeInterval = $('.duration').val(),
         firstBackIcon = $('#back_first'),
-        secondBackIcon = $('#back_second');
+        secondBackIcon = $('#back_second'),
+        toggleEyes = $('.toggle-eyes');
 
     function getCurrentFormatDate() {
         let today = new Date();
@@ -87,7 +88,10 @@ require('./validation');
                 }
             },
             error: function (request, status, error) {
-                console.log(request.responseText);
+                $this.find('span').removeClass('d-none');
+                $this.find('i').addClass('d-none');
+                $this.attr('disabled', false);
+                toastr.error("An error occurred. Refresh the page and try again");
             }
         })
     });
@@ -100,7 +104,8 @@ require('./validation');
         disableTextInput: true,
     });
 
-    timeInput.focus(function () {
+    timeInput.focus(function (e) {
+        e.preventDefault();
         let timeList = $('.ui-timepicker-list li');
         timeList.each(function () {
             if (pickedTime.includes($(this).text())) {
@@ -133,5 +138,17 @@ require('./validation');
     selectTimeBtn.click(function (e) {
         timeDiv.addClass('d-none');
         infoDIv.removeClass('d-none');
+    });
+
+    toggleEyes.find('.fa').on('click', function () {
+        if ($(this).hasClass('fa-eye-slash')) {
+            $(this).removeClass('fa-eye-slash');
+            $(this).addClass('fa-eye');
+            $(this).siblings().find('input').attr('type', 'text');
+        } else {
+            $(this).addClass('fa-eye-slash');
+            $(this).removeClass('fa-eye');
+            $(this).siblings().find('input').attr('type', 'password');
+        }
     })
 })(jQuery);

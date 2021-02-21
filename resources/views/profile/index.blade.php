@@ -8,7 +8,7 @@
         <div class="clearfix">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="fs-22">My Account</h1>
+                    <p class="fs-22 font-weight-bold">My Account</p>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
                         <div class="card bd-0">
                             <div class="card__title fs-20 pb-1">
                                 <i class="fa fa-user-o pr-2 card__icon green" aria-hidden="true"></i>
-                                <span>Personal Information</span>
+                                <span class="font-weight-bold">Personal Information</span>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4">

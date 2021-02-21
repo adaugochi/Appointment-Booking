@@ -62548,7 +62548,8 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
       pickedTime = [],
       timeInterval = $('.duration').val(),
       firstBackIcon = $('#back_first'),
-      secondBackIcon = $('#back_second');
+      secondBackIcon = $('#back_second'),
+      toggleEyes = $('.toggle-eyes');
 
   function getCurrentFormatDate() {
     var today = new Date();
@@ -62618,7 +62619,10 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
         }
       },
       error: function error(request, status, _error) {
-        console.log(request.responseText);
+        $this.find('span').removeClass('d-none');
+        $this.find('i').addClass('d-none');
+        $this.attr('disabled', false);
+        toastr.error("An error occurred. Refresh the page and try again");
       }
     });
   });
@@ -62629,7 +62633,8 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
     maxTime: '17:00',
     disableTextInput: true
   });
-  timeInput.focus(function () {
+  timeInput.focus(function (e) {
+    e.preventDefault();
     var timeList = $('.ui-timepicker-list li');
     timeList.each(function () {
       if (pickedTime.includes($(this).text())) {
@@ -62659,6 +62664,17 @@ __webpack_require__(/*! ./validation */ "./resources/js/validation.js");
   selectTimeBtn.click(function (e) {
     timeDiv.addClass('d-none');
     infoDIv.removeClass('d-none');
+  });
+  toggleEyes.find('.fa').on('click', function () {
+    if ($(this).hasClass('fa-eye-slash')) {
+      $(this).removeClass('fa-eye-slash');
+      $(this).addClass('fa-eye');
+      $(this).siblings().find('input').attr('type', 'text');
+    } else {
+      $(this).addClass('fa-eye-slash');
+      $(this).removeClass('fa-eye');
+      $(this).siblings().find('input').attr('type', 'password');
+    }
   });
 })(jQuery);
 
@@ -62775,7 +62791,10 @@ $.ajaxSetup({
         minlength: 8,
         equalTo: "#password"
       },
-      reason_for_visit: "required"
+      reason_for_visit: {
+        rangelength: [20, 200],
+        required: true
+      }
     }
   });
 })(jQuery);
@@ -62822,10 +62841,10 @@ $.ajaxSetup({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/personal-project/Appointment-Booking/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/html/personal-project/Appointment-Booking/resources/sass/portal.scss */"./resources/sass/portal.scss");
-__webpack_require__(/*! /var/www/html/personal-project/Appointment-Booking/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/html/personal-project/Appointment-Booking/resources/sass/toastr.scss */"./resources/sass/toastr.scss");
+__webpack_require__(/*! C:\wamp64\www\app_booking\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\wamp64\www\app_booking\resources\sass\portal.scss */"./resources/sass/portal.scss");
+__webpack_require__(/*! C:\wamp64\www\app_booking\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\wamp64\www\app_booking\resources\sass\toastr.scss */"./resources/sass/toastr.scss");
 
 
 /***/ })

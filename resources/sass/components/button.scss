@@ -4,6 +4,7 @@
     padding: 10px 20px !important;
     border-radius: 0 !important;
     transition: all .5s;
+    letter-spacing: 2px;
     box-shadow: 0.5rem 0.5rem 1rem rgba(32, 107, 199, 0.2);
 
     &-action {
@@ -38,7 +39,7 @@
 
     &-outline {
         &-action {
-            border: solid 1px $brand-gray !important;
+            border: unset !important;
             &:hover {
                 border-color: $brand-primary !important;
             }

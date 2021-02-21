@@ -63144,7 +63144,10 @@ $.ajaxSetup({
         }
       },
       error: function error(request, status, _error) {
-        console.log(request.responseText);
+        $this.find('span').removeClass('d-none');
+        $this.find('i').addClass('d-none');
+        $this.attr('disabled', false);
+        toastr.error("An error occurred. Refresh the page and try again");
       }
     });
   });
@@ -63155,7 +63158,8 @@ $.ajaxSetup({
     maxTime: '17:00',
     disableTextInput: true
   });
-  resTimeInput.focus(function () {
+  resTimeInput.focus(function (e) {
+    e.preventDefault();
     var timeList = $('.ui-timepicker-list li');
     timeList.each(function () {
       if (resPickedTime.includes($(this).text())) {
@@ -63196,6 +63200,7 @@ $.ajaxSetup({
       clockInCodeInput = $('#clock_in_code_input'),
       templateWrapper = $('#template'),
       _token = $('meta[name="csrf-token"]').attr('content'),
+      clockbtn = '#sendClockCode',
       baseURL = '/';
 
   confirmCodeBtn.click(function () {
@@ -63224,7 +63229,16 @@ $.ajaxSetup({
 
         if (response.result && response.status === 'success') {
           var res = response.result;
-          templateWrapper.append("\n                        <div class=\"card bd-0\">\n                            <div>\n                                <img src=\"/uploads/profile/".concat(res.image_url, "\" width=\"200\">\n                            </div>\n                            <div class=\"mt-4\">\n                                <p>Whom to see: ").concat(res.full_name, "</p>\n                                <p>Appointment booked for ").concat(res.schedule_date, "</p>\n                                <p>Appointment confirmed on ").concat(res.date_confirmed, "</p>\n                                <p>Appointment time: ").concat(res.schedule_time, "</p>\n                            </div>\n                            <form action=\"/\" method=\"post\">\n                                <input type=\"hidden\" name=\"_token\" value=\"").concat(_token, "\">\n                                <input type=\"hidden\" value=\"").concat(res.id, "\" name=\"id\" id=\"sch_id\">\n                                <button type=\"button\" class=\"btn btn-brand-outline-pry btn-wd-100\" id=\"sendClockCode\">\n                                    <span>Send Clock In Code</span>\n                                    <i class=\"fa fa-spinner fa-spin d-none fs-20\"></i>\n                                </button>\n                            </form>\n                        </div>\n                    "));
+          var givenDate = new Date(res.orig_date);
+          var currentDate = new Date();
+
+          if (givenDate.setHours(0, 0, 0, 0) === currentDate.setHours(0, 0, 0, 0)) {
+            templateWrapper.append("\n                            <div class=\"card bd-0\">\n                                <div class=\"card__title fs-20 pb-1\">\n                                    <i class=\"fa fa-user-o pr-2 card__icon green\" aria-hidden=\"true\"></i>\n                                    <span>Schedule Details</span>\n                                </div>\n                                <div>\n                                    <img src=\"/uploads/profile/".concat(res.image_url, "\" width=\"200\">\n                                </div>\n                                <div class=\"mt-4\">\n                                    <p>Whom to see: ").concat(res.full_name, "</p>\n                                    <p>Appointment booked for ").concat(res.schedule_date, "</p>\n                                    <p>Appointment confirmed on ").concat(res.date_confirmed, "</p>\n                                    <p>Appointment time: ").concat(res.schedule_time, "</p>\n                                </div>\n                                <form action=\"/\" method=\"post\">\n                                    <input type=\"hidden\" name=\"_token\" value=\"").concat(_token, "\">\n                                    <input type=\"hidden\" value=\"").concat(res.id, "\" name=\"id\" id=\"sch_id\">\n                                    <button type=\"button\" class=\"btn btn-brand-outline-pry btn-wd-100\"\n                                     id=\"sendClockCode\">\n                                        <span>Send Clock In Code</span>\n                                        <i class=\"fa fa-spinner fa-spin d-none fs-20\"></i>\n                                    </button>\n                                </form>\n                            </div>\n                        "));
+          } else if (givenDate < currentDate) {
+            templateWrapper.append("\n                            <div class=\"card bd-0\">\n                                <div class=\"empty-state\">\n                                    <i class=\"fa fa-address-card-o empty-state__icon icon-grey\"></i>\n                                    <p class=\"empty-state__description mt-2\">\n                                        The date scheduled for this appointment have passed\n                                    </p>\n                                </div>\n                            </div>\n                        ");
+          } else {
+            templateWrapper.append("\n                            <div class=\"card bd-0\">\n                                <div class=\"empty-state\">\n                                    <i class=\"fa fa-address-card-o empty-state__icon icon-grey\"></i>\n                                    <p class=\"empty-state__description mt-2\">\n                                        You don't have any appointment scheduled for today.\n                                    </p>\n                                </div>\n                            </div>\n                        ");
+          }
         } else {
           templateWrapper.append("\n                        <div class=\"card bd-0\">\n                            <div class=\"empty-state\">\n                                <i class=\"fa fa-address-card-o empty-state__icon icon-grey\"></i>\n                                <p class=\"empty-state__description mt-2\">\n                                    No result found\n                                </p>\n                            </div>\n                        </div>\n                    ");
         }
@@ -63233,7 +63247,7 @@ $.ajaxSetup({
         $this.find('span').removeClass('d-none');
         $this.find('i').addClass('d-none');
         $this.attr('disabled', false);
-        console.log(request.responseText);
+        toastr.error("An error occurred. Refresh the page and try again");
       },
       complete: function complete() {
         sendCode();
@@ -63253,7 +63267,6 @@ $.ajaxSetup({
 
   enableDisableBtn(confirmCodeInput, confirmCodeBtn);
   enableDisableBtn(clockInCodeInput, clockInCodeBtn);
-  var clockbtn = '#sendClockCode';
 
   function sendCode() {
     $(clockbtn).on('click', function () {
@@ -63277,10 +63290,15 @@ $.ajaxSetup({
 
           if (response.status === 'success') {
             $('.clock-code-div').removeClass('d-none');
+            toastr.success("Clock In Code sent successfully");
           }
         },
         error: function error(request, status, _error2) {
-          console.log(request.responseText);
+          //console.log(request.responseText);
+          $this.find('span').removeClass('d-none');
+          $this.find('i').addClass('d-none');
+          $this.attr('disabled', false);
+          toastr.error("An error occurred. Refresh the page and try again");
         }
       });
     });
@@ -63306,15 +63324,16 @@ $.ajaxSetup({
         $this.find('span').removeClass('d-none');
         $this.find('i').addClass('d-none');
         $this.attr('disabled', false);
-        console.log(response);
 
         if (response.status === 'success') {
+          //location.reload();
+          location.href = baseURL + 'security/snapshot/' + scheduleId;
           toastr.success("You are now confirmed");
         }
       },
       error: function error(request, status, _error3) {
-        toastr.error("We could not confirm this identity");
-        console.log(request.responseText);
+        window.location.reload();
+        toastr.error("We could not confirm this identity"); //console.log(request.responseText);
       }
     });
   });
@@ -63905,7 +63924,10 @@ __webpack_require__(/*! ./calendar-time */ "./resources/js/calendar-time.js");
         minlength: 8,
         equalTo: "#password"
       },
-      reason_for_visit: "required"
+      reason_for_visit: {
+        rangelength: [20, 200],
+        required: true
+      }
     }
   });
 })(jQuery);
@@ -63919,7 +63941,7 @@ __webpack_require__(/*! ./calendar-time */ "./resources/js/calendar-time.js");
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/personal-project/Appointment-Booking/resources/js/portal.js */"./resources/js/portal.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\app_booking\resources\js\portal.js */"./resources/js/portal.js");
 
 
 /***/ })

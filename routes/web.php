@@ -7,6 +7,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+// Password reset routes
+Route::post('/password/send-reset-link', 'Auth\ForgotPasswordController@sendResetLink')
+    ->name('password.forget');
+Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/schedule/reschedule/{id}/{date}/{duration}', 'HomeController@showRescheduleApt')
     ->name('schedule.show.reschedule');
@@ -58,8 +65,20 @@ Route::prefix('security')->group(function () {
     Route::get('/register', 'Auth\SecurityRegisterController@showRegistrationForm')->name('security.register');
     Route::post('/sign-up', 'Auth\SecurityRegisterController@signUp')->name('security.sign-up');
     Route::post('/logout', 'Auth\SecurityLoginController@logout')->name('security.logout');
+
+    // Password reset routes
+    Route::post('/password/send-reset-link', 'Auth\SecurityForgotPasswordController@sendResetLink')->name('security.password.forget');
+    Route::get('/password/reset', 'Auth\SecurityForgotPasswordController@showLinkRequestForm')->name('security.password.request');
+    Route::post('/password/reset', 'Auth\SecurityResetPasswordController@reset')->name('security.password.update');
+    Route::get('/password/reset/{token}', 'Auth\SecurityResetPasswordController@showResetForm')->name('security.password.reset');
+
+
     // Portal routes
     Route::get('/home', 'SecurityHomeController@index')->name('security.home');
+    Route::get('/snapshot/{id}', 'SecurityHomeController@snapShot')->name('security.snapshot');
+    Route::get('/preview/{id}', 'SecurityHomeController@visitorPreview')
+        ->name('security.preview');
+    Route::post('/snapshot/save-photo', 'SecurityHomeController@savePhoto')->name('save.photo');
     Route::post('/home', 'SecurityHomeController@searchConfirmCode');
     Route::post('/save-clock-code', 'SecurityHomeController@saveClockInCode');
     Route::post('/confirm-clock-code', 'SecurityHomeController@confirmClockInCode');

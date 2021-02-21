@@ -5,7 +5,7 @@
         <div class="clearfix">
             <div class="row">
                 <div class="col-md-4">
-                    <p class="fs-22">Reschedule Appointment</p>
+                    <p class="fs-22 font-weight-bold">Reschedule Appointment</p>
                 </div>
                 <div class="col-md-8">
                     @include('partials.edit-availability')
@@ -80,7 +80,7 @@
                             <i class="fa fa-clock-o" aria-hidden="true"></i>
                             <div class="form-group">
                                 <input class="card-form__input form-control res_time" id="schedule_time"
-                                       type="text" placeholder="pick a time" name="schedule_time">
+                                       placeholder="pick a time" name="schedule_time" onkeydown="return false;">
                             </div>
                             <button type="submit" class="btn btn-brand-outline-pry btn-wd-100" id="select_time" disabled>
                                 Reschedule

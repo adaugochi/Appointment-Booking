@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\helpers\Messages;
 use App\Http\Controllers\Controller;
 use App\Security;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -27,7 +29,7 @@ class SecurityLoginController extends Controller
     {
         $isAdmin = false;
         $loginRoute = route('security.sign-in');
-        $forgotPwdRoute = route('password.request');
+        $forgotPwdRoute = route('security.password.request');
         return view('auth.login', compact('loginRoute', 'forgotPwdRoute', 'isAdmin'));
     }
 
@@ -36,7 +38,7 @@ class SecurityLoginController extends Controller
         return 'username';
     }
 
-    protected function guard()
+    public function guard()
     {
         return Auth::guard('security');
     }
@@ -47,14 +49,12 @@ class SecurityLoginController extends Controller
 
         $user = Security::where(['username' => $request->username])->first();
         if ($user->is_active === 0) {
-            return redirect(route('security.login'))
-                ->with(['error' => 'This account has been deactivated. You can no longer sign in']);
+            return redirect(route('security.login'))->with(['error' => Messages::ACCT_DEACTIVATE]);
         }
 
         if (method_exists($this, 'hasTooManyLoginAttempts') &&
             $this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
-
             return $this->sendLockoutResponse($request);
         }
 
@@ -63,7 +63,18 @@ class SecurityLoginController extends Controller
         }
 
         $this->incrementLoginAttempts($request);
-
         return $this->sendFailedLoginResponse($request);
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+        return redirect('/security/login');
     }
 }

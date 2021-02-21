@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\helpers\Messages;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 
@@ -51,5 +52,18 @@ class Schedule extends Model
             throw new Exception('Could not save schedule information');
         }
         return $this->id;
+    }
+
+    /**
+     * @return bool
+     * @throws Exception
+     * @author Adaa Mgbede <adaa@cottacush.com>
+     */
+    public function dateHasExpired()
+    {
+        if (strtotime($this->schedule_date) < strtotime(strftime('%F'))) {
+            throw new Exception(Messages::DATE_HAS_EXPIRED);
+        }
+        return true;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\helpers\Messages;
 use App\helpers\Utils;
 use App\Schedule;
 use App\User;
@@ -30,16 +31,23 @@ class HomeController extends Controller
         $userAuthId = auth()->user()->id;
         $user = User::find($userAuthId);
 
-        $upcoming = Schedule::whereIn('status', [Schedule::CONFIRM, Schedule::RESCHEDULE])
-            ->where(['user_id' => $userAuthId, ['schedule_date', '>=', date('Y-m-d')]])
-            ->orderBy('id', 'DESC')->get();
-        $unapproved = Schedule::where(['status' => Schedule::PENDING, 'user_id' => $userAuthId])
-            ->orderBy('id', 'DESC')->get();
-        $past = Schedule::where(['status' => Schedule::CANCEL, 'user_id' => $userAuthId])
-//            ->orWhere('schedule_date', '<', date('Y-m-d'))
-            ->orderBy('id', 'DESC')->get();
+        $upcoming = Schedule::where([
+            'status' => Schedule::CONFIRM,
+            'user_id' => $userAuthId,
+            ['schedule_date', '>=', date('Y-m-d')]
+        ])->orderBy('id', 'DESC')->get();
 
-        return view('home', compact('user', 'upcoming', 'unapproved', 'past'));
+        $unapproved = Schedule::whereIn('status', [Schedule::PENDING, Schedule::RESCHEDULE])
+            ->where('user_id', $userAuthId)->orderBy('id', 'DESC')->get();
+        $cancelled = Schedule::where(['status' => Schedule::CANCEL, 'user_id' => $userAuthId])
+            ->orderBy('id', 'DESC')->get();
+        $past = Schedule::where([
+            'status' => Schedule::CONFIRM,
+            'user_id' => $userAuthId,
+            ['schedule_date', '<', date('Y-m-d')]
+        ])->orderBy('id', 'DESC')->get();
+
+        return view('home', compact('user', 'upcoming', 'unapproved', 'past', 'cancelled'));
     }
 
     /**
@@ -53,9 +61,10 @@ class HomeController extends Controller
         $id = $request->id;
         $schedule = Schedule::find($id);
         if (!$schedule) {
-            return redirect()->back()->with(['error' => 'failed']);
+            return redirect()->back()->with(['error' => Messages::USER_NOT_FOUND]);
         }
         try {
+            $schedule->dateHasExpired();
             $phoneNumber = $schedule->visitors_phone_number;
             $confirmationCode = Utils::generateConfirmationCode();
 
@@ -65,7 +74,6 @@ class HomeController extends Controller
                     'confirmation_code' => $confirmationCode,
                     'date_confirmed' => date('Y-m-d H:i:s')
                 ]);
-
             $this->sendMessage(
                 'Your appointment with ' . auth()->user()->getFullName() . ' has been confirmed. Your appointment ID is ' . $confirmationCode . '. This code serves as your pass-code, kindly keep it secured.',
                 Utils::convertPhoneNumberToE164Format($phoneNumber)
@@ -90,7 +98,7 @@ class HomeController extends Controller
         $id = $request->id;
         $schedule = Schedule::find($id);
         if (!$schedule) {
-            return redirect()->back()->with(['error' => 'failed']);
+            return redirect()->back()->with(['error' => Messages::USER_NOT_FOUND]);
         }
         try {
             $phoneNumber = $schedule->visitors_phone_number;
@@ -142,17 +150,19 @@ class HomeController extends Controller
         $id = request('id');
         $schedule = Schedule::find($id);
         if (!$schedule) {
-            return redirect()->back()->with(['error' => 'failed']);
+            return redirect()->back()->with(['error' => Messages::USER_NOT_FOUND]);
         }
         try {
             $phoneNumber = $schedule->visitors_phone_number;
             $scheduleDate =  request('schedule_date');
             $scheduleTime = request('schedule_time');
 
-            DB::table('schedules')
-                ->where('id', $id)  // find your user by id
-                ->limit(1)  // optional - to ensure only one record is updated.
-                ->update(['schedule_date' => $scheduleDate, 'schedule_time' => $scheduleTime]);
+            DB::table('schedules')->where('id', $id)->limit(1)
+                ->update([
+                    'schedule_date' => $scheduleDate,
+                    'schedule_time' => $scheduleTime,
+                    'status' => Schedule::RESCHEDULE
+                ]);
             $message = "Your appointment have been reschedule to " . Utils::formatDate($scheduleDate) . ' '  . Utils::formatTime($scheduleTime);
             $this->sendMessage($message, Utils::convertPhoneNumberToE164Format($phoneNumber));
 

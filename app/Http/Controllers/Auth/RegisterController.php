@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\helpers\Messages;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -65,11 +66,10 @@ class RegisterController extends Controller
         ]);
         $user = User::where('token', request('token'))->first();
         if (!$user) {
-            return redirect($this->loginURL)->with(['error' => 'Invalid sign up token']);
+            return redirect($this->loginURL)->with(['error' => Messages::INVALID_SIGNUP_TOKEN]);
         }
         if ($user->has_registered == 1) {
-            return Redirect::to($this->loginURL)
-                ->with(['info' => 'This account is registered already, you can login']);
+            return Redirect::to($this->loginURL)->with(['info' => Messages::ACCT_EXIST]);
         }
         $user->password = Hash::make(request('password'));
         $user->has_registered = 1;
@@ -77,6 +77,6 @@ class RegisterController extends Controller
             $this->guard()->login($user);
             return Redirect::to($this->redirectTo)->with(['success' => 'Registration was successful']);
         }
-        return redirect($this->loginURL)->with(['error' => 'registration was not successful']);
+        return redirect($this->loginURL)->with(['error' => 'Registration was not successful']);
     }
 }

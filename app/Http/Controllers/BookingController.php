@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
 {
+    /**
+     * @param $username
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     * @author Adaa Mgbede <adaa@cottacush.com>
+     */
     public function index($username)
     {
         if ($this->getUserId($username)) {
@@ -97,19 +102,7 @@ class BookingController extends Controller
             return redirect(route('booking-success', $id))->with('success', 'Successfully');
         } catch (\Exception $ex) {
             DB::rollBack();
-            if ($ex->getCode() === 21211) {
-                $errorMessage = "This phone number is invalid";
-            } elseif ($ex->getCode() === 21408) {
-                $errorMessage = "We don't have international permission necessary to SMS this phone number";
-            } elseif ($ex->getCode() === 21610) {
-                $errorMessage = "This phone number is blocked";
-            } elseif ($ex->getCode() === 21614) {
-                $errorMessage = "This phone number is incapable of receiving SMS messages";
-            } elseif ($ex->getMessage()) {
-                $errorMessage = $ex->getMessage();
-            } else {
-                $errorMessage = "Could not send SMS notification to User";
-            }
+            $errorMessage = $this->getErrorMessage($ex->getCode(), $ex->getMessage());
             return redirect()->back()->with(['error' => $errorMessage]);
         }
     }
