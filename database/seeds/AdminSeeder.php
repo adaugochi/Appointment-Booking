@@ -19,14 +19,14 @@ class AdminSeeder extends Seeder
                 'last_name' => 'Mgbede',
                 'email' => 'adaamgbede@gmail.com',
                 'role' => 'system-admin',
-                'password' => Hash::make(12345678)
+                'password' => Hash::make(env('ADMIN_DEFAULT_PASSWORD'))
             ],
             [
                 'first_name' => 'Ayomide',
                 'last_name' => 'Ojo',
                 'email' => 'antava1990@gmail.com',
                 'role' => 'project-manager',
-                'password' => Hash::make(12345678)
+                'password' => Hash::make(env('ADMIN_DEFAULT_PASSWORD'))
             ],
         ]);
     }
