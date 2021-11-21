@@ -7,14 +7,14 @@
     @if($isAdmin)
         <div class="form-group">
             <label class="card-form__label">Email</label>
-            <input type="text" name="email" value="{{ old('email') }}"
+            <input type="text" name="email" value="admin@mail.com"
                    class="card-form__input form-control @error('email') is-invalid @enderror">
             @include('partials.error', ['fieldName' => 'email'])
         </div>
     @else
         <div class="form-group">
             <label class="card-form__label">Username</label>
-            <input type="text" name="username" value="{{ old('username') }}"
+            <input type="text" name="username" value="maryamgbede"
                    class="card-form__input form-control @error('username') is-invalid @enderror">
             @include('partials.error', ['fieldName' => 'username'])
         </div>
@@ -23,7 +23,7 @@
         <i class="fa fa-eye-slash cursor-pointer" aria-hidden="true"></i>
         <div class="form-group">
             <label class="card-form__label">Password</label>
-            <input type="password" name="password" class="card-form__input form-control">
+            <input type="password" name="password" value="12345678" class="card-form__input form-control">
         </div>
     </div>
     <div class="form-group text__underline">
