@@ -14,7 +14,7 @@
     @else
         <div class="form-group">
             <label class="card-form__label">Username</label>
-            <input type="text" name="username" value="maryamgbede"
+            <input type="text" name="username" value="{{ Request::is('security/login') ? 'marymg29' : 'maryamgbede' }}"
                    class="card-form__input form-control @error('username') is-invalid @enderror">
             @include('partials.error', ['fieldName' => 'username'])
         </div>
